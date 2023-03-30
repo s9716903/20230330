@@ -14,8 +14,10 @@ public class CardValue
     public int Type; //種類(上半)
     public string Name; //名字(上半)
     public int Value; //數值(上半)
+    public bool[] AttackZone;
     public bool candraw2; //用完是否可抽牌(下半)
     public int Type2; //種類(下半)
     public string Name2; //名字(下半)
     public int Value2; //數值(下半)
+    public bool[] AttackZone2;
 }
