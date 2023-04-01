@@ -17,9 +17,9 @@ MonoBehaviour:
     Type: 1
     Name: BBB
     Value: 1
-    AttackZone: 0101010101
+    CanAttack: 0000000000000000000000000000000000000000
     candraw2: 1
     Type2: 0
     Name2: AAA
     Value2: 2
-    AttackZone2: 0000000000
+    CanAttack2: 0000000000000000000000000000000000000000

@@ -17,9 +17,9 @@ MonoBehaviour:
     Type: 2
     Name: CCC
     Value: 2
-    AttackZone: 
+    CanAttack: 0000000000000000000000000000000000000000
     candraw2: 0
     Type2: 3
     Name2: DDD
     Value2: 2
-    AttackZone2: 
+    CanAttack2: 0000000000000000000000000000000000000000
