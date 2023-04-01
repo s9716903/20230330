@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CardManager : MonoBehaviour
+public class CardManager : MonoBehaviour,IPointerClickHandler
 {
-    public CardValueManager cardvaluemanager; //卡片資料
+    public  CardValueManager cardvaluemanager; //卡片資料
 
     private bool isUseThisCard;
     private bool isCardUp; //卡片是否為正位置
@@ -45,28 +46,32 @@ public class CardManager : MonoBehaviour
             Name = cardvaluemanager.cardvalue.Name2;
             Value = cardvaluemanager.cardvalue.Value2;
         }
-
+    }
+    public void OnPointerClick(PointerEventData pointerEventData)
+    {
         //滑鼠左鍵卡片時
-        if (Input.GetMouseButtonDown(0))
+        if (pointerEventData.button == PointerEventData.InputButton.Left)
         {
             isUseThisCard = !isUseThisCard;
+            UseCard();
         }
 
         //滑鼠右鍵卡片時
-        if (Input.GetMouseButtonDown(1))
+        if (pointerEventData.button == PointerEventData.InputButton.Right)
         {
             isCardUp = !isCardUp;
         }
     }
-    private void UseCard()
+
+    private void UseCard() //點擊卡片時卡片向上移(暫時測試用)
     {
         if (isUseThisCard)
         {
-            
+            transform.position += new Vector3(0,1,0);
         }
         else
-        { 
-            
+        {
+            transform.position -= new Vector3(0, 1, 0);
         }
     }
 }
