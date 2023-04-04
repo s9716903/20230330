@@ -6,22 +6,16 @@ using UnityEngine;
 public class CardValueManager : ScriptableObject
 {
     //序列化CardValue資料並轉成ScriptableObject
-    public CardValue cardvalue; 
+    public CardValue cardValue;
 }
 [System.Serializable]
-public class CardValue
+public class CardValue //基礎卡片資料
 {
-    //卡片上半資料
+    //卡片資料
+    public int ID; //卡片ID
     public bool candraw; //用完是否可抽牌
-    public int Type; //種類
     public string Name; //名字
     public int Value; //數值
+    public int Type; //攻擊種類
     public int[] CanAttack = new int[5]; //可攻擊位置
-
-    //卡片下半資料
-    public bool candraw2;
-    public int Type2;
-    public string Name2;
-    public int Value2;
-    public int[] CanAttack2 = new int[5];
 }

@@ -5,16 +5,17 @@ using UnityEngine.EventSystems;
 
 public class CardManager : MonoBehaviour,IPointerClickHandler
 {
-    public  CardValueManager cardvaluemanager; //卡片資料
+    public  CardValueManager cardvaluemanager; //卡片目前資料
+    public CardValueManager[] _cardValueManager = new CardValueManager[2]; //卡片上下半資料
 
-    private bool isUseThisCard;
+    private bool isUseThisCard; //是否使用該卡片
     private bool isCardUp; //卡片是否為正位置
     private int[] PlayerZone = new int[] { 0, 1, 2, 3, 4 }; //攻擊範圍
-   
-    public bool candraw; //用完是否可抽牌
-    public int[] CanAttack = new int[5]; //可攻擊位置
 
     [Header("CardValue")]
+    public int ID; //卡片ID
+    public bool candraw; //用完是否可抽牌
+    public int[] CanAttack = new int[5]; //可攻擊位置
     public int Type; //種類
     public string Name; //名字
     public int Value; //數值
@@ -30,22 +31,21 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         //卡片正位置
         if (isCardUp == true)
         {
-            candraw = cardvaluemanager.cardvalue.candraw;
-            CanAttack = cardvaluemanager.cardvalue.CanAttack;
-            Type = cardvaluemanager.cardvalue.Type;
-            Name = cardvaluemanager.cardvalue.Name;
-            Value = cardvaluemanager.cardvalue.Value;
+            cardvaluemanager = _cardValueManager[0];
         }
 
         //卡片逆位置
         if (isCardUp == false)
         {
-            candraw = cardvaluemanager.cardvalue.candraw2;
-            CanAttack = cardvaluemanager.cardvalue.CanAttack2;
-            Type = cardvaluemanager.cardvalue.Type2;
-            Name = cardvaluemanager.cardvalue.Name2;
-            Value = cardvaluemanager.cardvalue.Value2;
+            cardvaluemanager = _cardValueManager[1];
         }
+        //卡片資料
+        ID = cardvaluemanager.cardValue.ID;
+        candraw = cardvaluemanager.cardValue.candraw;
+        CanAttack = cardvaluemanager.cardValue.CanAttack;
+        Type = cardvaluemanager.cardValue.Type;
+        Name = cardvaluemanager.cardValue.Name;
+        Value = cardvaluemanager.cardValue.Value;
     }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
