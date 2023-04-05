@@ -240,13 +240,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeckAllCard:
-  - {fileID: 5663853295514178344, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
-  - {fileID: 1201890143797963757, guid: 45eb866849e764d43908c330fcd61ec8, type: 3}
-  - {fileID: 5663853295514178344, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
-  - {fileID: 1201890143797963757, guid: 45eb866849e764d43908c330fcd61ec8, type: 3}
-  - {fileID: 5663853295514178344, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
-  - {fileID: 1201890143797963757, guid: 45eb866849e764d43908c330fcd61ec8, type: 3}
-  - {fileID: 5663853295514178344, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
+  - {fileID: 2993796187430144026, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
+  - {fileID: 8124639466306731628, guid: 45eb866849e764d43908c330fcd61ec8, type: 3}
+  - {fileID: 2993796187430144026, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
+  - {fileID: 8124639466306731628, guid: 45eb866849e764d43908c330fcd61ec8, type: 3}
+  - {fileID: 2993796187430144026, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
+  - {fileID: 8124639466306731628, guid: 45eb866849e764d43908c330fcd61ec8, type: 3}
+  - {fileID: 2993796187430144026, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
 --- !u!114 &480464463
 MonoBehaviour:
   m_ObjectHideFlags: 0
