@@ -8,6 +8,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public  CardValueManager cardvaluemanager; //卡片目前資料
     public CardValueManager[] _cardValueManager = new CardValueManager[2]; //卡片上下半資料
 
+    private bool canUseThisCard; //是否能用該卡片
     private bool isUseThisCard; //是否使用該卡片
     private bool isCardUp; //卡片是否為正位置
     private int[] PlayerZone = new int[] { 0, 1, 2, 3, 4 }; //攻擊範圍
@@ -24,6 +25,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {
         isCardUp = true;
         isUseThisCard = false;
+        canUseThisCard = false;
     }
     // Update is called once per frame
     void Update()
@@ -46,14 +48,50 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         Type = cardvaluemanager.cardValue.Type;
         Name = cardvaluemanager.cardValue.Name;
         Value = cardvaluemanager.cardValue.Value;
+
+        //攻擊牌判定
+        if (ID == 0)
+        {
+            /*if ()
+            {
+                canUseThisCard = true;
+            }
+            else
+            {
+                canUseThisCard = false;
+            }       */    
+        }
+
+        //移動牌判定
+        if (ID == 1)
+        {
+            /*if ()
+            {
+                canUseThisCard = true;
+            }
+            else
+            {
+                canUseThisCard = false;
+            }       */
+        }
+
+        //星星/回血牌判定
+        if (ID == 2 || ID == 3)
+        {
+            canUseThisCard = true;
+        }
     }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         //滑鼠左鍵卡片時
         if (pointerEventData.button == PointerEventData.InputButton.Left)
         {
-            isUseThisCard = !isUseThisCard;
-            UseCard();
+
+            if (canUseThisCard)
+            {
+                isUseThisCard = !isUseThisCard;
+                UseCard();
+            }
         }
 
         //滑鼠右鍵卡片時
@@ -62,7 +100,6 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
             isCardUp = !isCardUp;
         }
     }
-
     private void UseCard() //點擊卡片時卡片向上移(暫時測試用)
     {
         if (isUseThisCard)

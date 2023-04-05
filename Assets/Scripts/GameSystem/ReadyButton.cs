@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class ReadyButton : MonoBehaviour
 {
-
     public void MoveStageReady()
     { 
-    
+        
     }
     public void MainStageReady()
     {
