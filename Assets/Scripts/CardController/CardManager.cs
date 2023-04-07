@@ -86,7 +86,6 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         //·Æ¹«¥ªÁä¥d¤ù®É
         if (pointerEventData.button == PointerEventData.InputButton.Left)
         {
-
             if (canUseThisCard)
             {
                 isUseThisCard = !isUseThisCard;
