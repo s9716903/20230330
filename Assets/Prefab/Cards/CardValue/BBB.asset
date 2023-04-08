@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BBB
   m_EditorClassIdentifier: 
   cardValue:
-    ID: 3
-    candraw: 0
-    Name: Draw
+    ID: 1
+    candraw: 1
+    Name: Attack
     Value: 2
     Type: 0
-    CanAttack: 
+    CanAttack: 0100000001000000010000000000000000000000
