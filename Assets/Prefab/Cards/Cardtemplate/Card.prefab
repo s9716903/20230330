@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2022460293787478636}
-  - component: {fileID: 87090410100075274}
   - component: {fileID: 7368484923540608511}
   - component: {fileID: 6513315874869097309}
   - component: {fileID: 5065882267987466399}
+  - component: {fileID: 6095885434712921531}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -43,32 +43,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3.29, y: 4.62}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!61 &87090410100075274
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87090410100075278}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.29, y: 4.62}
-    newSize: {x: 3.29, y: 4.62}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.29, y: 4.62}
-  m_EdgeRadius: 0
 --- !u!114 &7368484923540608511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +127,19 @@ SortingGroup:
   m_SortingLayerID: 1428611937
   m_SortingLayer: 2
   m_SortingOrder: 0
+--- !u!65 &6095885434712921531
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87090410100075278}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.29, y: 4.62, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1590902579391787029
 GameObject:
   m_ObjectHideFlags: 0

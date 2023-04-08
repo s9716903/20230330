@@ -103,11 +103,11 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {
         if (isUseThisCard)
         {
-            transform.position += new Vector3(0,1,0);
+            transform.position += new Vector3(0,0,10);
         }
         else
         {
-            transform.position -= new Vector3(0, 1, 0);
+            transform.position -= new Vector3(0, 0,10);
         }
     }
 }
