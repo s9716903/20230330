@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance = null;
     
-    public bool Playerturn = true;
+    //是否為玩家可做事時間
+    public static bool Playerturn;
 
     // Start is called before the first frame update
     private void Awake()
@@ -32,16 +33,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            /*switch (duelStateMode)
-            {
-                case GameState.DuelStateMode.DrawState:
-                    break;
-                case GameState.DuelStateMode.MoveState:
-                    break;
-                case GameState.DuelStateMode.MainState:
-                    break;
-                case GameState.DuelStateMode.EndState:
-                    break;
-            }*/
+            
     }
 }

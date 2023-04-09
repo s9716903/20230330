@@ -9,7 +9,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public CardValueManager[] _cardValueManager = new CardValueManager[2]; //卡片上下半資料
 
     private bool canUseThisCard; //該卡片是否能用
-    private bool isUseThisCard; //是否使用該卡片
+    public bool isUseThisCard; //是否使用該卡片
     private bool isCardUp; //卡片是否為正位置
     private int[] PlayerZone = new int[] { 0, 1, 2, 3, 4 }; //攻擊範圍
 
@@ -49,45 +49,43 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         Name = cardvaluemanager.cardValue.Name;
         Value = cardvaluemanager.cardValue.Value;
         //卡牌使用判定
-        
-
-        //移動牌使用判定
-        if (ID == 0)
+        if (GameManager.Playerturn == true)
         {
-            if (GameManager.duelStateMode == GameState.DuelStateMode.MoveState)
+            //移動牌使用判定
+            if (ID == 0)
+            {
+                if (GameManager.duelStateMode == GameState.DuelStateMode.MoveState)
+                {
+                    canUseThisCard = true;
+                }
+                else
+                {
+                    canUseThisCard = false;
+                }
+            }
+
+            //攻擊牌判定
+            if (ID == 1)
+            {
+                if (GameManager.duelStateMode == GameState.DuelStateMode.MainState)
+                {
+                    canUseThisCard = true;
+                }
+                else
+                {
+                    canUseThisCard = false;
+                }
+            }
+
+            //星星/回血牌判定
+            if (ID == 2 || ID == 3)
             {
                 canUseThisCard = true;
             }
-            else
-            {
-                canUseThisCard = false;
-            }          
         }
-
-        //攻擊牌判定
-        if (ID == 1)
+        else
         {
-            if (GameManager.duelStateMode == GameState.DuelStateMode.MainState)
-            {
-                canUseThisCard = true;
-            }
-            else
-            {
-                canUseThisCard = false;
-            }       
-        }
-
-        //星星/回血牌判定
-        if (ID == 2 || ID == 3)
-        {
-            if ((GameManager.duelStateMode == GameState.DuelStateMode.MoveState)||(GameManager.duelStateMode == GameState.DuelStateMode.MainState))
-            {
-                canUseThisCard = true;
-            }
-            else
-            {
-                canUseThisCard = false;
-            }
+            canUseThisCard = false;
         }
     }
     public void OnPointerClick(PointerEventData pointerEventData)
@@ -105,7 +103,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         //滑鼠右鍵卡片時
         if (pointerEventData.button == PointerEventData.InputButton.Right)
         {
-            isCardUp = !isCardUp;
+                isCardUp = !isCardUp;
         }
     }
     private void UseCard() //點擊卡片時卡片向上移(暫時測試用)
@@ -113,10 +111,26 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         if (isUseThisCard)
         {
             transform.position += new Vector3(0,0,10);
+            if (ID == 1)
+            {
+                ReadyCardZone.TypeValue[Type + 1, 0] += Value;
+            }
+            else
+            {
+                ReadyCardZone.TypeValue[ID, 0] += Value;
+            }
         }
         else
         {
             transform.position -= new Vector3(0, 0,10);
+            if (ID == 1)
+            {
+                ReadyCardZone.TypeValue[Type + 1, 0] -= Value;
+            }
+            else
+            {
+                ReadyCardZone.TypeValue[ID, 0] -= Value;
+            }
         }
     }
 }
