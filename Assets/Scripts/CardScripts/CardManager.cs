@@ -48,6 +48,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         Type = cardvaluemanager.cardValue.Type;
         Name = cardvaluemanager.cardValue.Name;
         Value = cardvaluemanager.cardValue.Value;
+
         //卡牌使用判定
         if (GameManager.Playerturn == true)
         {
@@ -90,6 +91,8 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
+        //跳出大卡圖及效果文UI
+
         //滑鼠左鍵卡片時
         if (pointerEventData.button == PointerEventData.InputButton.Left)
         {
@@ -106,18 +109,22 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                 isCardUp = !isCardUp;
         }
     }
-    private void UseCard() //點擊卡片時卡片向上移(暫時測試用)
+    private void UseCard() //點擊卡片時卡片向上移
     {
         if (isUseThisCard)
         {
             transform.position += new Vector3(0,0,10);
             if (ID == 1)
             {
-                ReadyCardZone.TypeValue[Type + 1, 0] += Value;
+                HandCards.TypeValue[Type + 1, 0] += Value;
+            }
+            else if (ID == 0)
+            {
+                HandCards.TypeValue[ID, 0] += Value;
             }
             else
             {
-                ReadyCardZone.TypeValue[ID, 0] += Value;
+                HandCards.TypeValue[ID + 1, 0] += Value;
             }
         }
         else
@@ -125,11 +132,15 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
             transform.position -= new Vector3(0, 0,10);
             if (ID == 1)
             {
-                ReadyCardZone.TypeValue[Type + 1, 0] -= Value;
+                HandCards.TypeValue[Type + 1, 0] -= Value;
+            }
+            else if (ID == 0)
+            {
+                HandCards.TypeValue[ID, 0] -= Value;
             }
             else
             {
-                ReadyCardZone.TypeValue[ID, 0] -= Value;
+                HandCards.TypeValue[ID+1, 0] -= Value;
             }
         }
     }
