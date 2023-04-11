@@ -17,7 +17,7 @@ public class DuelUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Playerturn == false)
+        if (GameManager.playerStateMode != GameState.PlayerStateMode.DoThingState)
         {
             ReadyButton.GetComponent<Button>().enabled = false;
         }
@@ -25,27 +25,12 @@ public class DuelUI : MonoBehaviour
         {
             ReadyButton.GetComponent<Button>().enabled = true;
         }
-
-        switch (GameManager.duelStateMode)
-        {
-            case GameState.DuelStateMode.DrawState:
-                GameManager.Playerturn = false;
-                break;
-            case GameState.DuelStateMode.MoveState:
-                GameManager.Playerturn = true;
-                break;
-            case GameState.DuelStateMode.MainState:
-                GameManager.Playerturn = true;
-                break;
-            case GameState.DuelStateMode.EndState:
-                GameManager.Playerturn = false;
-                break;
-        }
         StateText.GetComponent<TextMeshProUGUI>().text = GameManager.duelStateMode.ToString();
     }
     public void ReadyButtonPress() //準備鈕
     {
+        GameManager.playerStateMode = GameState.PlayerStateMode.ReadyState;
         Debug.Log(GameManager.duelStateMode); //Debug文字測試
-        Debug.Log(GameManager.Playerturn); //Debug測試
+        Debug.Log(GameManager.playerStateMode);
     }
 }

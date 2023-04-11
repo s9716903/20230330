@@ -76,6 +76,6 @@ public class HandCards : MonoBehaviour
                targetcard.gameObject.SetActive(false);
             }
         }
-        Debug.Log(DrawAmoumt);
+        Debug.Log("Draw:" + DrawAmoumt);
     }
 }

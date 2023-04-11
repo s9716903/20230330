@@ -50,7 +50,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         Value = cardvaluemanager.cardValue.Value;
 
         //卡牌使用判定
-        if (GameManager.Playerturn == true)
+        if (GameManager.playerStateMode == GameState.PlayerStateMode.DoThingState)
         {
             //移動牌使用判定
             if (ID == 0)

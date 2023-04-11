@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //決鬥狀態機
-    public static GameState.DuelStateMode duelStateMode;
+    //狀態機
+    public static GameState.DuelStateMode duelStateMode; //階段狀態機
+    public static GameState.PlayerStateMode playerStateMode; //玩家狀態機
 
+    //GameManager自身
     public static GameManager instance = null;
     
-    //是否為玩家可做事時間
-    public static bool Playerturn;
+    //玩家決鬥時狀態機
 
     // Start is called before the first frame update
     private void Awake()
     {
-        duelStateMode = GameState.DuelStateMode.DrawState; //初始階段設定
-        Debug.Log("Awake GamaManager"); 
+        playerStateMode = GameState.PlayerStateMode.NoDoThingState; //初始玩家狀態機設定
+        duelStateMode = GameState.DuelStateMode.DrawState; //初始階段狀態機設定
+        Debug.Log("Awake GamaManager");
+        Debug.Log(duelStateMode); //Debug文字測試
+        Debug.Log(playerStateMode);
 
         //場景中有相同物體時摧毀同物體
         if (instance == null)

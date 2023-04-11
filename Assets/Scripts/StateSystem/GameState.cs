@@ -11,4 +11,10 @@ public class GameState
         MainState,
         EndState,
     }
+    public enum PlayerStateMode
+    {
+        DoThingState,
+        ReadyState,
+        NoDoThingState,
+    }
 }
