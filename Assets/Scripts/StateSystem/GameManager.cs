@@ -10,8 +10,13 @@ public class GameManager : MonoBehaviour
 
     //GameManager自身
     public static GameManager instance = null;
-    
-    //玩家決鬥時狀態機
+
+    //玩家資訊
+    public static int Hp; //血量
+    public static int PhysicAtk; //基礎物理攻擊數值
+    public static int MagicAtk; //基礎法術攻擊數值
+    public static int MoveValue; //基礎移動值
+    public static int Defense; //防禦值
 
     // Start is called before the first frame update
     private void Awake()
@@ -37,6 +42,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            
+         
     }
 }

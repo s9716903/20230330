@@ -10,6 +10,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
 
     private bool canUseThisCard; //該卡片是否能用
     public bool isUseThisCard; //是否使用該卡片
+    public bool isDropThisCard; //是否丟棄該卡片
     private bool isCardUp; //卡片是否為正位置
     private int[] PlayerZone = new int[] { 0, 1, 2, 3, 4 }; //攻擊範圍
 
@@ -23,24 +24,26 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
 
     private void OnEnable()
     {
-        isCardUp = true;
-        isUseThisCard = false;
-        canUseThisCard = false;
+        isDropThisCard = false;
+        isCardUp = true; 
+        isUseThisCard = false; 
+        canUseThisCard = false; 
     }
     // Update is called once per frame
     void Update()
     {
-        //卡片正位置
+        //卡片正位置資料
         if (isCardUp == true)
         {
             cardvaluemanager = _cardValueManager[0];
         }
 
-        //卡片逆位置
+        //卡片逆位置資料
         if (isCardUp == false)
         {
             cardvaluemanager = _cardValueManager[1];
         }
+
         //卡片資料
         ID = cardvaluemanager.cardValue.ID;
         candraw = cardvaluemanager.cardValue.candraw;
@@ -96,6 +99,11 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         //滑鼠左鍵卡片時
         if (pointerEventData.button == PointerEventData.InputButton.Left)
         {
+            if (GameManager.playerStateMode == GameState.PlayerStateMode.DamageState)
+            {
+                isDropThisCard = !isDropThisCard;
+
+            }
             if (canUseThisCard)
             {
                 isUseThisCard = !isUseThisCard;
@@ -109,7 +117,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                 isCardUp = !isCardUp;
         }
     }
-    private void UseCard() //點擊卡片時卡片向上移
+    private void UseCard() //卡片使用時卡片向上移
     {
         if (isUseThisCard)
         {
@@ -142,6 +150,17 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
             {
                 HandCards.TypeValue[ID+1, 0] -= Value;
             }
+        }
+    }
+    public void DropCard() //卡片扣血選擇丟棄時往上移
+    {
+        if (isDropThisCard)
+        {
+            transform.position += new Vector3(0, 0, 10);
+        }
+        else
+        {
+            transform.position -= new Vector3(0, 0, 10);
         }
     }
 }

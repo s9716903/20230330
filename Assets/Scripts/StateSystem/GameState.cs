@@ -15,6 +15,8 @@ public class GameState
     {
         DoThingState,
         ReadyState,
+        ComputeState,
+        DamageState,
         NoDoThingState,
     }
 }
