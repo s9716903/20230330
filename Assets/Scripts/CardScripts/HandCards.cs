@@ -20,10 +20,11 @@ public class HandCards : MonoBehaviour
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
         for (int i = 0; i <= 4; i++) //起手發五張牌
         {
-            Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[i], this.transform); //卡片變成手牌子物件
+            Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], this.transform); //卡片變成手牌子物件
+            PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0);
             //HandAllCard.Add(transform.GetChild(i).gameObject); //手牌列表
         }
-        PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveRange(0,5); //移除牌組5張
+        //PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveRange(0,5); //移除牌組5張
     }
     // Update is called once per frame
     void Update()

@@ -12,6 +12,8 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public bool isUseThisCard; //是否使用該卡片
     public bool isDropThisCard; //是否丟棄該卡片
     private bool isCardUp; //卡片是否為正位置
+    private GameManager manager;
+
     private int[] PlayerZone = new int[] { 0, 1, 2, 3, 4 }; //攻擊範圍
 
     [Header("CardValue")]
@@ -21,6 +23,11 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public int Type; //種類
     public string Name; //名字
     public int Value; //數值
+
+    public CardManager(GameManager manager)
+    {
+        this.manager = manager;
+    }
 
     private void OnEnable()
     {
@@ -53,12 +60,12 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         Value = cardvaluemanager.cardValue.Value;
 
         //卡牌使用判定
-        if (GameManager.playerStateMode == GameState.PlayerStateMode.DoThingState)
+        if (GameManager.canInterect)
         {
             //移動牌使用判定
             if (ID == 0)
             {
-                if (GameManager.duelStateMode == GameState.DuelStateMode.MoveState)
+                if (GameManager.duelStateType == GameState.DuelStateMode.Move)
                 {
                     canUseThisCard = true;
                 }
@@ -71,7 +78,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
             //攻擊牌判定
             if (ID == 1)
             {
-                if (GameManager.duelStateMode == GameState.DuelStateMode.MainState)
+                if (GameManager.duelStateType == GameState.DuelStateMode.Attack)
                 {
                     canUseThisCard = true;
                 }
@@ -99,7 +106,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         //滑鼠左鍵卡片時
         if (pointerEventData.button == PointerEventData.InputButton.Left)
         {
-            if (GameManager.playerStateMode == GameState.PlayerStateMode.DamageState)
+            if (GameManager.playerStateType == GameState.PlayerStateMode.Damage)
             {
                 isDropThisCard = !isDropThisCard;
 

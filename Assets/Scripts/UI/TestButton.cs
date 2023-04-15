@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class TestButton : MonoBehaviour
 {
+    private GameManager gmmanager;
     public GameObject HandCards;
+    public TestButton(GameManager manager)
+    {
+        gmmanager = manager;
+    }
     public void ChangeState()
     {
         for (int i = 0; i < HandCards.transform.childCount; i++)
@@ -16,23 +21,40 @@ public class TestButton : MonoBehaviour
             HandCards.transform.GetChild(i).gameObject.SetActive(true);
             HandCards.transform.GetChild(i).GetComponent<CardManager>().isUseThisCard = false;
         }
-        GameManager.duelStateMode++; //階段前進
-        switch (GameManager.duelStateMode)
+
+        switch (GameManager.duelStateType)
         {
-            case GameState.DuelStateMode.DrawState:
-                GameManager.playerStateMode = GameState.PlayerStateMode.NoDoThingState;
+            case GameState.DuelStateMode.Draw:
+                gmmanager.TransitionDuelState(GameState.DuelStateMode.Move);
                 break;
-            case GameState.DuelStateMode.MoveState:
-                GameManager.playerStateMode = GameState.PlayerStateMode.DoThingState;
+            case GameState.DuelStateMode.Move:
+                gmmanager.TransitionDuelState(GameState.DuelStateMode.Attack);
                 break;
-            case GameState.DuelStateMode.MainState:
-                GameManager.playerStateMode = GameState.PlayerStateMode.DoThingState;
+            case GameState.DuelStateMode.Attack:
+                gmmanager.TransitionDuelState(GameState.DuelStateMode.End);
                 break;
-            case GameState.DuelStateMode.EndState:
-                GameManager.playerStateMode = GameState.PlayerStateMode.NoDoThingState;
+            case GameState.DuelStateMode.End:
+                gmmanager.TransitionDuelState(GameState.DuelStateMode.Draw);
                 break;
         }
-        Debug.Log(GameManager.duelStateMode); //Debug文字測試
-        Debug.Log(GameManager.playerStateMode);
+        switch (GameManager.playerStateType)
+        {
+            case GameState.PlayerStateMode.DoThing:
+                gmmanager.TransitionPlayerState(GameState.PlayerStateMode.DoThing);
+                break;
+            case GameState.PlayerStateMode.NoDoThing:
+                gmmanager.TransitionPlayerState(GameState.PlayerStateMode.NoDoThing);
+                break;
+            case GameState.PlayerStateMode.Ready:
+                gmmanager.TransitionPlayerState(GameState.PlayerStateMode.Ready);
+                break;
+            case GameState.PlayerStateMode.Damage:
+                gmmanager.TransitionPlayerState(GameState.PlayerStateMode.Damage);
+                break;
+        }
+        Debug.Log(gmmanager.currentduelState);
+        Debug.Log(gmmanager.currentplayerState);
+        Debug.Log(GameManager.duelStateType);
+        Debug.Log(GameManager.playerStateType);
     }
 }
