@@ -12,7 +12,6 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public bool isUseThisCard; //是否使用該卡片
     public bool isDropThisCard; //是否丟棄該卡片
     private bool isCardUp; //卡片是否為正位置
-    private GameManager manager;
 
     private int[] PlayerZone = new int[] { 0, 1, 2, 3, 4 }; //攻擊範圍
 
@@ -24,17 +23,12 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public string Name; //名字
     public int Value; //數值
 
-    public CardManager(GameManager manager)
-    {
-        this.manager = manager;
-    }
-
     private void OnEnable()
     {
-        isDropThisCard = false;
-        isCardUp = true; 
-        isUseThisCard = false; 
-        canUseThisCard = false; 
+        canUseThisCard = false;
+        isUseThisCard = false;
+        isDropThisCard = false;  
+        isCardUp = true;
     }
     // Update is called once per frame
     void Update()
@@ -93,9 +87,11 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
             {
                 canUseThisCard = true;
             }
+            isDropThisCard = true;
         }
         else
         {
+            isDropThisCard = false;
             canUseThisCard = false;
         }
     }
@@ -128,7 +124,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {
         if (isUseThisCard)
         {
-            transform.position += new Vector3(0,0,10);
+            transform.position += new Vector3(0,10,0);
             if (ID == 1)
             {
                 HandCards.TypeValue[Type + 1, 0] += Value;
@@ -144,7 +140,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         }
         else
         {
-            transform.position -= new Vector3(0, 0,10);
+            transform.position -= new Vector3(0, 10,0);
             if (ID == 1)
             {
                 HandCards.TypeValue[Type + 1, 0] -= Value;
@@ -163,11 +159,11 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {
         if (isDropThisCard)
         {
-            transform.position += new Vector3(0, 0, 10);
+            transform.position += new Vector3(0, 10, 0);
         }
         else
         {
-            transform.position -= new Vector3(0, 0, 10);
+            transform.position -= new Vector3(0, 10, 0);
         }
     }
 }

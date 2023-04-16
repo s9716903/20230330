@@ -8,7 +8,7 @@ public class HandCards : MonoBehaviour
 {
     public GameObject PlayerDeck; //玩家的牌組
     //public List<GameObject> HandAllCard; //手牌的卡片
-    private GridLayoutGroup gridLayoutGroup;
+    private GridLayoutGroup gridLayoutGroup; //手牌區大小
 
     public GameObject TestText; //字體顯示數值是否正確計算
 
@@ -21,10 +21,9 @@ public class HandCards : MonoBehaviour
         for (int i = 0; i <= 4; i++) //起手發五張牌
         {
             Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], this.transform); //卡片變成手牌子物件
-            PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0);
+            PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //從牌組中移除卡牌
             //HandAllCard.Add(transform.GetChild(i).gameObject); //手牌列表
         }
-        //PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveRange(0,5); //移除牌組5張
     }
     // Update is called once per frame
     void Update()

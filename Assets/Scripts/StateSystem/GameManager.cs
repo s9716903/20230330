@@ -21,23 +21,25 @@ public class GameManager : MonoBehaviour
     public static int MagicAtk; //基礎法術攻擊數值
     public static int MoveValue; //基礎移動值
     public static int Defense; //防禦值
-    public static bool canInterect; //可互動
+    public static bool canInterect = false; //玩家可以進行動作
 
     // Start is called before the first frame update
     private void Awake()
     {       
+        //將決鬥狀態裝入字典
         duelstates.Add(GameState.DuelStateMode.Draw, new DrawState(this));
         duelstates.Add(GameState.DuelStateMode.Move, new MoveState(this));
         duelstates.Add(GameState.DuelStateMode.Attack, new AttackState(this));
         duelstates.Add(GameState.DuelStateMode.End, new EndState(this));
+
+        //將玩家狀態裝入字典
         playerstates.Add(GameState.PlayerStateMode.DoThing, new DoThingState(this));
         playerstates.Add(GameState.PlayerStateMode.NoDoThing, new NoDoThingState(this));
         playerstates.Add(GameState.PlayerStateMode.Damage, new DamageState(this));
         playerstates.Add(GameState.PlayerStateMode.Ready, new ReadyState(this));
 
-        //TransitionState(GameState.DuelStateMode.DrawState);
-        //場景中有相同物體時摧毀同物體
-        if (instance == null)
+        //場景中有GameManager時摧毀同名物件
+        /*if (instance == null)
         {
             instance = this;
         }
@@ -45,28 +47,52 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);*/
     }
     private void Start()
     {
+        //初始化決鬥場景狀態
         duelStateType = GameState.DuelStateMode.Draw;
         playerStateType = GameState.PlayerStateMode.NoDoThing;
         TransitionDuelState(GameState.DuelStateMode.Draw);
         TransitionPlayerState(GameState.PlayerStateMode.NoDoThing);
         currentduelState.OnEnter();
         currentplayerState.OnEnter();
+        Debug.Log(currentduelState);
+        Debug.Log(currentplayerState);
+        Debug.Log(duelStateType);
+        Debug.Log(playerStateType);
     }
     // Update is called once per frame
     void Update()
     {
         currentduelState.OnUpdate();
         currentplayerState.OnUpdate();
-        Debug.Log(currentduelState);
-        Debug.Log(currentplayerState);
-        Debug.Log(duelStateType);
-        Debug.Log(playerStateType);
+
+        if (Input.GetKeyDown(KeyCode.W)) //測試切換階段
+        {
+            switch (duelStateType)
+            {
+                case GameState.DuelStateMode.Draw:
+                    TransitionDuelState(GameState.DuelStateMode.Move);
+                    TransitionPlayerState(GameState.PlayerStateMode.DoThing);
+                    break;
+                case GameState.DuelStateMode.Move:
+                    TransitionDuelState(GameState.DuelStateMode.Attack);
+                    TransitionPlayerState(GameState.PlayerStateMode.DoThing);
+                    break;
+                case GameState.DuelStateMode.Attack:
+                    TransitionDuelState(GameState.DuelStateMode.End);
+                    TransitionPlayerState(GameState.PlayerStateMode.NoDoThing);
+                    break;
+                case GameState.DuelStateMode.End:
+                    TransitionDuelState(GameState.DuelStateMode.Draw);
+                    TransitionPlayerState(GameState.PlayerStateMode.NoDoThing);
+                    break;
+            }
+        }
     }
-    public void TransitionDuelState(GameState.DuelStateMode type)
+    public void TransitionDuelState(GameState.DuelStateMode type) //切換決鬥階段時所執行
     {
         if (currentduelState != null)
         {
@@ -75,7 +101,7 @@ public class GameManager : MonoBehaviour
         currentduelState = duelstates[type];
         currentduelState.OnEnter();
     }
-    public void TransitionPlayerState(GameState.PlayerStateMode type)
+    public void TransitionPlayerState(GameState.PlayerStateMode type) //切換玩家狀態時所執行
     {
         if (currentplayerState != null)
         {

@@ -32,6 +32,7 @@ public class DrawState : IState //抽牌階段(引用IState的運行模式)
     {
         GameManager.duelStateType = GameState.DuelStateMode.Draw;
         GameManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
+        GameManager.canInterect = false;
     }
     public void OnUpdate()
     {
@@ -54,6 +55,7 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
     {
         GameManager.duelStateType = GameState.DuelStateMode.Move;
         GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
+        GameManager.canInterect = true;
     }
     public void OnUpdate()
     {
@@ -75,6 +77,7 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
     {
         GameManager.duelStateType = GameState.DuelStateMode.Attack;
         GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
+        GameManager.canInterect = true;
     }
     public void OnUpdate()
     { 
@@ -97,6 +100,7 @@ public class EndState : IState //結束階段(引用IState的運行模式)
     {
         GameManager.duelStateType = GameState.DuelStateMode.End;
         GameManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
+        GameManager.canInterect = false;
     }
     public void OnUpdate()
     {
@@ -181,10 +185,11 @@ public class ReadyState : IState //主要階段(引用IState的運行模式)
     public void OnEnter()
     {
         GameManager.playerStateType = GameState.PlayerStateMode.Ready;
+        GameManager.canInterect = false;
     }
     public void OnUpdate()
     {
-
+        
     }
     public void OnExit()
     {
