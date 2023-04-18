@@ -8,20 +8,19 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public  CardValueManager cardvaluemanager; //卡片目前資料
     public CardValueManager[] _cardValueManager = new CardValueManager[2]; //卡片上下半資料
 
-    private bool canUseThisCard; //該卡片是否能用
-    public bool isUseThisCard; //是否使用該卡片
-    public bool isDropThisCard; //是否丟棄該卡片
-    private bool isCardUp; //卡片是否為正位置
+    private bool canUseThisCard; //該卡片是否能用(判斷此時能否用)
+    public bool isUseThisCard; //是否使用該卡片(判斷是否被使用)
+    public bool isDropThisCard; //是否丟棄該卡片(判斷是否被丟棄)
+    private bool isCardUp; //卡片是否為正位置(判斷用上半還是下半效果)
 
-    private int[] PlayerZone = new int[] { 0, 1, 2, 3, 4 }; //攻擊範圍
 
     [Header("CardValue")]
     public int ID; //卡片ID
     public bool candraw; //用完是否可抽牌
-    public int[] CanAttack = new int[5]; //可攻擊位置
     public int Type; //種類
     public string Name; //名字
     public int Value; //數值
+    public int[] AttackZone; //攻擊範圍
 
     private void OnEnable()
     {
@@ -48,51 +47,54 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         //卡片資料
         ID = cardvaluemanager.cardValue.ID;
         candraw = cardvaluemanager.cardValue.candraw;
-        CanAttack = cardvaluemanager.cardValue.CanAttack;
+        AttackZone = cardvaluemanager.cardValue.AttackZone;
         Type = cardvaluemanager.cardValue.Type;
         Name = cardvaluemanager.cardValue.Name;
         Value = cardvaluemanager.cardValue.Value;
 
         //卡牌使用判定
-        if (GameManager.canInterect)
+        if (GameManager.canInterect) //可進行動作
         {
-            //移動牌使用判定
-            if (ID == 0)
+            isDropThisCard = true; //可棄牌
+            if (GameManager.playerStateType == GameState.PlayerStateMode.DoThing) //做事階段
             {
-                if (GameManager.duelStateType == GameState.DuelStateMode.Move)
+                //移動牌使用判定
+                if (ID == 0)
+                {
+                    if (GameManager.duelStateType == GameState.DuelStateMode.Move)
+                    {
+                        canUseThisCard = true;
+                    }
+                    else
+                    {
+                        canUseThisCard = false;
+                    }
+                }
+
+                //攻擊牌判定
+                if (ID == 1)
+                {
+                    if (GameManager.duelStateType == GameState.DuelStateMode.Attack)
+                    {
+                        canUseThisCard = true;
+                    }
+                    else
+                    {
+                        canUseThisCard = false;
+                    }
+                }
+
+                //星星/回血牌判定
+                if (ID == 2 || ID == 3)
                 {
                     canUseThisCard = true;
                 }
-                else
-                {
-                    canUseThisCard = false;
-                }
             }
-
-            //攻擊牌判定
-            if (ID == 1)
-            {
-                if (GameManager.duelStateType == GameState.DuelStateMode.Attack)
-                {
-                    canUseThisCard = true;
-                }
-                else
-                {
-                    canUseThisCard = false;
-                }
-            }
-
-            //星星/回血牌判定
-            if (ID == 2 || ID == 3)
-            {
-                canUseThisCard = true;
-            }
-            isDropThisCard = true;
         }
         else
         {
-            isDropThisCard = false;
-            canUseThisCard = false;
+            isDropThisCard = false; //不可棄牌
+            canUseThisCard = false; //不可使用牌
         }
     }
     public void OnPointerClick(PointerEventData pointerEventData)
@@ -105,7 +107,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
             if (GameManager.playerStateType == GameState.PlayerStateMode.Damage)
             {
                 isDropThisCard = !isDropThisCard;
-
+                DropCard();
             }
             if (canUseThisCard)
             {
@@ -124,7 +126,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {
         if (isUseThisCard)
         {
-            transform.position += new Vector3(0,10,0);
+            transform.position += new Vector3(0,0,10);
             if (ID == 1)
             {
                 HandCards.TypeValue[Type + 1, 0] += Value;
@@ -140,7 +142,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         }
         else
         {
-            transform.position -= new Vector3(0, 10,0);
+            transform.position -= new Vector3(0, 0,10);
             if (ID == 1)
             {
                 HandCards.TypeValue[Type + 1, 0] -= Value;
@@ -159,11 +161,13 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {
         if (isDropThisCard)
         {
-            transform.position += new Vector3(0, 10, 0);
+            transform.position += new Vector3(0, 0, 10);
+            //GameManager.Damaged++;
         }
         else
         {
-            transform.position -= new Vector3(0, 10, 0);
+            transform.position -= new Vector3(0, 0, 10);
+            //GameManager.Damaged--;
         }
     }
 }

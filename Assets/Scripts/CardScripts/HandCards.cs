@@ -6,14 +6,16 @@ using TMPro;
 
 public class HandCards : MonoBehaviour
 {
-    public GameObject PlayerDeck; //玩家的牌組
-    //public List<GameObject> HandAllCard; //手牌的卡片
+    //public List<GameObject> HandAllCard; //手牌區的卡片(List)
+    public GameObject PlayerDeck; //玩家牌組
     private GridLayoutGroup gridLayoutGroup; //手牌區大小
+
+    public static int DrawAmoumt; //結束時抽牌數
 
     public GameObject TestText; //字體顯示數值是否正確計算
 
-    public static int DrawAmoumt; //結束時抽牌數
-    public static int[,] TypeValue = new int[5, 1]; //種類(移動/物理/法術/星星/抽牌),數值
+    
+    public static int[,] TypeValue = new int[5, 1]; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
 
     void OnEnable()
     {
@@ -28,7 +30,7 @@ public class HandCards : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int a = 0; a <= 4; a++)
+        for (int a = 0; a <= 4; a++) //卡片數值字體(測試用)
         {
             TestText.transform.GetChild(a).GetComponent<TextMeshProUGUI>().text = TypeValue[a, 0].ToString();
         }
@@ -68,10 +70,20 @@ public class HandCards : MonoBehaviour
                 targetcard.gameObject.SetActive(true);
                 if ((targetcard.gameObject.GetComponent<CardManager>().ID != 2) && (targetcard.gameObject.GetComponent<CardManager>().ID != 3))
                 {
+                   DrawAmoumt++;
+                }
+            }
+
+            if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
+            {
+                targetcard.gameObject.SetActive(true);
+                if ((targetcard.gameObject.GetComponent<CardManager>().ID != 2) && (targetcard.gameObject.GetComponent<CardManager>().ID != 3))
+                {
                     DrawAmoumt++;
                 }
             }
-            else if (targetcard.GetComponent<CardManager>().isUseThisCard == false)
+            
+            if ((targetcard.GetComponent<CardManager>().isUseThisCard == false) && (targetcard.GetComponent<CardManager>().isDropThisCard == false))
             {
                targetcard.gameObject.SetActive(false);
             }

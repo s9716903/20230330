@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //!!!玩家狀態機在部分時間點由決鬥狀態控制狀態機進出!!!
     //狀態機
     public IState currentduelState; //目前決鬥狀態(進入/持續/退出)
     public IState currentplayerState; //目前玩家狀態(進入/持續/退出)
@@ -16,11 +17,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     //管理資訊
-    public static int Hp; //血量
-    public static int PhysicAtk; //基礎物理攻擊數值
-    public static int MagicAtk; //基礎法術攻擊數值
-    public static int MoveValue; //基礎移動值
-    public static int Defense; //防禦值
     public static bool canInterect = false; //玩家可以進行動作
 
     // Start is called before the first frame update
@@ -55,19 +51,17 @@ public class GameManager : MonoBehaviour
         duelStateType = GameState.DuelStateMode.Draw;
         playerStateType = GameState.PlayerStateMode.NoDoThing;
         TransitionDuelState(GameState.DuelStateMode.Draw);
-        TransitionPlayerState(GameState.PlayerStateMode.NoDoThing);
-        currentduelState.OnEnter();
-        currentplayerState.OnEnter();
-        Debug.Log(currentduelState);
-        Debug.Log(currentplayerState);
-        Debug.Log(duelStateType);
-        Debug.Log(playerStateType);
+        //TransitionPlayerState(GameState.PlayerStateMode.NoDoThing);
     }
     // Update is called once per frame
     void Update()
     {
-        currentduelState.OnUpdate();
-        currentplayerState.OnUpdate();
+        //currentduelState.OnUpdate();
+        //currentplayerState.OnUpdate();
+        Debug.Log(currentduelState);
+        Debug.Log(currentplayerState);
+        Debug.Log(duelStateType);
+        Debug.Log(playerStateType);
 
         if (Input.GetKeyDown(KeyCode.W)) //測試切換階段
         {
@@ -92,7 +86,11 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void TransitionDuelState(GameState.DuelStateMode type) //切換決鬥階段時所執行
+    public virtual void TransitionDuelState() //切換決鬥階段時所執行
+    {
+        
+    }
+    public virtual void TransitionDuelState(GameState.DuelStateMode type) //切換決鬥階段時所執行
     {
         if (currentduelState != null)
         {
@@ -101,7 +99,11 @@ public class GameManager : MonoBehaviour
         currentduelState = duelstates[type];
         currentduelState.OnEnter();
     }
-    public void TransitionPlayerState(GameState.PlayerStateMode type) //切換玩家狀態時所執行
+    public virtual void TransitionPlayerState() //切換玩家狀態時所執行
+    {
+       
+    }
+    public virtual void TransitionPlayerState(GameState.PlayerStateMode type) //切換玩家狀態時所執行
     {
         if (currentplayerState != null)
         {

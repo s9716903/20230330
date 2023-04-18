@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public GameObject groundLocation;
-    public int TargetLocation;
+    public static int MaxHp; //最大血量
+    public static int Hp; //血量
+    public static int PhysicAtk; //基礎物理攻擊數值
+    public static int MagicAtk; //基礎法術攻擊數值
+    public static int MoveValue; //基礎移動值
+    public static int Defense; //防禦值
+    public static int Damaged; //受到傷害值
+    public static int AllDamaged; //受到的總傷害值
+    public static int TargetLocation; //玩家所在位置
+    public GameObject groundLocation; //玩家所站區域
     // Start is called before the first frame update
     void Start()
     {

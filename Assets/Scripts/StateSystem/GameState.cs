@@ -33,14 +33,19 @@ public class DrawState : IState //抽牌階段(引用IState的運行模式)
         GameManager.duelStateType = GameState.DuelStateMode.Draw;
         GameManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
         GameManager.canInterect = false;
+       
+        //GameManager.duelStateType = GameState.DuelStateMode.Move;
+        //GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
+        //manager.TransitionDuelState(GameManager.duelStateType);
+        //manager.TransitionPlayerState(GameManager.playerStateType);
     }
     public void OnUpdate()
     {
-
+        
     }
     public void OnExit()
     {
-
+        
     }
 }
 
@@ -108,7 +113,7 @@ public class EndState : IState //結束階段(引用IState的運行模式)
     }
     public void OnExit()
     {
-
+       
     }
 }
 
