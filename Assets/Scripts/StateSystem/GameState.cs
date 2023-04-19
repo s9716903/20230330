@@ -30,18 +30,20 @@ public class DrawState : IState //抽牌階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        GameManager.duelStateType = GameState.DuelStateMode.Draw;
-        GameManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
+        manager.TransitionPlayerState(GameManager.playerStateType);
         GameManager.canInterect = false;
-       
-        //GameManager.duelStateType = GameState.DuelStateMode.Move;
-        //GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
-        //manager.TransitionDuelState(GameManager.duelStateType);
-        //manager.TransitionPlayerState(GameManager.playerStateType);
+        StateTimer.startTime = 5;
+        StateTimer.isStartTime = true;
+        StateTimer.stopStateTime = false;
     }
     public void OnUpdate()
     {
-        
+        if(StateTimer.stopStateTime == true) 
+        {
+            GameManager.duelStateType = GameState.DuelStateMode.Move;
+            GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
+            manager.TransitionDuelState(GameManager.duelStateType);
+        }
     }
     public void OnExit()
     {
@@ -58,13 +60,20 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        GameManager.duelStateType = GameState.DuelStateMode.Move;
-        GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
+        manager.TransitionPlayerState(GameManager.playerStateType);
         GameManager.canInterect = true;
+        StateTimer.startTime = 60;
+        StateTimer.isStartTime = true;
+        StateTimer.stopStateTime = false;
     }
     public void OnUpdate()
     {
-
+        if (StateTimer.stopStateTime == true)
+        {
+            GameManager.duelStateType = GameState.DuelStateMode.Move;
+            GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
+            manager.TransitionDuelState(GameManager.duelStateType);
+        }
     }
     public void OnExit()
     {
@@ -126,7 +135,7 @@ public class DoThingState : IState //主要階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
+        
     }
     public void OnUpdate()
     {
@@ -147,7 +156,7 @@ public class NoDoThingState : IState //主要階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        GameManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
+        
     }
     public void OnUpdate()
     {

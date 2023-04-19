@@ -12,15 +12,18 @@ public class Player : MonoBehaviour
     public static int Defense; //防禦值
     public static int Damaged; //受到傷害值
     public static int AllDamaged; //受到的總傷害值
-    public static int TargetLocation; //玩家所在位置
+    public  int TargetLocation; //玩家所在位置
+    public static int MoveToLocation; //玩家將要移動到的位置
     public GameObject groundLocation; //玩家所站區域
+    public static bool canMove = false; //可以移動
     // Start is called before the first frame update
     void Start()
     {
-       
+        MoveToLocation = TargetLocation;
     }
     private void Update()
     {
+        TargetLocation = MoveToLocation;
         if (TargetLocation >= groundLocation.GetComponent<Ground>().Locations)
         {
             TargetLocation = groundLocation.GetComponent<Ground>().Locations - 1;
@@ -30,5 +33,7 @@ public class Player : MonoBehaviour
             TargetLocation = 0;
         }
         transform.position = new Vector3(groundLocation.GetComponent<Ground>().playerlocation[TargetLocation].transform.position.x, 5, groundLocation.GetComponent<Ground>().playerlocation[TargetLocation].transform.position.z);
+        Debug.Log(TargetLocation);
+        Debug.Log(MoveToLocation);
     }
 }

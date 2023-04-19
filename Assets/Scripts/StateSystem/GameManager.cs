@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     //管理資訊
-    public static bool canInterect = false; //玩家可以進行動作
+    public static bool canInterect = false; //玩家可以進行操作
 
     // Start is called before the first frame update
     private void Awake()
@@ -50,20 +50,20 @@ public class GameManager : MonoBehaviour
         //初始化決鬥場景狀態
         duelStateType = GameState.DuelStateMode.Draw;
         playerStateType = GameState.PlayerStateMode.NoDoThing;
-        TransitionDuelState(GameState.DuelStateMode.Draw);
-        //TransitionPlayerState(GameState.PlayerStateMode.NoDoThing);
+        TransitionDuelState(duelStateType);
     }
     // Update is called once per frame
     void Update()
     {
-        //currentduelState.OnUpdate();
-        //currentplayerState.OnUpdate();
+        currentduelState.OnUpdate();
+        currentplayerState.OnUpdate();
         Debug.Log(currentduelState);
         Debug.Log(currentplayerState);
         Debug.Log(duelStateType);
         Debug.Log(playerStateType);
+        Debug.Log(canInterect);
 
-        if (Input.GetKeyDown(KeyCode.W)) //測試切換階段
+        /*if (Input.GetKeyDown(KeyCode.W)) //測試切換階段
         {
             switch (duelStateType)
             {
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
                     TransitionPlayerState(GameState.PlayerStateMode.NoDoThing);
                     break;
             }
-        }
+        }*/
     }
     public virtual void TransitionDuelState() //切換決鬥階段時所執行
     {

@@ -14,7 +14,8 @@ public class HandCards : MonoBehaviour
 
     public GameObject TestText; //字體顯示數值是否正確計算
 
-    
+    public static bool isReady = false; //準備完成
+
     public static int[,] TypeValue = new int[5, 1]; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
 
     void OnEnable()
