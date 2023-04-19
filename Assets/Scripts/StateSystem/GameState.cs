@@ -23,7 +23,6 @@ public class GameState //狀態機大全
 public class DrawState : IState //抽牌階段(引用IState的運行模式)
 {
     private GameManager manager; //負責引用底下流程的
-    private float time = 0;
     public DrawState(GameManager manager)
     {
         this.manager = manager;
@@ -31,7 +30,6 @@ public class DrawState : IState //抽牌階段(引用IState的運行模式)
     public void OnEnter()
     {
         manager.TransitionPlayerState(GameManager.playerStateType);
-        GameManager.canInterect = false;
         StateTimer.startTime = 5;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
@@ -61,8 +59,7 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
     public void OnEnter()
     {
         manager.TransitionPlayerState(GameManager.playerStateType);
-        GameManager.canInterect = true;
-        StateTimer.startTime = 60;
+        StateTimer.startTime = 10;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
     }
@@ -70,9 +67,8 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
     {
         if (StateTimer.stopStateTime == true)
         {
-            GameManager.duelStateType = GameState.DuelStateMode.Move;
-            GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
-            manager.TransitionDuelState(GameManager.duelStateType);
+            GameManager.playerStateType = GameState.PlayerStateMode.Ready;
+            manager.TransitionPlayerState(GameManager.playerStateType);
         }
     }
     public void OnExit()
@@ -89,13 +85,18 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        GameManager.duelStateType = GameState.DuelStateMode.Attack;
-        GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
-        GameManager.canInterect = true;
+        manager.TransitionPlayerState(GameManager.playerStateType);
+        StateTimer.startTime = 10;
+        StateTimer.isStartTime = true;
+        StateTimer.stopStateTime = false;
     }
     public void OnUpdate()
-    { 
-    
+    {
+        if (StateTimer.stopStateTime == true)
+        {
+            GameManager.playerStateType = GameState.PlayerStateMode.Ready;
+            manager.TransitionPlayerState(GameManager.playerStateType);
+        }
     }
     public void OnExit()
     { 
@@ -112,13 +113,19 @@ public class EndState : IState //結束階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        GameManager.duelStateType = GameState.DuelStateMode.End;
-        GameManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
-        GameManager.canInterect = false;
+        manager.TransitionPlayerState(GameManager.playerStateType);
+        StateTimer.startTime = 5;
+        StateTimer.isStartTime = true;
+        StateTimer.stopStateTime = false;
     }
     public void OnUpdate()
     {
-
+        if (StateTimer.stopStateTime == true)
+        {
+            GameManager.duelStateType = GameState.DuelStateMode.Draw;
+            GameManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
+            manager.TransitionDuelState(GameManager.duelStateType);
+        }
     }
     public void OnExit()
     {
@@ -126,7 +133,7 @@ public class EndState : IState //結束階段(引用IState的運行模式)
     }
 }
 
-public class DoThingState : IState //主要階段(引用IState的運行模式)
+public class DoThingState : IState //玩家可做事階段(引用IState的運行模式)
 {
     private GameManager manager;
     public DoThingState(GameManager manager)
@@ -135,7 +142,7 @@ public class DoThingState : IState //主要階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        
+        GameManager.canInterect = true;
     }
     public void OnUpdate()
     {
@@ -147,7 +154,7 @@ public class DoThingState : IState //主要階段(引用IState的運行模式)
     }
 }
 
-public class NoDoThingState : IState //主要階段(引用IState的運行模式)
+public class NoDoThingState : IState //玩家不可做事階段(引用IState的運行模式)
 {
     private GameManager manager;
     public NoDoThingState(GameManager manager)
@@ -156,7 +163,7 @@ public class NoDoThingState : IState //主要階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        
+        GameManager.canInterect = false;
     }
     public void OnUpdate()
     {
@@ -168,7 +175,7 @@ public class NoDoThingState : IState //主要階段(引用IState的運行模式)
     }
 }
 
-public class DamageState : IState //主要階段(引用IState的運行模式)
+public class DamageState : IState //傷害處理階段(引用IState的運行模式)
 {
     private GameManager manager;
     public DamageState(GameManager manager)
@@ -177,7 +184,7 @@ public class DamageState : IState //主要階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        GameManager.playerStateType = GameState.PlayerStateMode.Damage;
+        GameManager.canInterect = true;
     }
     public void OnUpdate()
     {
@@ -189,7 +196,7 @@ public class DamageState : IState //主要階段(引用IState的運行模式)
     }
 }
 
-public class ReadyState : IState //主要階段(引用IState的運行模式)
+public class ReadyState : IState //準備結算階段(引用IState的運行模式)
 {
     private GameManager manager;
     public ReadyState(GameManager manager)
@@ -198,12 +205,31 @@ public class ReadyState : IState //主要階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        GameManager.playerStateType = GameState.PlayerStateMode.Ready;
         GameManager.canInterect = false;
+        StateTimer.startTime = 5;
+        StateTimer.isStartTime = true;
+        StateTimer.stopStateTime = false;
     }
     public void OnUpdate()
     {
-        
+        if (StateTimer.startTime == 1)
+        {
+            if (GameManager.duelStateType == GameState.DuelStateMode.Move)
+            {
+                GameManager.duelStateType = GameState.DuelStateMode.Attack;
+                GameManager.playerStateType = GameState.PlayerStateMode.DoThing;
+                manager.TransitionDuelState(GameManager.duelStateType);
+            }
+        }
+        if (StateTimer.startTime == 2)
+        {
+            if (GameManager.duelStateType == GameState.DuelStateMode.Attack)
+            {
+                GameManager.duelStateType = GameState.DuelStateMode.End;
+                GameManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
+                manager.TransitionDuelState(GameManager.duelStateType);
+            }
+        }
     }
     public void OnExit()
     {

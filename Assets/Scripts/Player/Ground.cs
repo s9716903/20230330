@@ -19,10 +19,4 @@ public class Ground : MonoBehaviour
             enemylocation[i] = transform.GetChild(1).transform.GetChild(i).gameObject;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

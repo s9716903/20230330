@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Location")]
+    public GameObject groundLocation; //玩家所站區域
+
+
     public static int MaxHp; //最大血量
-    public static int Hp; //血量
-    public static int PhysicAtk; //基礎物理攻擊數值
-    public static int MagicAtk; //基礎法術攻擊數值
-    public static int MoveValue; //基礎移動值
+    public static int Hp; //目前血量
+    public static int PhysicAtk; //受物理攻擊數值
+    public static int MagicAtk; //受法術攻擊數值
+    public static int MoveValue; //移動值
     public static int Defense; //防禦值
-    public static int Damaged; //受到傷害值
-    public static int AllDamaged; //受到的總傷害值
+    public static int AllDamaged; //受到總傷害值
     public  int TargetLocation; //玩家所在位置
     public static int MoveToLocation; //玩家將要移動到的位置
-    public GameObject groundLocation; //玩家所站區域
+
+
     public static bool canMove = false; //可以移動
     // Start is called before the first frame update
     void Start()

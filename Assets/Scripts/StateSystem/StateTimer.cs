@@ -14,12 +14,16 @@ public class StateTimer : MonoBehaviour
     void Start()
     {
         timer_text = GetComponent<TextMeshProUGUI>();
-        isStartTime = false;
     }
     public IEnumerator StartToTime()
     {
         yield return new WaitForSeconds(1);
         startTime--;
+        if (stopStateTime == true)
+        {
+            StopCoroutine("StartToTime");
+        }
+
         if (startTime <= 0)
         {
             stopStateTime = true;
@@ -34,14 +38,11 @@ public class StateTimer : MonoBehaviour
     void Update()
     {
         timer_text.text = startTime.ToString();
-        if (stopStateTime == false)
+        if (isStartTime == true)
         {
-            if (isStartTime == true)
-            {
-                StartCoroutine("StartToTime");
-                isStartTime = false;
-                Debug.Log(startTime);
-            }
+            StartCoroutine("StartToTime");
+            isStartTime = false;
+            Debug.Log(startTime);
         }
     }
 }
