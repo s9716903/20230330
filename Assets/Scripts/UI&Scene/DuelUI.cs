@@ -16,7 +16,7 @@ public class DuelUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.canInterect)
+        if (!DuelStateManager.canInterect)
         {
             ReadyButton.GetComponent<Button>().enabled = false;
         }
@@ -24,7 +24,7 @@ public class DuelUI : MonoBehaviour
         {
             ReadyButton.GetComponent<Button>().enabled = true;
         }
-        StateText.GetComponent<TextMeshProUGUI>().text = GameManager.duelStateType.ToString();
+        StateText.GetComponent<TextMeshProUGUI>().text = DuelStateManager.duelStateType.ToString();
     }
     public void ReadyButtonPress() //�ǳƶs
     {

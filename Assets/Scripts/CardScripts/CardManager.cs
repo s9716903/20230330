@@ -56,14 +56,14 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         Value = cardvaluemanager.cardValue.Value;
 
         //卡牌使用判定
-        if (GameManager.canInterect) //可進行動作
+        if (DuelStateManager.canInterect) //可進行動作
         {
-            if (GameManager.playerStateType == GameState.PlayerStateMode.DoThing) //做事階段
+            if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing) //做事階段
             {
                 //移動牌使用判定
                 if (ID == 0)
                 {
-                    if (GameManager.duelStateType == GameState.DuelStateMode.Move)
+                    if (DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
                     {
                         canUseThisCard = true; //可使用
                     }
@@ -76,7 +76,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                 //攻擊牌判定
                 if (ID == 1)
                 {
-                    if (GameManager.duelStateType == GameState.DuelStateMode.Attack)
+                    if (DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
                     {
                         canUseThisCard = true;
                     }
@@ -98,14 +98,14 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {
         //跳出大卡圖及效果文UI
 
-        if (GameManager.canInterect)
+        if (DuelStateManager.canInterect)
         {
-            if (GameManager.playerStateType == GameState.PlayerStateMode.DoThing)
+            if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing)
             {
                 //滑鼠左鍵卡片時
                 if (pointerEventData.button == PointerEventData.InputButton.Left)
                 {
-                    if (GameManager.playerStateType == GameState.PlayerStateMode.Damage)
+                    if (DuelStateManager.playerStateType == GameState.PlayerStateMode.Damage)
                     {
                         DamagedDropCard = !DamagedDropCard;
                         DamageDropCard();

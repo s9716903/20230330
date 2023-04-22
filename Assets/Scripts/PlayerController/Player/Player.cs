@@ -24,9 +24,13 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MaxHp = GetComponent<JobManager>().thisJob.TheMaxHp;
+        Defense = GetComponent<JobManager>().thisJob.TheDefense;
         MoveValue = 0;
         Stars = 0;
         MoveToLocation = TargetLocation;
+        Debug.Log(MaxHp);
+        Debug.Log(Defense);
     }
     private void Update()
     {

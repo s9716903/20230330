@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class DuelStateManager : MonoBehaviour
 {
     //!!!玩家狀態機在部分時間點由決鬥狀態控制狀態機進出!!!
     //狀態機
@@ -14,14 +14,15 @@ public class GameManager : MonoBehaviour
     public Dictionary<GameState.PlayerStateMode, IState> playerstates = new Dictionary<GameState.PlayerStateMode, IState>(); //狀態執行時發生特定事(字典)
 
     //GameManager自身
-    public static GameManager instance = null;
+    public static DuelStateManager instance = null;
 
     //管理資訊
     public static bool canInterect = false; //玩家可以進行操作
 
     // Start is called before the first frame update
     private void Awake()
-    {       
+    {
+        duelstates.Clear();
         //將決鬥狀態裝入字典
         duelstates.Add(GameState.DuelStateMode.Draw, new DrawState(this));
         duelstates.Add(GameState.DuelStateMode.Move, new MoveState(this));
