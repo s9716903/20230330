@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class SkillManager : MonoBehaviour
 {
-    public int TheMaxHp; //HP
+    public int TheMaxHp; //最大HP
     public int TheDefense; //防禦值
     public bool canUseSkill1; //可以使用技能1(是否解鎖)
     public bool canUseSkill2; //可以使用技能2(是否解鎖)

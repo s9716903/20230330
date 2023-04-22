@@ -16,7 +16,7 @@ public class DuelUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!DuelStateManager.canInterect)
+        if (!DuelStateManager.canInterect || Player.isReady == true)
         {
             ReadyButton.GetComponent<Button>().enabled = false;
         }
@@ -28,14 +28,9 @@ public class DuelUI : MonoBehaviour
     }
     public void ReadyButtonPress() //�ǳƶs
     {
-        /*switch (GameManager.duelStateType)
+        if (Player.isReady == false)
         {
-            case GameState.DuelStateMode.Move:
-                gmmanager.TransitionPlayerState(GameState.PlayerStateMode.Ready);
-                break;
-            case GameState.DuelStateMode.Attack:
-                gmmanager.TransitionPlayerState(GameState.PlayerStateMode.Ready);
-                break;
-        }*/
+            Player.canMove = !Player.canMove;
+        }
     }
 }

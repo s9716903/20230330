@@ -56,7 +56,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         Value = cardvaluemanager.cardValue.Value;
 
         //卡牌使用判定
-        if (DuelStateManager.canInterect) //可進行動作
+        if (DuelStateManager.canInterect && Player.isReady == false && Player.canMove == false) //可進行動作
         {
             if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing) //做事階段
             {
@@ -98,7 +98,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {
         //跳出大卡圖及效果文UI
 
-        if (DuelStateManager.canInterect)
+        if (DuelStateManager.canInterect && Player.isReady == false && Player.canMove == false)
         {
             if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing)
             {

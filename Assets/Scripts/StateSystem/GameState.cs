@@ -67,21 +67,15 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
     }
     public void OnUpdate()
     {
-        if (StateTimer.stopStateTime == true)
+        if (StateTimer.stopStateTime == true || (Player.isReady && Enemy.isReady))
         {
             DuelStateManager.playerStateType = GameState.PlayerStateMode.Ready;
             manager.TransitionPlayerState(DuelStateManager.playerStateType);
         }
-        /*if (GameManager.playerStateType == GameState.PlayerStateMode.Ready)
-        {
-            GameManager.duelStateType = GameState.DuelStateMode.MoveResult;
-            GameManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
-            manager.TransitionDuelState(GameManager.duelStateType);
-        }*/
     }
     public void OnExit()
     {
-
+        
     }
 }
 
@@ -130,15 +124,15 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
     }
     public void OnUpdate()
     {
-        if (StateTimer.stopStateTime == true)
+        if (StateTimer.stopStateTime == true || (Player.isReady && Enemy.isReady))
         {
             DuelStateManager.playerStateType = GameState.PlayerStateMode.Ready;
             manager.TransitionPlayerState(DuelStateManager.playerStateType);
         }
     }
     public void OnExit()
-    { 
-    
+    {
+
     }
 }
 
@@ -268,7 +262,7 @@ public class DamageState : IState //傷害處理階段(引用IState的運行模式)
     }
 }
 
-public class ReadyState : IState //準備結算階段(引用IState的運行模式)
+public class ReadyState : IState //準備進入結算階段(引用IState的運行模式)
 {
     private DuelStateManager manager;
     public ReadyState(DuelStateManager manager)
@@ -277,27 +271,23 @@ public class ReadyState : IState //準備結算階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        DuelStateManager.canInterect = false;
-        StateTimer.startTime = 5;
-        StateTimer.isStartTime = true;
-        StateTimer.stopStateTime = false;
+        Player.isReady = false;
+        Enemy.isReady = false;
+        Player.canMove = false;
     }
     public void OnUpdate()
     {
-        if (StateTimer.startTime == 1)
+        if (DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
         {
-            if (DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
-            {
-                DuelStateManager.duelStateType = GameState.DuelStateMode.MoveResult;
-                DuelStateManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
-                manager.TransitionDuelState(DuelStateManager.duelStateType);
-            }
-            else if (DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
-            {
-                DuelStateManager.duelStateType = GameState.DuelStateMode.AttackResult;
-                DuelStateManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
-                manager.TransitionDuelState(DuelStateManager.duelStateType);
-            }
+            DuelStateManager.duelStateType = GameState.DuelStateMode.MoveResult;
+            DuelStateManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
+            manager.TransitionDuelState(DuelStateManager.duelStateType);
+        }
+        else if (DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
+        {
+            DuelStateManager.duelStateType = GameState.DuelStateMode.AttackResult;
+            DuelStateManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
+            manager.TransitionDuelState(DuelStateManager.duelStateType);
         }
     }
     public void OnExit()

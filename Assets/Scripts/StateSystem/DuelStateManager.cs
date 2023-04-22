@@ -13,11 +13,8 @@ public class DuelStateManager : MonoBehaviour
     public Dictionary<GameState.DuelStateMode, IState> duelstates = new Dictionary<GameState.DuelStateMode, IState>(); //狀態執行時發生特定事(字典)
     public Dictionary<GameState.PlayerStateMode, IState> playerstates = new Dictionary<GameState.PlayerStateMode, IState>(); //狀態執行時發生特定事(字典)
 
-    //GameManager自身
-    public static DuelStateManager instance = null;
-
     //管理資訊
-    public static bool canInterect = false; //玩家可以進行操作
+    public static bool canInterect; //玩家可以進行操作
 
     // Start is called before the first frame update
     private void Awake()
@@ -51,6 +48,7 @@ public class DuelStateManager : MonoBehaviour
     private void Start()
     {
         //初始化決鬥場景狀態
+        canInterect = false;
         duelStateType = GameState.DuelStateMode.Draw;
         playerStateType = GameState.PlayerStateMode.NoDoThing;
         TransitionDuelState(duelStateType);
@@ -66,28 +64,6 @@ public class DuelStateManager : MonoBehaviour
         Debug.Log(playerStateType);
         Debug.Log(canInterect);
 
-        /*if (Input.GetKeyDown(KeyCode.W)) //測試切換階段
-        {
-            switch (duelStateType)
-            {
-                case GameState.DuelStateMode.Draw:
-                    TransitionDuelState(GameState.DuelStateMode.Move);
-                    TransitionPlayerState(GameState.PlayerStateMode.DoThing);
-                    break;
-                case GameState.DuelStateMode.Move:
-                    TransitionDuelState(GameState.DuelStateMode.Attack);
-                    TransitionPlayerState(GameState.PlayerStateMode.DoThing);
-                    break;
-                case GameState.DuelStateMode.Attack:
-                    TransitionDuelState(GameState.DuelStateMode.End);
-                    TransitionPlayerState(GameState.PlayerStateMode.NoDoThing);
-                    break;
-                case GameState.DuelStateMode.End:
-                    TransitionDuelState(GameState.DuelStateMode.Draw);
-                    TransitionPlayerState(GameState.PlayerStateMode.NoDoThing);
-                    break;
-            }
-        }*/
     }
     public virtual void TransitionDuelState() //切換決鬥階段時所執行
     {
