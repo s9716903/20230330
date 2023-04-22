@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public static int MagicAtk; //受法術攻擊數值
     public static int MoveValue; //移動值
     public static int Defense; //防禦值
+    public static int Stars; //星星值
     public static int AllDamaged; //受到總傷害值
     public  int TargetLocation; //玩家所在位置
     public static int MoveToLocation; //玩家將要移動到的位置
@@ -23,6 +24,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MoveValue = 0;
+        Stars = 0;
         MoveToLocation = TargetLocation;
     }
     private void Update()

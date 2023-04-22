@@ -25,7 +25,9 @@ public class GameManager : MonoBehaviour
         //將決鬥狀態裝入字典
         duelstates.Add(GameState.DuelStateMode.Draw, new DrawState(this));
         duelstates.Add(GameState.DuelStateMode.Move, new MoveState(this));
+        duelstates.Add(GameState.DuelStateMode.MoveResult, new MoveResultState(this));
         duelstates.Add(GameState.DuelStateMode.Attack, new AttackState(this));
+        duelstates.Add(GameState.DuelStateMode.AttackResult, new AttackResultState(this));
         duelstates.Add(GameState.DuelStateMode.End, new EndState(this));
 
         //將玩家狀態裝入字典
