@@ -20,15 +20,18 @@ public class Player : MonoBehaviour
     public static int AllDamaged; //受到總傷害值
     public int TargetLocation; //玩家所在位置
 
+    public static int DrawAmoumt; //玩家結束時抽牌數
+
     public static int MoveToLocation; //玩家將要移動到的位置
 
 
-    public static bool canMove = false; //可以移動
-    public static bool isReady = false; //玩家是否已進入準備狀態
+    public static bool canMove; //可以移動
+    public static bool isReady; //玩家是否已進入準備狀態
     // Start is called before the first frame update
     void Start()
     {
         isReady = false;
+        canMove = false;
         MaxHp = GetComponent<JobManager>().thisJob.TheMaxHp;
         Defense = GetComponent<JobManager>().thisJob.TheDefense;
         MoveValue = 0;
