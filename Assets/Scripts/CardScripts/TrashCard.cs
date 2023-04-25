@@ -8,7 +8,7 @@ using TMPro;
 public class TrashCard : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     public GameObject TrashCardsText; //棄牌區卡片數文字顯示
-    public GameObject[] TrashCardsObject; //棄牌區卡片們
+    public List<GameObject> TrashCardsObject; //棄牌區卡片們
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +16,7 @@ public class TrashCard : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     }
     private void Update()
     {
-        TrashCardsText.GetComponent<TextMeshProUGUI>().text = TrashCardsObject.Length.ToString();
+        TrashCardsText.GetComponent<TextMeshProUGUI>().text = TrashCardsObject.Count.ToString();
     }
     public void OnPointerEnter(PointerEventData pointerEventData) //滑鼠游標移入
     {
