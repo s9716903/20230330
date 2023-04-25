@@ -61,7 +61,7 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
     public void OnEnter()
     {
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
-        StateTimer.startTime = 30;
+        StateTimer.startTime = 10;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
     }
@@ -118,7 +118,7 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
     public void OnEnter()
     {
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
-        StateTimer.startTime = 30;
+        StateTimer.startTime = 10;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
     }
