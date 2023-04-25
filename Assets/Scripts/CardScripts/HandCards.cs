@@ -63,38 +63,42 @@ public class HandCards : MonoBehaviour
 
     public void PlayerIsReady()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        if (DuelStateManager.canInterect && Player.canMove)
         {
-            var targetcard = transform.GetChild(i);
-            if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                targetcard.transform.position -= new Vector3(0, 0, 10);
-                if ((targetcard.gameObject.GetComponent<CardManager>().ID != 2) && (targetcard.gameObject.GetComponent<CardManager>().ID != 3))
+                var targetcard = transform.GetChild(i);
+                if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
                 {
-                    Player.DrawAmoumt++;
+                    targetcard.transform.position -= new Vector3(0, 0, 10);
+                    if ((targetcard.gameObject.GetComponent<CardManager>().ID != 2) && (targetcard.gameObject.GetComponent<CardManager>().ID != 3))
+                    {
+                        Player.DrawAmoumt++;
+                    }
+                }
+                if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
+                {
+                    targetcard.transform.position -= new Vector3(0, 0, 10);
+                    if ((targetcard.gameObject.GetComponent<CardManager>().ID != 2) && (targetcard.gameObject.GetComponent<CardManager>().ID != 3))
+                    {
+                        Player.DrawAmoumt++;
+                    }
                 }
             }
-            if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
+            for (int j = 0; j < transform.childCount; j++)
             {
-                targetcard.transform.position -= new Vector3(0, 0, 10);
-                if ((targetcard.gameObject.GetComponent<CardManager>().ID != 2) && (targetcard.gameObject.GetComponent<CardManager>().ID != 3))
+                var targetcard = transform.GetChild(j);
+                if ((targetcard.GetComponent<CardManager>().isUseThisCard == false) && (targetcard.GetComponent<CardManager>().isDropThisCard == false))
                 {
-                    Player.DrawAmoumt++;
+                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
+                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
+                    targetcard.gameObject.SetActive(false);
                 }
-            }
-        }
-        for (int j = 0; j < transform.childCount; j++)
-        {
-            var targetcard = transform.GetChild(j);
-            if ((targetcard.GetComponent<CardManager>().isUseThisCard == false) && (targetcard.GetComponent<CardManager>().isDropThisCard == false))
-            {
                 targetcard.GetComponent<CardManager>().isUseThisCard = false;
                 targetcard.GetComponent<CardManager>().isDropThisCard = false;
-                targetcard.gameObject.SetActive(false);
             }
-            targetcard.GetComponent<CardManager>().isUseThisCard = false;
-            targetcard.GetComponent<CardManager>().isDropThisCard = false;
+            Player.canMove = false;
+            Debug.Log("Draw:" + Player.DrawAmoumt);
         }
-        Debug.Log("Draw:" + Player.DrawAmoumt);
     }
 }

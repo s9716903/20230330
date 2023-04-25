@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2538528093877157534}
   - component: {fileID: 1483217337022329147}
   - component: {fileID: 3706890232004232689}
+  - component: {fileID: 8391592099842212687}
   m_Layer: 0
   m_Name: card1 Prefab Test
   m_TagString: Untagged
@@ -85,6 +86,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8391592099842212687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2914243984238175268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1b2683028604145b90484e11854d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardvaluemanager: {fileID: 0}
+  _cardValueManager:
+  - {fileID: 11400000, guid: 8a3fee13d09cc4844a929ec104b706bd, type: 2}
+  - {fileID: 11400000, guid: dd70a7742dd2e5540a21f8635b547bbe, type: 2}
+  isUseThisCard: 0
+  isDropThisCard: 0
+  DamagedDropCard: 0
+  isCardStateTrue: 0
+  ID: 0
+  candraw: 0
+  Type: 0
+  Name: 
+  Value: 0
+  AttackZone: 
 --- !u!1 &8101203088923701994
 GameObject:
   m_ObjectHideFlags: 0
