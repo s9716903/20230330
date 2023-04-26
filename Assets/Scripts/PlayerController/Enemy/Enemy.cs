@@ -20,8 +20,6 @@ public class Enemy : MonoBehaviour
     public static int AllDamaged; //受到總傷害值
     public int TargetLocation; //玩家所在位置
 
-    public static int DrawAmoumt; //結束時抽牌數
-
     public static int MoveToLocation; //玩家將要移動到的位置
 
 

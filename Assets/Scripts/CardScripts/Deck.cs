@@ -10,9 +10,9 @@ public class Deck : MonoBehaviour
     public int[] CardQuantity; //各自卡片數量
     public List<GameObject> DeckAllCard; //牌組所有卡片資料
 
-    private void Awake()
+    private void OnEnable()
     {
-        DeckBack = GetComponent<Image>(); 
+        DeckBack = GetComponent<Image>();
         DeckBack.enabled = true;
         //遊戲開始時將卡加入牌組
         DeckAllCard = new List<GameObject>();

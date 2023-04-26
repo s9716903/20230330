@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using TMPro;
 
-public class TrashCard : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
+public class TrashCard : MonoBehaviour
 {
+<<<<<<< HEAD
     public GameObject TrashCardsText; //棄牌區卡片數文字顯示
     public List<GameObject> TrashCardsObject; //棄牌區卡片們
     // Start is called before the first frame update
@@ -29,5 +27,11 @@ public class TrashCard : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public void ClickTrashZone()
     { 
     
+=======
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+>>>>>>> origin/main
     }
 }
