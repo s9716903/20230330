@@ -14,9 +14,15 @@ public class HandCards : MonoBehaviour
 
     public GameObject TestText; //字體顯示數值是否正確計算
 
+<<<<<<< HEAD
     public static bool isReady = false; //準備完成
 
     public static int[,] TypeValue = new int[5, 1]; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
+=======
+    public GameObject TrashCardZone; 
+
+    public static int[,] TypeValue = new int[5, 1] { {Player.MoveValue },{Enemy.PhysicDamage },{Enemy.MagicDamage },{Player.Stars },{Player.DrawAmoumt} }; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
+>>>>>>> 7680eedc252985faa318d04fb0c4961d29f1ff7b
 
     void OnEnable()
     {
@@ -48,9 +54,62 @@ public class HandCards : MonoBehaviour
         {
             gridLayoutGroup.cellSize = new Vector2(150, 100);
         }
+
+
+    }
+    public void PlayerCardValueReady() //If press ready,CardValue will show
+    {
+        if (Player.canMove)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var handcard = transform.GetChild(i).GetComponent<CardManager>();
+                if (handcard.isUseThisCard)
+                {
+                    if (handcard.ID == 1)
+                    {
+                        TypeValue[handcard.Type + 1, 0] += handcard.Value;
+                    }
+                    else if (handcard.ID == 0)
+                    {
+                        TypeValue[handcard.ID, 0] += handcard.Value;
+                    }
+                    else
+                    {
+                        TypeValue[handcard.ID + 1, 0] += handcard.Value;
+                    }
+                }
+            }
+        }
+        else if (!Player.canMove)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var handcard = transform.GetChild(i).GetComponent<CardManager>();
+                if (handcard.isUseThisCard)
+                {
+                    if (handcard.ID == 1)
+                    {
+                        TypeValue[handcard.Type + 1, 0] -= handcard.Value;
+                    }
+                    else if (handcard.ID == 0)
+                    {
+                        TypeValue[handcard.ID, 0] -= handcard.Value;
+                    }
+                    else
+                    {
+                        TypeValue[handcard.ID + 1, 0] -= handcard.Value;
+                    }
+                }
+            }
+        }
     }
 
+<<<<<<< HEAD
     public void StateReady()
+=======
+    public void PlayerIsReady() //If press targetlocation,player won't do anything,card will ready
+>>>>>>> 7680eedc252985faa318d04fb0c4961d29f1ff7b
     {
         /*for (int i = 0; i < HandAllCard.Count; i++) 
         {
@@ -89,6 +148,72 @@ public class HandCards : MonoBehaviour
                targetcard.gameObject.SetActive(false);
             }
         }
+<<<<<<< HEAD
         Debug.Log("Draw:" + DrawAmoumt);
+=======
+        else if (!Player.canMove && !Player.isReady && StateTimer.stopStateTime == true)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var targetcard = transform.GetChild(i);
+                if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
+                {
+                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
+                    targetcard.transform.position -= new Vector3(0, 0, 10);
+                }
+                if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
+                {
+                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
+                    targetcard.transform.position -= new Vector3(0, 0, 10);
+                }
+            }
+            for (int j = 0; j < transform.childCount; j++)
+            {
+                var targetcard = transform.GetChild(j);
+                if ((targetcard.GetComponent<CardManager>().isUseThisCard == false) && (targetcard.GetComponent<CardManager>().isDropThisCard == false))
+                {
+                    targetcard.gameObject.SetActive(false);
+                }
+            }
+            Player.canMove = false;
+            Debug.Log("Draw:" + Player.DrawAmoumt);
+        }
+    }
+
+    public void DrawCard()
+    {
+        if (DuelStateManager.duelStateType == GameState.DuelStateMode.Draw)
+        {
+            Player.DrawAmoumt += 1;
+            for (int i = 0; i < Player.DrawAmoumt; i++) //Draw card
+            {
+                Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], this.transform); //卡片變成手牌子物件
+                PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //從牌組中移除卡牌
+            }
+        }
+        else
+        {
+            for (int i = 0; i < Player.DrawAmoumt; i++) //Draw card
+            {
+                Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], this.transform); //卡片變成手牌子物件
+                PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //從牌組中移除卡牌
+            }
+        }
+        Player.DrawAmoumt = 0;
+    }
+    public void ShowHandCard()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeInHierarchy)
+            {
+                TrashCardZone.GetComponent<TrashCard>().TrashCardsObject.Add(transform.GetChild(i).gameObject);
+            }
+            else if (!transform.GetChild(i).gameObject.activeInHierarchy)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }    
+        }
+>>>>>>> 7680eedc252985faa318d04fb0c4961d29f1ff7b
     }
 }

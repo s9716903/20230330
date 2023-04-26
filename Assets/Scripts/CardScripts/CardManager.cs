@@ -135,34 +135,10 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         if (isUseThisCard)
         {
             transform.position += new Vector3(0,0,10);
-            if (ID == 1)
-            {
-                HandCards.TypeValue[Type + 1, 0] += Value;
-            }
-            else if (ID == 0)
-            {
-                HandCards.TypeValue[ID, 0] += Value;
-            }
-            else
-            {
-                HandCards.TypeValue[ID + 1, 0] += Value;
-            }
         }
         else
         {
             transform.position -= new Vector3(0, 0,10);
-            if (ID == 1)
-            {
-                HandCards.TypeValue[Type + 1, 0] -= Value;
-            }
-            else if (ID == 0)
-            {
-                HandCards.TypeValue[ID, 0] -= Value;
-            }
-            else
-            {
-                HandCards.TypeValue[ID+1, 0] -= Value;
-            }
         }
     }
     public void DropCard() //卡片選擇丟棄時往上移

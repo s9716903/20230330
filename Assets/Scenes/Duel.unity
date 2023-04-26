@@ -220,7 +220,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1490340158}
         m_TargetAssemblyTypeName: HandCards, Assembly-CSharp
+<<<<<<< HEAD
         m_MethodName: StateReady
+=======
+        m_MethodName: PlayerCardValueReady
+>>>>>>> 7680eedc252985faa318d04fb0c4961d29f1ff7b
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -333,8 +337,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 180
-  m_fontSizeBase: 180
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -399,7 +403,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 0}
+  m_AnchoredPosition: {x: 300, y: 200}
   m_SizeDelta: {x: 600, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &77445749
@@ -2700,6 +2704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerDeck: {fileID: 780374247}
   TestText: {fileID: 1473001649}
+  TrashCardZone: {fileID: 990834230}
 --- !u!1 &1656133433
 GameObject:
   m_ObjectHideFlags: 0
