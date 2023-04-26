@@ -8,6 +8,7 @@ public class DuelUI : MonoBehaviour
 {
     public GameObject ReadyButton; //準備完成鈕
     public GameObject StateText; //目前階段文字
+    public GameObject ThisPlayer; //玩家本人
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class DuelUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!DuelStateManager.canInterect || Player.isReady == true)
+        if (!DuelStateManager.canInterect || ThisPlayer.GetComponent<Player>().isReady == true)
         {
             ReadyButton.GetComponent<Button>().enabled = false;
         }
@@ -28,9 +29,9 @@ public class DuelUI : MonoBehaviour
     }
     public void ReadyButtonPress() //準備鈕
     {
-        if (Player.isReady == false)
+        if (ThisPlayer.GetComponent<Player>().isReady == false)
         {
-            Player.canMove = !Player.canMove;
+            ThisPlayer.GetComponent<Player>().canMove = !ThisPlayer.GetComponent<Player>().canMove;
         }
     }
 }

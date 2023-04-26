@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class Location : MonoBehaviour
 {
-    public static bool canStop = false; //可以停留在此 
+    public bool canStop = false; //可以停留在此 
+    public GameObject ThisPlayer;
+    private GameObject Player;
+    private void Start()
+    {
+        Player = GameObject.Find("Player");
+    }
     public void MovePointClick()
     {
-        if (DuelStateManager.canInterect && Player.canMove && Player.isReady == false)
+        if (ThisPlayer == Player && DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
         {
-            Player.MoveToLocation = this.gameObject.transform.GetSiblingIndex();
-            Player.isReady = true;
+            if (DuelStateManager.canInterect && ThisPlayer.GetComponent<Player>().canMove && ThisPlayer.GetComponent<Player>().isReady == false)
+            {
+                ThisPlayer.GetComponent<Player>().MoveToLocation = gameObject.transform.GetSiblingIndex();
+                ThisPlayer.GetComponent<Player>().isReady = true;
+            }
         }
     }
 }

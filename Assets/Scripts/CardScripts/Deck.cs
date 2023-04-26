@@ -8,7 +8,7 @@ public class Deck : MonoBehaviour
     private Image DeckBack; //牌組卡背
     public GameObject[] DeckCardType; //牌組卡片種類大全
     public int[] CardQuantity; //各自卡片數量
-    public List<GameObject> DeckAllCard; //牌組所有卡片資料
+    public List<GameObject> DeckAllCard; //牌組所有卡片(List)
 
     private void Awake()
     {

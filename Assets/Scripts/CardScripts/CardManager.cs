@@ -5,36 +5,39 @@ using UnityEngine.EventSystems;
 
 public class CardManager : MonoBehaviour,IPointerClickHandler
 {
-    public  CardValueManager cardvaluemanager; //卡片目前資料
-    public CardValueManager[] _cardValueManager = new CardValueManager[2]; //卡片上下半資料
+    public CardValueManager cardvaluemanager; //currentCardValue
+    public CardValueManager[] _cardValueManager = new CardValueManager[2]; //CardValue(Up and Down)
 
-    //卡片狀態機(卡片自身控制開關)
+    //CardState
+    private bool isCardUp; //卡片是否為正位置(判斷用上半還是下半效果)
+    private bool canUseThisCard; //該卡片是否能用(判斷此時能否使用(非丟棄)) 
+
+    //CardState(UsingState)
     public bool isUseThisCard; //是否使用該卡片(判斷是否被使用)(根據卡片種類可補牌)
     public bool isDropThisCard; //是否丟棄該卡片(判斷是否被丟棄)(可補牌)
     public bool DamagedDropCard; //是否因受傷捨棄該卡片(判斷是否受傷丟棄)(不可補牌)
-    private bool canUseThisCard; //該卡片是否能用(判斷此時能否使用(非丟棄)) 
-    private bool isCardUp; //卡片是否為正位置(判斷用上半還是下半效果)
 
-    //卡片狀態機(由其他腳本控制開關)
-    public bool isCardStateTrue; //判斷是否滑鼠能與之互動
+    //CardStateTrue
+    public bool isPlayerUse; //判斷是否能與玩家滑鼠互動
 
 
     [Header("CardValue")]
-    public int ID; //卡片ID
-    public bool candraw; //用完是否可抽牌
-    public int Type; //種類
-    public string Name; //名字
-    public int Value; //數值
-    public int[] AttackZone; //攻擊範圍
+    public int ID; 
+    public bool candraw; 
+    public int Type; 
+    public string Name; 
+    public int Value; 
+    public int[] AttackZone; 
 
     private void OnEnable()
-    {
-        isCardStateTrue = true;
+    { 
+        isCardUp = true;
         canUseThisCard = false;
+        
         isUseThisCard = false;
         isDropThisCard = false;
         DamagedDropCard = false;
-        isCardUp = true;
+        isPlayerUse = false;
     }
     // Update is called once per frame
     void Update()
@@ -54,13 +57,13 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         //卡片資料
         ID = cardvaluemanager.cardValue.ID;
         candraw = cardvaluemanager.cardValue.candraw;
-        AttackZone = cardvaluemanager.cardValue.AttackZone;
         Type = cardvaluemanager.cardValue.Type;
         Name = cardvaluemanager.cardValue.Name;
         Value = cardvaluemanager.cardValue.Value;
+        AttackZone = cardvaluemanager.cardValue.AttackZone;
 
         //卡牌使用判定
-        if (DuelStateManager.canInterect && isCardStateTrue) //可進行動作
+        if (DuelStateManager.canInterect) //可進行動作
         {
             if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing) //做事階段
             {
@@ -100,41 +103,45 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        //跳出大卡圖及效果文UI
-
-        if (DuelStateManager.canInterect && isCardStateTrue)
+        if (DuelStateManager.canInterect)
         {
-            if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing)
-            {
-                //滑鼠左鍵卡片時
-                if (pointerEventData.button == PointerEventData.InputButton.Left)
-                {
-                    if (DuelStateManager.playerStateType == GameState.PlayerStateMode.Damage)
-                    {
-                        DamagedDropCard = !DamagedDropCard;
-                        DamageDropCard();
-                    }
-                    if (!canUseThisCard)
-                    {
-                        isDropThisCard = !isDropThisCard;
-                        DropCard();
-                    }
-                    if (canUseThisCard)
-                    {
-                        isUseThisCard = !isUseThisCard;
-                        UseCard();
-                    }
-                }
+            //跳出大卡圖及效果文UI
 
-                //滑鼠右鍵卡片時
-                if (pointerEventData.button == PointerEventData.InputButton.Right)
+            if (isPlayerUse)
+            {
+                if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing)
                 {
-                    isCardUp = !isCardUp;
+                    //滑鼠左鍵卡片時
+                    if (pointerEventData.button == PointerEventData.InputButton.Left)
+                    {
+                        if (DuelStateManager.playerStateType == GameState.PlayerStateMode.Damage)
+                        {
+                            DamagedDropCard = !DamagedDropCard;
+                            DamageDropCard();
+                        }
+                        if (!canUseThisCard)
+                        {
+                            isDropThisCard = !isDropThisCard;
+                            DropCard();
+                        }
+                        if (canUseThisCard)
+                        {
+                            isUseThisCard = !isUseThisCard;
+                            UseCard();
+                        }
+                    }
+
+                    //滑鼠右鍵卡片時
+                    if (pointerEventData.button == PointerEventData.InputButton.Right)
+                    {
+                        isCardUp = !isCardUp;
+                    }
                 }
             }
         }
     }
-    private void UseCard() //卡片使用時卡片向上移
+
+    private void UseCard() //卡片被使用時
     {
         if (isUseThisCard)
         {
@@ -145,7 +152,8 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
             transform.position -= new Vector3(0, 0,10);
         }
     }
-    public void DropCard() //卡片選擇丟棄時往上移
+
+    public void DropCard() //卡片被丟棄時
     {
         if (isDropThisCard)
         {
@@ -156,7 +164,8 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
             transform.position -= new Vector3(0, 0, 10);
         }
     }
-    public void DamageDropCard() //因扣血選擇捨棄卡片時往上移
+
+    public void DamageDropCard() //卡片因扣血被捨棄時
     {
         if (isDropThisCard)
         {

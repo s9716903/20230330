@@ -5,18 +5,18 @@ using UnityEngine.EventSystems;
 
 public class Ground : MonoBehaviour
 {
-    public GameObject[] playerlocation;
-    public GameObject[] enemylocation;
+    public GameObject[] Alocation;
+    public GameObject[] Blocation;
     public int Locations; //場地格數 
     // Start is called before the first frame update
     void Awake()
     {
-        playerlocation = new GameObject[Locations];
-        enemylocation = new GameObject[Locations];
+        Alocation = new GameObject[Locations];
+        Blocation = new GameObject[Locations];
         for (int i = 0; i < Locations; i++)
         {
-            playerlocation[i] = transform.GetChild(0).transform.GetChild(i).gameObject;
-            enemylocation[i] = transform.GetChild(1).transform.GetChild(i).gameObject;
+           Alocation[i] = transform.GetChild(0).transform.GetChild(i).gameObject;
+           Blocation[i] = transform.GetChild(1).transform.GetChild(i).gameObject;
         }
     }
 }

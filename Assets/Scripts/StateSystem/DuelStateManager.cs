@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class DuelStateManager : MonoBehaviour
 {
-    //!!!玩家狀態機在部分時間點由決鬥狀態控制狀態機進出!!!
-    //狀態機
+    //!!!PlayerState are sometimes controlled by DuelState!!!
+    //StateEvent
     public IState currentduelState; //目前決鬥狀態(進入/持續/退出)
     public IState currentplayerState; //目前玩家狀態(進入/持續/退出)
-    public static GameState.DuelStateMode duelStateType; //決鬥狀態
-    public static GameState.PlayerStateMode playerStateType; //玩家狀態
     public Dictionary<GameState.DuelStateMode, IState> duelstates = new Dictionary<GameState.DuelStateMode, IState>(); //狀態執行時發生特定事(字典)
     public Dictionary<GameState.PlayerStateMode, IState> playerstates = new Dictionary<GameState.PlayerStateMode, IState>(); //狀態執行時發生特定事(字典)
 
-    //管理資訊
-    public static bool canInterect; //玩家可以進行操作
+    //Very Important
+    public static GameState.DuelStateMode duelStateType; //決鬥狀態
+    public static GameState.PlayerStateMode playerStateType; //玩家狀態
+
+    public static bool canInterect; //玩家是否可以與特定東西互動
 
     // Start is called before the first frame update
     private void Awake()
@@ -33,17 +34,6 @@ public class DuelStateManager : MonoBehaviour
         playerstates.Add(GameState.PlayerStateMode.NoDoThing, new NoDoThingState(this));
         playerstates.Add(GameState.PlayerStateMode.Damage, new DamageState(this));
         playerstates.Add(GameState.PlayerStateMode.Ready, new ReadyState(this));
-
-        //場景中有GameManager時摧毀同名物件
-        /*if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);*/
     }
     private void Start()
     {
@@ -62,8 +52,6 @@ public class DuelStateManager : MonoBehaviour
         Debug.Log(currentplayerState);
         Debug.Log(duelStateType);
         Debug.Log(playerStateType);
-        Debug.Log(canInterect);
-
     }
     public virtual void TransitionDuelState() //切換決鬥階段時所執行
     {
