@@ -8,12 +8,15 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public  CardValueManager cardvaluemanager; //卡片目前資料
     public CardValueManager[] _cardValueManager = new CardValueManager[2]; //卡片上下半資料
 
-    //卡片狀態機
+    //卡片狀態機(卡片自身控制開關)
     public bool isUseThisCard; //是否使用該卡片(判斷是否被使用)(根據卡片種類可補牌)
     public bool isDropThisCard; //是否丟棄該卡片(判斷是否被丟棄)(可補牌)
     public bool DamagedDropCard; //是否因受傷捨棄該卡片(判斷是否受傷丟棄)(不可補牌)
     private bool canUseThisCard; //該卡片是否能用(判斷此時能否使用(非丟棄)) 
     private bool isCardUp; //卡片是否為正位置(判斷用上半還是下半效果)
+
+    //卡片狀態機(由其他腳本控制開關)
+    public bool isCardStateTrue; //判斷是否滑鼠能與之互動
 
 
     [Header("CardValue")]
@@ -26,6 +29,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
 
     private void OnEnable()
     {
+        isCardStateTrue = true;
         canUseThisCard = false;
         isUseThisCard = false;
         isDropThisCard = false;
@@ -56,7 +60,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         Value = cardvaluemanager.cardValue.Value;
 
         //卡牌使用判定
-        if (DuelStateManager.canInterect && Player.isReady == false && Player.canMove == false) //可進行動作
+        if (DuelStateManager.canInterect && isCardStateTrue) //可進行動作
         {
             if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing) //做事階段
             {
@@ -98,7 +102,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {
         //跳出大卡圖及效果文UI
 
-        if (DuelStateManager.canInterect && Player.isReady == false && Player.canMove == false)
+        if (DuelStateManager.canInterect && isCardStateTrue)
         {
             if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing)
             {

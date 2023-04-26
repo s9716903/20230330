@@ -41,7 +41,7 @@ public class StateTimer : MonoBehaviour
         {
             StartCoroutine("StartToTime");
             isStartTime = false;
-            Debug.Log(startTime);
+            //Debug.Log(startTime);
         }
     }
 }
