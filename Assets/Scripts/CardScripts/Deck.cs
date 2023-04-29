@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Deck : MonoBehaviour
 {
-    private Image DeckBack; //牌組卡背
     public GameObject[] DeckCardType; //牌組卡片種類大全
     public int[] CardQuantity; //各自卡片數量
     public List<GameObject> DeckAllCard; //牌組所有卡片(List)
 
     private void Awake()
     {
-        DeckBack = GetComponent<Image>(); 
-        DeckBack.enabled = true;
         //遊戲開始時將卡加入牌組
         DeckAllCard = new List<GameObject>();
         for (int i = 0; i < DeckCardType.Length; i++)
@@ -32,16 +30,20 @@ public class Deck : MonoBehaviour
             DeckAllCard[k] = DeckAllCard[RandomIndex]; 
             DeckAllCard[RandomIndex] = temp; 
         }
+
+        /*var LastCard = DeckAllCard.Last();
+        LastCard.transform.rotation = Quaternion.Euler(0,0,0);
+        Instantiate(LastCard, this.transform);*/
     }
     private void Update()
     {
-        if (DeckAllCard.Count == 0)
+        /*if (DeckAllCard.Count == 0 && transform.GetChild(0).gameObject != null)
         {
-            DeckBack.enabled = false;
+            Destroy(transform.GetChild(0).gameObject);
         }
         else
         {
-            DeckBack.enabled = true;
-        }
+            return;
+        }*/
     }
 }

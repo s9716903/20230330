@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1483217337022329147}
   - component: {fileID: 3706890232004232689}
   - component: {fileID: 8391592099842212687}
+  - component: {fileID: 227200310754490265}
   m_Layer: 0
   m_Name: card1 Prefab Test
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2914243984238175268}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 70, y: 60, z: 10}
   m_Children:
@@ -105,13 +106,26 @@ MonoBehaviour:
   isUseThisCard: 0
   isDropThisCard: 0
   DamagedDropCard: 0
-  isCardStateTrue: 0
+  isPlayerUse: 0
   ID: 0
   candraw: 0
   Type: 0
   Name: 
   Value: 0
   AttackZone: 
+--- !u!65 &227200310754490265
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2914243984238175268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0320003, y: 3.0479999, z: 0.0127}
+  m_Center: {x: 0, y: 0, z: 0.00635}
 --- !u!1 &8101203088923701994
 GameObject:
   m_ObjectHideFlags: 0

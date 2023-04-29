@@ -51,7 +51,7 @@ public class HandCards : MonoBehaviour
             }
         }
 
-        if (transform.childCount > 6) //手牌越多時縮減每張牌的間距
+        /*if (transform.childCount > 6) //手牌越多時縮減每張牌的間距
         {
             gridLayoutGroup.cellSize = new Vector2(150 - (transform.childCount * 6), 100);
             if (gridLayoutGroup.cellSize.x <= 50)
@@ -62,7 +62,7 @@ public class HandCards : MonoBehaviour
         else
         {
             gridLayoutGroup.cellSize = new Vector2(150, 100);
-        }
+        }*/
 
 
     }
