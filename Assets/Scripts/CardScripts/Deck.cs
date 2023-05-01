@@ -6,9 +6,12 @@ using System.Linq;
 
 public class Deck : MonoBehaviour
 {
+    private Image DeckImage;
+
     public GameObject[] DeckCardType; //牌組卡片種類大全
     public int[] CardQuantity; //各自卡片數量
     public List<GameObject> DeckAllCard; //牌組所有卡片(List)
+
 
     private void Awake()
     {
@@ -30,20 +33,20 @@ public class Deck : MonoBehaviour
             DeckAllCard[k] = DeckAllCard[RandomIndex]; 
             DeckAllCard[RandomIndex] = temp; 
         }
-
-        /*var LastCard = DeckAllCard.Last();
-        LastCard.transform.rotation = Quaternion.Euler(0,0,0);
-        Instantiate(LastCard, this.transform);*/
+    }
+    private void Start()
+    {
+        DeckImage = GetComponent<Image>();
     }
     private void Update()
     {
-        /*if (DeckAllCard.Count == 0 && transform.GetChild(0).gameObject != null)
+        if (DeckAllCard.Count == 0)
         {
-            Destroy(transform.GetChild(0).gameObject);
+            DeckImage.enabled = false;
         }
         else
         {
-            return;
-        }*/
+            DeckImage.enabled = true;
+        }
     }
 }

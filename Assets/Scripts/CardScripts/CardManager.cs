@@ -7,6 +7,8 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
 {
     public CardValueManager cardvaluemanager; //currentCardValue
     public CardValueManager[] _cardValueManager = new CardValueManager[2]; //CardValue(Up and Down)
+    public GameObject CardTop; 
+    public GameObject CardBottom;
 
     //CardState
     private bool isCardUp; //卡片是否為正位置(判斷用上半還是下半效果)
@@ -16,6 +18,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public bool isUseThisCard; //是否使用該卡片(判斷是否被使用)(根據卡片種類可補牌)
     public bool isDropThisCard; //是否丟棄該卡片(判斷是否被丟棄)(可補牌)
     public bool DamagedDropCard; //是否因受傷捨棄該卡片(判斷是否受傷丟棄)(不可補牌)
+    public bool CardTopOrBottom; //Top or Bottom
 
     //CardStateTrue
     public bool isPlayerUse; //判斷是否能與玩家滑鼠互動
@@ -33,6 +36,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     { 
         isCardUp = true;
         canUseThisCard = false;
+        CardTopOrBottom = true;
         
         isUseThisCard = false;
         isDropThisCard = false;
@@ -42,6 +46,21 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
+        //is Card Top?
+        if (CardTopOrBottom)
+        {
+            CardTop.SetActive(true);
+            CardBottom.SetActive(false);
+        }
+        else
+        {
+            CardTop.SetActive(false);
+            CardBottom.SetActive(true);
+
+        }
+
+
+
         //卡片正位置資料
         if (isCardUp == true)
         {
