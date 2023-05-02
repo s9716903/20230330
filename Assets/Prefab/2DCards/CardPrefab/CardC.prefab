@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7480104550230094859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 860153007660483816}
   - component: {fileID: 3161628577929365896}
   - component: {fileID: 4122221806770275500}
+  - component: {fileID: 239292621565645816}
   m_Layer: 0
   m_Name: CardC
   m_TagString: Untagged
@@ -691,8 +692,6 @@ MonoBehaviour:
   _cardValueManager:
   - {fileID: 11400000, guid: 8a3fee13d09cc4844a929ec104b706bd, type: 2}
   - {fileID: 11400000, guid: 7bc5d3d386b10ed4f9aca8c2a1572b9e, type: 2}
-  CardTop: {fileID: 4474673234200665981}
-  CardBottom: {fileID: 2355746153265688904}
   isUseThisCard: 0
   isDropThisCard: 0
   DamagedDropCard: 0
@@ -727,6 +726,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.29, y: 4.62, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &239292621565645816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7825168325133498905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c8e2431287ed2e43a8f0e5346231572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardState: 0
+  CardTop: {fileID: 4474673234200665981}
+  CardBottom: {fileID: 2355746153265688904}
 --- !u!1 &8506802805005445162
 GameObject:
   m_ObjectHideFlags: 0

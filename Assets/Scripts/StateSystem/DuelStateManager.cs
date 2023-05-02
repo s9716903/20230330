@@ -48,10 +48,10 @@ public class DuelStateManager : MonoBehaviour
     {
         currentduelState.OnUpdate();
         currentplayerState.OnUpdate();
-        Debug.Log(currentduelState);
+        /*Debug.Log(currentduelState);
         Debug.Log(currentplayerState);
         Debug.Log(duelStateType);
-        Debug.Log(playerStateType);
+        Debug.Log(playerStateType);*/
     }
     public virtual void TransitionDuelState() //切換決鬥階段時所執行
     {

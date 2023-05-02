@@ -25,11 +25,11 @@ public class SkillUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public void OnPointerEnter(PointerEventData pointerEventData) //菲公村夹簿
     {
         Debug.Log("SkillUIUP");
-        rectTransform.transform.position += new Vector3(0, 0, 40);
+        rectTransform.position += new Vector3(0, 0, 42);
     }
     public void OnPointerExit(PointerEventData pointerEventData) //菲公村夹簿
     {
         Debug.Log("SkillUIDOWN");
-        rectTransform.transform.position -= new Vector3(0, 0, 40);
+        rectTransform.position -= new Vector3(0, 0, 42);
     }
 }
