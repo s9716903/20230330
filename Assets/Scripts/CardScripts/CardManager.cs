@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class CardManager : MonoBehaviour,IPointerClickHandler
 {
@@ -30,7 +31,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public int[] AttackZone; 
 
     private void OnEnable()
-    { 
+    {     
         isCardUp = true;
         canUseThisCard = false;
         
@@ -103,10 +104,14 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
+        //跳出大卡圖及效果文UI
+        if (gameObject.GetComponent<CardTurnOver>().cardState == CardState.Top)
+        {
+            InformationUI.readCardInformation = true;
+        }
+
         if (DuelStateManager.canInterect)
         {
-            //跳出大卡圖及效果文UI
-
             if (isPlayerUse)
             {
                 if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing)
@@ -140,7 +145,6 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
             }
         }
     }
-
     private void UseCard() //卡片被使用時
     {
         if (isUseThisCard)

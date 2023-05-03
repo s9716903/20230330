@@ -22,12 +22,8 @@ public class HandCards : MonoBehaviour
     void Start()
     {
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        for (int i = 0; i <= 4; i++) //起手發五張牌
-        {
-            HandAllCard.Add(PlayerDeck.GetComponent<Deck>().DeckAllCard[0]); //卡牌加入手牌List
-            Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], this.transform); //卡片變成手牌子物件
-            PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //牌組List中移除卡牌
-        }
+        ThisPlayer.GetComponent<Player>().NormalDrawAmount = 5;
+        StartCoroutine(NormalDraw());
     }
     // Update is called once per frame
     void Update()
@@ -51,7 +47,7 @@ public class HandCards : MonoBehaviour
             }
         }
 
-        /*if (transform.childCount > 6) //手牌越多時縮減每張牌的間距
+        if (transform.childCount > 6) //手牌越多時縮減每張牌的間距
         {
             gridLayoutGroup.cellSize = new Vector2(150 - (transform.childCount * 6), 100);
             if (gridLayoutGroup.cellSize.x <= 50)
@@ -62,8 +58,7 @@ public class HandCards : MonoBehaviour
         else
         {
             gridLayoutGroup.cellSize = new Vector2(150, 100);
-        }*/
-
+        }
 
     }
     public void PlayerCardValueReady() //If press ready,CardValue will show
@@ -275,12 +270,7 @@ public class HandCards : MonoBehaviour
 
     public void HealthDrawCard()
     {
-        for (int i = 0; i < ThisPlayer.GetComponent<Player>().HealthDrawAmount; i++) //Draw card
-        {
-            HandAllCard.Add(PlayerDeck.GetComponent<Deck>().DeckAllCard[0]); //卡牌加入手牌List
-            Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], transform); //卡片變成手牌子物件
-            PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //牌組List中移除卡牌
-        }
+        StartCoroutine(HealthDraw());
         ThisPlayer.GetComponent<Player>().HealthDrawAmount = 0;
     }
 
@@ -288,24 +278,17 @@ public class HandCards : MonoBehaviour
     {
         if (DuelStateManager.duelStateType == GameState.DuelStateMode.Draw)
         {
+            ThisPlayer.GetComponent<Player>().NormalDrawAmount = 0;
             ThisPlayer.GetComponent<Player>().NormalDrawAmount += 1;
-            for (int i = 0; i < ThisPlayer.GetComponent<Player>().NormalDrawAmount; i++) //Draw card
-            {
-                HandAllCard.Add(PlayerDeck.GetComponent<Deck>().DeckAllCard[0]); //卡牌加入手牌List
-                Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], transform); //卡片變成手牌子物件
-                PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //牌組List中移除卡牌
-            }
+            StartCoroutine(NormalDraw());
         }
         else
         {
             for (int i = 0; i < ThisPlayer.GetComponent<Player>().NormalDrawAmount; i++) //Draw card
             {
-                HandAllCard.Add(PlayerDeck.GetComponent<Deck>().DeckAllCard[0]); //卡牌加入手牌List
-                Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], this.transform); //卡片變成手牌子物件
-                PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //牌組List中移除卡牌
+                StartCoroutine(NormalDraw());
             }
         }
-        ThisPlayer.GetComponent<Player>().NormalDrawAmount = 0;
     }
 
     public void ShowHandCard()
@@ -324,5 +307,46 @@ public class HandCards : MonoBehaviour
             }    
         }
         HandAllCard.RemoveAll(HandAllCard => HandAllCard == null);
+    }
+
+    public IEnumerator NormalDraw()
+    {
+        for (int i = 0; i < ThisPlayer.GetComponent<Player>().NormalDrawAmount; i++)
+        {
+            var deckcard = PlayerDeck.GetComponent<Deck>().DeckAllCard[0];
+            Instantiate(deckcard, PlayerDeck.transform); //卡片變成手牌子物件
+            var thisdeckcard = PlayerDeck.transform.GetChild(0).gameObject;
+            while (thisdeckcard.transform.position != transform.position)
+            {
+                thisdeckcard.transform.position = Vector3.MoveTowards(thisdeckcard.transform.position, transform.position, 250 * Time.deltaTime);
+                yield return 0;
+            }
+            HandAllCard.Add(PlayerDeck.GetComponent<Deck>().DeckAllCard[0]); //卡牌加入手牌List
+            Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], this.transform); //卡片變成手牌子物件
+            PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //牌組List中移除卡牌*/
+            Destroy(thisdeckcard);
+            transform.GetChild(index:transform.childCount-1).GetComponent<CardTurnOver>().CardStartTop();
+            yield return 0;
+        }
+    }
+    public IEnumerator HealthDraw()
+    {
+        for (int i = 0; i < ThisPlayer.GetComponent<Player>().HealthDrawAmount; i++)
+        {
+            var deckcard = PlayerDeck.GetComponent<Deck>().DeckAllCard[0];
+            Instantiate(deckcard, PlayerDeck.transform); //卡片變成手牌子物件
+            var thisdeckcard = PlayerDeck.transform.GetChild(0).gameObject;
+            while (thisdeckcard.transform.position != transform.position)
+            {
+                thisdeckcard.transform.position = Vector3.MoveTowards(thisdeckcard.transform.position, transform.position, 250 * Time.deltaTime);
+                yield return 0;
+            }
+            HandAllCard.Add(PlayerDeck.GetComponent<Deck>().DeckAllCard[0]); //卡牌加入手牌List
+            Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], this.transform); //卡片變成手牌子物件
+            PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //牌組List中移除卡牌*/
+            Destroy(thisdeckcard);
+            transform.GetChild(index: transform.childCount - 1).GetComponent<CardTurnOver>().CardStartTop();
+            yield return 0;
+        }
     }
 }
