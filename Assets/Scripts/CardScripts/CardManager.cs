@@ -10,8 +10,9 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public CardValueManager[] _cardValueManager = new CardValueManager[2]; //CardValue(Up and Down)
 
     //CardState
-    private bool isCardUp; //卡片是否為正位置(判斷用上半還是下半效果)
+    public bool isCardUp; //卡片是否為正位置(判斷用上半還是下半效果)
     private bool canUseThisCard; //該卡片是否能用(判斷此時能否使用(非丟棄)) 
+    private bool canChangeUpOrDown; 
 
     //CardState(UsingState)
     public bool isUseThisCard; //是否使用該卡片(判斷是否被使用)(根據卡片種類可補牌)
@@ -43,14 +44,12 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        //卡片正位置資料
+        //卡片正逆位置資料
         if (isCardUp == true)
         {
             cardvaluemanager = _cardValueManager[0];
         }
-
-        //卡片逆位置資料
-        if (isCardUp == false)
+        else
         {
             cardvaluemanager = _cardValueManager[1];
         }
@@ -106,7 +105,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {
         //跳出大卡圖及效果文UI
         if (gameObject.GetComponent<CardTurnOver>().cardState == CardState.Top)
-        {
+        {     
             InformationUI.readCardInformation = true;
         }
 
@@ -124,22 +123,32 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                             DamagedDropCard = !DamagedDropCard;
                             DamageDropCard();
                         }
-                        if (!canUseThisCard)
+                        else
                         {
-                            isDropThisCard = !isDropThisCard;
-                            DropCard();
-                        }
-                        if (canUseThisCard)
-                        {
-                            isUseThisCard = !isUseThisCard;
-                            UseCard();
+                            if (!canUseThisCard)
+                            {
+                                isDropThisCard = !isDropThisCard;
+                                DropCard();
+                            }
+                            else
+                            {
+                                isUseThisCard = !isUseThisCard;
+                                UseCard();
+                            }
                         }
                     }
 
-                    //滑鼠右鍵卡片時
-                    if (pointerEventData.button == PointerEventData.InputButton.Right)
+                    //滑鼠右鍵卡片時卡片翻轉+更換資料
+                    if (pointerEventData.button == PointerEventData.InputButton.Right && canChangeUpOrDown)
                     {
-                        isCardUp = !isCardUp;
+                        if (isCardUp == true)
+                        {
+                            gameObject.GetComponent<CardTurnOver>().CardStartDown();
+                        }
+                        else
+                        {
+                            gameObject.GetComponent<CardTurnOver>().CardStartUp();
+                        }
                     }
                 }
             }
@@ -150,10 +159,12 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         if (isUseThisCard)
         {
             transform.position += new Vector3(0,0,10);
+            canChangeUpOrDown = false;
         }
         else
         {
             transform.position -= new Vector3(0, 0,10);
+            canChangeUpOrDown = true;
         }
     }
 
@@ -162,10 +173,12 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         if (isDropThisCard)
         {
             transform.position += new Vector3(0, 0, 10);
+            canChangeUpOrDown = false;
         }
         else
         {
             transform.position -= new Vector3(0, 0, 10);
+            canChangeUpOrDown = true;
         }
     }
 
@@ -174,11 +187,13 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         if (isDropThisCard)
         {
             transform.position += new Vector3(0, 0, 10);
+            canChangeUpOrDown = false;
             //GameManager.Damaged++;
         }
         else
         {
             transform.position -= new Vector3(0, 0, 10);
+            canChangeUpOrDown = true;
             //GameManager.Damaged--;
         }
     }

@@ -6,15 +6,15 @@ using TMPro;
 
 public class HandCards : MonoBehaviour
 {
-    public List<GameObject> HandAllCard; //手牌所有卡片(List)
-    public GameObject PlayerDeck; //對應的玩家牌組
-    public GameObject ThisPlayer; //對應的玩家
-    public GameObject ThisEnemy; //對應的敵人
-    public GameObject ThisTrashCardZone; //對應的棄牌區
+    public List<GameObject> HandAllCard; //該玩家手牌所有卡片(List)
+    public GameObject PlayerDeck; //該玩家牌組
+    public GameObject ThisPlayer; //該玩家
+    public GameObject ThisEnemy; //該玩家的敵人
+    public GameObject ThisTrashCardZone; //該玩家的棄牌區
 
-    private GridLayoutGroup gridLayoutGroup; //手牌區大小
+    private GridLayoutGroup gridLayoutGroup; //手牌區Group大小
 
-    public GameObject TestText; //字體顯示數值是否正確計算
+    public GameObject TestText; //數值計算
 
     public int[,] TypeValue;
 
@@ -28,7 +28,14 @@ public class HandCards : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TypeValue = new int[5, 1] { { ThisPlayer.GetComponent<Player>().MoveValue }, { ThisEnemy.GetComponent<Player>().PhysicDamage }, { ThisEnemy.GetComponent<Player>().MagicDamage }, { ThisPlayer.GetComponent<Player>().Stars }, { ThisPlayer.GetComponent<Player>().HealthDrawAmount } }; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
+        TypeValue = new int[5, 1] {
+            { ThisPlayer.GetComponent<Player>().MoveValue }, 
+            { ThisEnemy.GetComponent<Player>().PhysicDamage }, 
+            { ThisEnemy.GetComponent<Player>().MagicDamage }, 
+            { ThisPlayer.GetComponent<Player>().Stars }, 
+            { ThisPlayer.GetComponent<Player>().HealthDrawAmount }
+        }; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
+        
         for (int a = 0; a <= 4; a++) //卡片數值字體
         {
             TestText.transform.GetChild(a).GetComponent<TextMeshProUGUI>().text = TypeValue[a, 0].ToString();
@@ -47,19 +54,15 @@ public class HandCards : MonoBehaviour
             }
         }
 
-        if (transform.childCount > 6) //手牌越多時縮減每張牌的間距
+            //手牌越多時縮減每張牌的間距
+        if (gridLayoutGroup.cellSize.x <= 70)
         {
-            gridLayoutGroup.cellSize = new Vector2(150 - (transform.childCount * 6), 100);
-            if (gridLayoutGroup.cellSize.x <= 50)
-            {
-                gridLayoutGroup.cellSize = new Vector2(50, 100);
-            }
+            gridLayoutGroup.cellSize = new Vector2(70, 100);
         }
         else
         {
-            gridLayoutGroup.cellSize = new Vector2(150, 100);
+            gridLayoutGroup.cellSize = new Vector2(130 - (transform.childCount * 5), 100);
         }
-
     }
     public void PlayerCardValueReady() //If press ready,CardValue will show
     {
@@ -278,16 +281,12 @@ public class HandCards : MonoBehaviour
     {
         if (DuelStateManager.duelStateType == GameState.DuelStateMode.Draw)
         {
-            ThisPlayer.GetComponent<Player>().NormalDrawAmount = 0;
             ThisPlayer.GetComponent<Player>().NormalDrawAmount += 1;
             StartCoroutine(NormalDraw());
         }
         else
         {
-            for (int i = 0; i < ThisPlayer.GetComponent<Player>().NormalDrawAmount; i++) //Draw card
-            {
-                StartCoroutine(NormalDraw());
-            }
+            StartCoroutine(NormalDraw());
         }
     }
 
@@ -328,6 +327,7 @@ public class HandCards : MonoBehaviour
             transform.GetChild(index:transform.childCount-1).GetComponent<CardTurnOver>().CardStartTop();
             yield return 0;
         }
+        ThisPlayer.GetComponent<Player>().NormalDrawAmount = 0;
     }
     public IEnumerator HealthDraw()
     {

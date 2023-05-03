@@ -18,6 +18,7 @@ public class CardTurnOver : MonoBehaviour
     private float ChangeTime = 0.3f;
 
     public static bool isChangeTopOrBottom; //是否正在翻轉中
+    public static bool isChangeUpOrDown;
 
     public void CardInit()
     {
@@ -74,6 +75,22 @@ public class CardTurnOver : MonoBehaviour
         }
         StartCoroutine(ToBottom());
     }
+    public void CardStartUp()
+    {
+        if (isChangeUpOrDown)
+        {
+            return;
+        }
+        StartCoroutine(ToUp());
+    }
+    public void CardStartDown()
+    {
+        if (isChangeUpOrDown)
+        {
+            return;
+        }
+        StartCoroutine(ToDown());
+    }
     IEnumerator ToTop()
     {
         isChangeTopOrBottom = true;
@@ -102,5 +119,26 @@ public class CardTurnOver : MonoBehaviour
         CardTop.SetActive(false);
         isChangeTopOrBottom = false;
     }
-
+    IEnumerator ToUp()
+    {
+        isChangeUpOrDown = true;
+        CardTop.transform.DORotate(new Vector3(90, 0, 0), ChangeTime);
+        for (float i = ChangeTime; i > 0; i -= Time.deltaTime)
+        {
+            yield return 0;
+        }
+        isChangeUpOrDown = false;
+        gameObject.GetComponent<CardManager>().isCardUp = true;
+    }
+    IEnumerator ToDown()
+    {
+        isChangeUpOrDown = true;
+        CardTop.transform.DORotate(new Vector3(90, 0, 180), ChangeTime);
+        for (float i = ChangeTime; i > 0; i -= Time.deltaTime)
+        {
+            yield return 0;
+        }
+        isChangeUpOrDown = false;
+        gameObject.GetComponent<CardManager>().isCardUp = false;
+    }
 }
