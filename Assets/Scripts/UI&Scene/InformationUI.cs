@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 
 public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
-    public Image CardImage;
     public TextMeshProUGUI CardValueUp;
     public TextMeshProUGUI CardValueDown;
     public Image CardIconUp;
@@ -26,7 +25,6 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     // Update is called once per frame
     void Update()
     {
-        CardImage = CurrentCardInformation.CardImage;
         CardValueUp = CurrentCardInformation.CardValueUp;
         CardValueDown = CurrentCardInformation.CardValueDown;
         CardIconUp = CurrentCardInformation.CardIconUp;

@@ -116,7 +116,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                 if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing)
                 {
                     //·Æ¹«¥ªÁä¥d¤ù®É
-                    if (pointerEventData.button == PointerEventData.InputButton.Left)
+                    if (pointerEventData.button == PointerEventData.InputButton.Left && !CardTurnOver.isChangeUpOrDown)
                     {
                         if (DuelStateManager.playerStateType == GameState.PlayerStateMode.Damage)
                         {
