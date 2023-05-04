@@ -633,6 +633,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166457436}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
+=======
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
 --- !u!1 &250519195
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,9 +731,18 @@ RectTransform:
   - {fileID: 554091985}
   - {fileID: 1060012921}
   - {fileID: 639648837}
+<<<<<<< HEAD
   - {fileID: 1934590853}
   - {fileID: 166457437}
   - {fileID: 1968326639}
+=======
+<<<<<<< HEAD
+=======
+  - {fileID: 1934590853}
+  - {fileID: 166457437}
+  - {fileID: 1968326639}
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -738,6 +751,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 --- !u!1 &390562088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1162,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402177650}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
 --- !u!1 &414611144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2169,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761613105}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 --- !u!1 &817934809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,6 +2597,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880588806}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
 --- !u!1 &941679624
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,6 +2804,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941679624}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 --- !u!1 &949874316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,6 +2988,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949874316}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
 --- !u!1 &997123163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2985,6 +3025,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 --- !u!1 &1051217703
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,6 +3164,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051217703}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
 --- !u!1 &1060012920
 GameObject:
   m_ObjectHideFlags: 0
@@ -3537,6 +3586,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300342992}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 --- !u!1 &1336647371
 GameObject:
   m_ObjectHideFlags: 0
@@ -3586,6 +3640,10 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
 --- !u!1 &1432151778
 GameObject:
   m_ObjectHideFlags: 0
@@ -4275,6 +4333,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729184384}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 --- !u!1 &1735555671
 GameObject:
   m_ObjectHideFlags: 0
@@ -4681,6 +4744,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743562302}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
 --- !u!1 &1896525604
 GameObject:
   m_ObjectHideFlags: 0
@@ -4774,6 +4841,11 @@ Transform:
   m_Father: {fileID: 997123164}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 --- !u!1 &1934590852
 GameObject:
   m_ObjectHideFlags: 0
@@ -4973,6 +5045,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001365784}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
 --- !u!1 &2004614057
 GameObject:
   m_ObjectHideFlags: 0
@@ -5369,6 +5445,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040280471}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 --- !u!1 &2040872055
 GameObject:
   m_ObjectHideFlags: 0
@@ -5560,6 +5641,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040872055}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
 --- !u!1 &2105285525
 GameObject:
   m_ObjectHideFlags: 0
@@ -5595,8 +5680,18 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: -554, y: -54}
   m_SizeDelta: {x: -1541.0057, y: -1001.658}
+=======
+<<<<<<< HEAD
+  m_AnchoredPosition: {x: 7, y: -54}
+  m_SizeDelta: {x: -31.3975, y: -1001.658}
+=======
+  m_AnchoredPosition: {x: -554, y: -54}
+  m_SizeDelta: {x: -1541.0057, y: -1001.658}
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
+>>>>>>> origin/main
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2105285527
 MonoBehaviour:
