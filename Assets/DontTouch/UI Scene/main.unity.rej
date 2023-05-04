@@ -1,4 +1,5 @@
 diff a/Assets/DontTouch/UI Scene/main.unity b/Assets/DontTouch/UI Scene/main.unity	(rejected hunks)
+@@ -404,8 +404,6 @@
 @@ -326,209 +326,6 @@
    m_PrefabAsset: {fileID: 0}
    m_GameObject: {fileID: 12491945}
