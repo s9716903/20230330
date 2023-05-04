@@ -14,7 +14,9 @@ public class DuelStateManager : MonoBehaviour
     //Very Important
     public static GameState.DuelStateMode duelStateType; //決鬥狀態
     public static GameState.PlayerStateMode playerStateType; //玩家狀態
+    public GameObject DuelTimer;
 
+    public static bool showStateText;
     public static bool canInterect; //玩家是否可以與特定東西互動
 
     // Start is called before the first frame update
@@ -38,6 +40,8 @@ public class DuelStateManager : MonoBehaviour
     private void Start()
     {
         //初始化決鬥場景狀態
+        DuelTimer.SetActive(true);
+        showStateText = false;
         canInterect = false;
         duelStateType = GameState.DuelStateMode.Draw;
         playerStateType = GameState.PlayerStateMode.NoDoThing;

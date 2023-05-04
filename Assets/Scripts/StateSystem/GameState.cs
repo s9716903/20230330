@@ -34,6 +34,7 @@ public class DrawState : IState //抽牌階段(引用IState的運行模式)
     {
         GameObject.Find("PlayerHandCards").GetComponent<HandCards>().NormalDrawCard();
 
+        DuelStateManager.showStateText = true;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
         StateTimer.startTime = 5;
         StateTimer.isStartTime = true;
@@ -65,6 +66,7 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        DuelStateManager.showStateText = true;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
         StateTimer.startTime = 10;
         StateTimer.isStartTime = true;
@@ -127,6 +129,7 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        DuelStateManager.showStateText = true;
         GameObject.Find("PlayerHandCards").GetComponent<HandCards>().ShowHandCard();
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
         StateTimer.startTime = 10;
@@ -187,6 +190,7 @@ public class EndState : IState //結束階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        DuelStateManager.showStateText = true;
         GameObject.Find("PlayerHandCards").GetComponent<HandCards>().ShowHandCard();
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
         StateTimer.startTime = 5;

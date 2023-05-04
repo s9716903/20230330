@@ -25,11 +25,6 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     // Update is called once per frame
     void Update()
     {
-        CardValueUp = CurrentCardInformation.CardValueUp;
-        CardValueDown = CurrentCardInformation.CardValueDown;
-        CardIconUp = CurrentCardInformation.CardIconUp;
-        CardIconDown = CurrentCardInformation.CardIconDown;
-
         if (readCardInformation && gameObject.GetComponent<RectTransform>().anchoredPosition.x != 300)
         {
             gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(300, 0, 0);
