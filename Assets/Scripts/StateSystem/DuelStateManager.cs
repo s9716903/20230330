@@ -14,7 +14,6 @@ public class DuelStateManager : MonoBehaviour
     //Very Important
     public static GameState.DuelStateMode duelStateType; //決鬥狀態
     public static GameState.PlayerStateMode playerStateType; //玩家狀態
-    public GameObject DuelTimer;
 
     public static bool showStateText;
     public static bool canInterect; //玩家是否可以與特定東西互動
@@ -40,7 +39,6 @@ public class DuelStateManager : MonoBehaviour
     private void Start()
     {
         //初始化決鬥場景狀態
-        DuelTimer.SetActive(true);
         showStateText = false;
         canInterect = false;
         duelStateType = GameState.DuelStateMode.Draw;
@@ -52,10 +50,7 @@ public class DuelStateManager : MonoBehaviour
     {
         currentduelState.OnUpdate();
         currentplayerState.OnUpdate();
-        /*Debug.Log(currentduelState);
-        Debug.Log(currentplayerState);
-        Debug.Log(duelStateType);
-        Debug.Log(playerStateType);*/
+
     }
     public virtual void TransitionDuelState() //切換決鬥階段時所執行
     {

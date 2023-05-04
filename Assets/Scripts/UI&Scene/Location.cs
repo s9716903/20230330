@@ -15,7 +15,7 @@ public class Location : MonoBehaviour
     {
         if (ThisPlayer == Player && DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
         {
-            if (DuelStateManager.canInterect && ThisPlayer.GetComponent<Player>().canMove && ThisPlayer.GetComponent<Player>().isReady == false)
+            if (ThisPlayer.GetComponent<Player>().canMove && ThisPlayer.GetComponent<Player>().isReady == false)
             {
                 ThisPlayer.GetComponent<Player>().MoveToLocation = gameObject.transform.GetSiblingIndex();
                 ThisPlayer.GetComponent<Player>().isReady = true;

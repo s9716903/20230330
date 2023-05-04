@@ -15,7 +15,7 @@ public class DuelUIController : MonoBehaviour
     void Start()
     {
         Duelstatemanager.SetActive(false);
-        DuelTimer.SetActive(false);
+        //DuelTimer.SetActive(false);
         StateText.SetActive(false);
     }
 
@@ -36,6 +36,7 @@ public class DuelUIController : MonoBehaviour
         Player1.GetComponent<PlayerUI>().readyToDuel = false;
         //Player2.GetComponent<PlayerUI>().readyToDuel = false;
         Duelstatemanager.SetActive(true);
+        //DuelStateManager.showStateText = true;
         yield return 0;
     }
     public IEnumerator ShowStateText()

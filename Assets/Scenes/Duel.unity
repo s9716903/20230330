@@ -1979,7 +1979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603b3c4d6565d6943b8907dd6a83c1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DuelTimer: {fileID: 2088525344}
 --- !u!4 &568502851
 Transform:
   m_ObjectHideFlags: 0

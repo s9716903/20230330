@@ -14,9 +14,9 @@ public class HandCards : MonoBehaviour
 
     private GridLayoutGroup gridLayoutGroup; //手牌區Group大小
 
-    public GameObject TestText; //數值計算
+    public GameObject TestText; //數值計算(文字)
 
-    public int[,] TypeValue;
+    public int[,] TypeValue;  //卡片數值種類
 
 
     void Start()
@@ -44,7 +44,7 @@ public class HandCards : MonoBehaviour
         for (int b = 0; b < transform.childCount; b++) //判斷底下的卡片是否能與滑鼠互動
         {
             var handcard = transform.GetChild(b);
-            if (ThisPlayer.GetComponent<Player>().isReady == false && ThisPlayer.GetComponent<Player>().canMove == false)
+            if (ThisPlayer.GetComponent<Player>().isReady == false && ThisPlayer.GetComponent<Player>().canMove == false && ThisPlayer.name == "Player")
             {
                 handcard.GetComponent<CardManager>().isPlayerUse = true;
             }
@@ -63,9 +63,11 @@ public class HandCards : MonoBehaviour
         {
             gridLayoutGroup.cellSize = new Vector2(130 - (transform.childCount * 5), 100);
         }
+
     }
     public void PlayerCardValueReady() //If press ready,CardValue will show
     {
+        //準備中的卡片數值計算
         if (ThisPlayer.GetComponent<Player>().canMove)
         {
             for (int i = 0; i < transform.childCount; i++)
@@ -132,140 +134,159 @@ public class HandCards : MonoBehaviour
                 }
             }
         }
+
+        //卡片準備/取消準備時的形式(移動階段)
+        if (ThisPlayer.GetComponent<Player>().canMove && !ThisPlayer.GetComponent<Player>().isReady && DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var targetcard = transform.GetChild(i);
+                if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
+                {
+                    targetcard.transform.position -= new Vector3(0, 0, 10);
+                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
+                    {
+                        ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
+                    }
+                }
+                if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
+                {
+                    targetcard.transform.position -= new Vector3(0, 0, 10);
+                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
+                    {
+                        ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
+                    }
+                }
+            }
+            for (int j = 0; j < transform.childCount; j++)
+            {
+                var targetcard = transform.GetChild(j);
+                if ((targetcard.GetComponent<CardManager>().isUseThisCard == false) && (targetcard.GetComponent<CardManager>().isDropThisCard == false))
+                {
+                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
+                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
+                    targetcard.gameObject.SetActive(false);
+                }
+            }
+            Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
+        }
+        else if (StateTimer.stopStateTime == false && !ThisPlayer.GetComponent<Player>().canMove && !ThisPlayer.GetComponent<Player>().isReady && DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var targetcard = transform.GetChild(i);
+                if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
+                {
+                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
+                    {
+                        ThisPlayer.GetComponent<Player>().NormalDrawAmount--;
+                    }
+                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
+                }
+                if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
+                {
+                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
+                    {
+                        ThisPlayer.GetComponent<Player>().NormalDrawAmount--;
+                    }
+                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
+                }
+            }
+            for (int j = 0; j < transform.childCount; j++)
+            {
+                var targetcard = transform.GetChild(j);
+                if (!targetcard.gameObject.activeInHierarchy)
+                {
+                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
+                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
+                    targetcard.gameObject.SetActive(true);
+                }
+            }
+            Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
+        }
+                
+        //卡片準備/取消準備時的形式(攻擊階段)
+        if (ThisPlayer.GetComponent<Player>().canMove && DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var targetcard = transform.GetChild(i);
+                if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
+                {
+                    targetcard.transform.position -= new Vector3(0, 0, 10);
+                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
+                    {
+                        ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
+                    }
+                }
+                if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
+                {
+                    targetcard.transform.position -= new Vector3(0, 0, 10);
+                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
+                    {
+                        ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
+                    }
+                }
+            }
+            for (int j = 0; j < transform.childCount; j++)
+            {
+                var targetcard = transform.GetChild(j);
+                if ((targetcard.GetComponent<CardManager>().isUseThisCard == false) && (targetcard.GetComponent<CardManager>().isDropThisCard == false))
+                {
+                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
+                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
+                    targetcard.gameObject.SetActive(false);
+                }
+            }
+            Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
+        }
+        else if (StateTimer.stopStateTime == false && !ThisPlayer.GetComponent<Player>().canMove && DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var targetcard = transform.GetChild(i);
+                if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
+                {
+                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
+                    {
+                        ThisPlayer.GetComponent<Player>().NormalDrawAmount--;
+                    }
+                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
+                }
+                if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
+                {
+                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
+                    {
+                        ThisPlayer.GetComponent<Player>().NormalDrawAmount--;
+                    }
+                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
+                }
+            }
+            for (int j = 0; j < transform.childCount; j++)
+            {
+                var targetcard = transform.GetChild(j);
+                if (!targetcard.gameObject.activeInHierarchy)
+                {
+                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
+                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
+                    targetcard.gameObject.SetActive(true);
+                }
+            }
+            Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
+        }
     }
 
     public void PlayerIsReady() //If press targetlocation,player won't do anything,card will ready
     {
-        if (DuelStateManager.canInterect && ThisPlayer.GetComponent<Player>().canMove && DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
-        {
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                var targetcard = transform.GetChild(i);
-                if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
-                {
-                    targetcard.transform.position -= new Vector3(0, 0, 10);
-                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
-                    {
-                        ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
-                    }
-                }
-                if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
-                {
-                    targetcard.transform.position -= new Vector3(0, 0, 10);
-                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
-                    {
-                        ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
-                    }
-                }
-            }
-            for (int j = 0; j < transform.childCount; j++)
-            {
-                var targetcard = transform.GetChild(j);
-                if ((targetcard.GetComponent<CardManager>().isUseThisCard == false) && (targetcard.GetComponent<CardManager>().isDropThisCard == false))
-                {
-                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
-                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
-                    targetcard.gameObject.SetActive(false);
-                }
-                targetcard.GetComponent<CardManager>().isUseThisCard = false;
-                targetcard.GetComponent<CardManager>().isDropThisCard = false;
-            }
             ThisPlayer.GetComponent<Player>().canMove = false;
             Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
-        }
-        else if (!ThisPlayer.GetComponent<Player>().canMove && !ThisPlayer.GetComponent<Player>().isReady && StateTimer.stopStateTime == true && DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
-        {
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                var targetcard = transform.GetChild(i);
-                if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
-                {
-                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
-                    targetcard.transform.position -= new Vector3(0, 0, 10);
-                }
-                if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
-                {
-                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
-                    targetcard.transform.position -= new Vector3(0, 0, 10);
-                }
-            }
-            for (int j = 0; j < transform.childCount; j++)
-            {
-                var targetcard = transform.GetChild(j);
-                if ((targetcard.GetComponent<CardManager>().isUseThisCard == false) && (targetcard.GetComponent<CardManager>().isDropThisCard == false))
-                {
-                    targetcard.gameObject.SetActive(false);
-                }
-            }
-            ThisPlayer.GetComponent<Player>().canMove = false;
-            Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
-        }
     }
 
     public void PlayerAttackIsReady() //If press targetlocation,player won't do anything,card will ready
     {
-        if (DuelStateManager.canInterect && ThisPlayer.GetComponent<Player>().canMove && DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
+        if (DuelStateManager.canInterect && DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
         {
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                var targetcard = transform.GetChild(i);
-                if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
-                {
-                    targetcard.transform.position -= new Vector3(0, 0, 10);
-                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
-                    {
-                        ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
-                    }
-                }
-                if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
-                {
-                    targetcard.transform.position -= new Vector3(0, 0, 10);
-                    if (targetcard.gameObject.GetComponent<CardManager>().candraw == true)
-                    {
-                        ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
-                    }
-                }
-            }
-            for (int j = 0; j < transform.childCount; j++)
-            {
-                var targetcard = transform.GetChild(j);
-                if ((targetcard.GetComponent<CardManager>().isUseThisCard == false) && (targetcard.GetComponent<CardManager>().isDropThisCard == false))
-                {
-                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
-                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
-                    targetcard.gameObject.SetActive(false);
-                }
-                targetcard.GetComponent<CardManager>().isUseThisCard = false;
-                targetcard.GetComponent<CardManager>().isDropThisCard = false;
-            }
-            ThisPlayer.GetComponent<Player>().canMove = false;
-            Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
-        }
-        else if (!ThisPlayer.GetComponent<Player>().canMove && !ThisPlayer.GetComponent<Player>().isReady && StateTimer.stopStateTime == true && DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
-        {
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                var targetcard = transform.GetChild(i);
-                if (targetcard.GetComponent<CardManager>().isUseThisCard == true)
-                {
-                    targetcard.GetComponent<CardManager>().isUseThisCard = false;
-                    targetcard.transform.position -= new Vector3(0, 0, 10);
-                }
-                if (targetcard.GetComponent<CardManager>().isDropThisCard == true)
-                {
-                    targetcard.GetComponent<CardManager>().isDropThisCard = false;
-                    targetcard.transform.position -= new Vector3(0, 0, 10);
-                }
-            }
-            for (int j = 0; j < transform.childCount; j++)
-            {
-                var targetcard = transform.GetChild(j);
-                if ((targetcard.GetComponent<CardManager>().isUseThisCard == false) && (targetcard.GetComponent<CardManager>().isDropThisCard == false))
-                {
-                    targetcard.gameObject.SetActive(false);
-                }
-            }
-            ThisPlayer.GetComponent<Player>().canMove = false;
+            ThisPlayer.GetComponent<Player>().isReady = !ThisPlayer.GetComponent<Player>().isReady;
             Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
         }
     }
@@ -310,6 +331,11 @@ public class HandCards : MonoBehaviour
 
     public IEnumerator NormalDraw()
     {
+        if (PlayerDeck.GetComponent<Deck>().DeckAllCard == null)
+        {
+            StartCoroutine(TrashCardBackDeck());
+            yield return StartCoroutine(TrashCardBackDeck());
+        }
         for (int i = 0; i < ThisPlayer.GetComponent<Player>().NormalDrawAmount; i++)
         {
             var deckcard = PlayerDeck.GetComponent<Deck>().DeckAllCard[0];
@@ -322,7 +348,7 @@ public class HandCards : MonoBehaviour
             }
             HandAllCard.Add(PlayerDeck.GetComponent<Deck>().DeckAllCard[0]); //卡牌加入手牌List
             Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], this.transform); //卡片變成手牌子物件
-            PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //牌組List中移除卡牌*/
+            PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //牌組List中移除卡牌
             Destroy(thisdeckcard);
             transform.GetChild(index:transform.childCount-1).GetComponent<CardTurnOver>().CardStartTop();
             yield return 0;
@@ -346,6 +372,24 @@ public class HandCards : MonoBehaviour
             PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //牌組List中移除卡牌*/
             Destroy(thisdeckcard);
             transform.GetChild(index: transform.childCount - 1).GetComponent<CardTurnOver>().CardStartTop();
+            yield return 0;
+        }
+    }
+    public IEnumerator TrashCardBackDeck()
+    {
+        for (int i = 0; i < ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.Count; i++)
+        {
+            var trashcard = ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject[0];
+            Instantiate(trashcard, ThisTrashCardZone.transform); //卡片變成棄牌區子物件
+            var thistrashcard = ThisTrashCardZone.transform.GetChild(1).gameObject;
+            while (thistrashcard.transform.position != PlayerDeck.transform.position)
+            {
+                thistrashcard.transform.position = Vector3.MoveTowards(thistrashcard.transform.position, transform.position, 250 * Time.deltaTime);
+                yield return 0;
+            }
+            PlayerDeck.GetComponent<Deck>().DeckAllCard.Add(ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject[0]); //卡牌加入牌組List
+            ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.RemoveAt(0); //牌組List中移除卡牌*/
+            Destroy(thistrashcard);
             yield return 0;
         }
     }

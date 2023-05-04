@@ -57,6 +57,7 @@ MonoBehaviour:
   _cardValueManager:
   - {fileID: 0}
   - {fileID: 0}
+  isCardUp: 0
   isUseThisCard: 0
   isDropThisCard: 0
   DamagedDropCard: 0
@@ -86,7 +87,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87090410100075278}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.29, y: 4.62, z: 0.2}

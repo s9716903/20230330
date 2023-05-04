@@ -24,14 +24,15 @@ public class Player : MonoBehaviour
     public int NormalDrawAmount; //玩家結束時抽牌數
     public int HealthDrawAmount; //玩家回血抽牌數
 
-    public  int MoveToLocation; //玩家將要移動到的位置
+    public int MoveToLocation; //玩家將要移動到的位置
 
 
     public  bool canMove; //可以移動
     public  bool isReady; //玩家是否已進入準備狀態
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        TargetLocation = 2;
         isReady = false;
         canMove = false;
         MaxHp = GetComponent<JobManager>().thisJob.TheMaxHp;
@@ -61,7 +62,7 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(Ground.GetComponent<Ground>().Blocation[TargetLocation].transform.position.x, 5, Ground.GetComponent<Ground>().Blocation[TargetLocation].transform.position.z);
         }
-        Debug.Log(TargetLocation);
-        Debug.Log(MoveToLocation);
+        Debug.Log("Target:" + TargetLocation);
+        Debug.Log("Move:" + MoveToLocation);
     }
 }

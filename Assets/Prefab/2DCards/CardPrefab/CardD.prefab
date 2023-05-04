@@ -471,6 +471,7 @@ MonoBehaviour:
   _cardValueManager:
   - {fileID: 11400000, guid: 9901a3cc3041f224fa6f7bd95b70c1a1, type: 2}
   - {fileID: 11400000, guid: 9901a3cc3041f224fa6f7bd95b70c1a1, type: 2}
+  isCardUp: 0
   isUseThisCard: 0
   isDropThisCard: 0
   DamagedDropCard: 0
@@ -500,7 +501,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8246533830243364693}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.29, y: 4.62, z: 0.2}
