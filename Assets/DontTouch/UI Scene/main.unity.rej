@@ -1,0 +1,10 @@
+diff a/Assets/DontTouch/UI Scene/main.unity b/Assets/DontTouch/UI Scene/main.unity	(rejected hunks)
+@@ -404,8 +404,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 83145241}
+   m_CullTransparentMesh: 1
+-<<<<<<< HEAD
+-=======
+ --- !u!1 &109106996
+ GameObject:
+   m_ObjectHideFlags: 0

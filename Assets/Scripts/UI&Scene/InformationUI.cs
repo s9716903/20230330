@@ -14,6 +14,8 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     public Image CardIconDown;
     private bool isopenInformationUI;
     public static bool readCardInformation;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,12 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     // Update is called once per frame
     void Update()
     {
+        CardImage = CurrentCardInformation.CardImage;
+        CardValueUp = CurrentCardInformation.CardValueUp;
+        CardValueDown = CurrentCardInformation.CardValueDown;
+        CardIconUp = CurrentCardInformation.CardIconUp;
+        CardIconDown = CurrentCardInformation.CardIconDown;
+
         if (readCardInformation && gameObject.GetComponent<RectTransform>().anchoredPosition.x != 300)
         {
             gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(300, 0, 0);

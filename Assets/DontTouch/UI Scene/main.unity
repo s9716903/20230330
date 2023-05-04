@@ -123,6 +123,8 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
+=======
 --- !u!1 &12491945
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +328,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12491945}
   m_CullTransparentMesh: 1
+>>>>>>> f6002ee (封面UI 我想不到設定還能塞啥)
 --- !u!1 &83145241
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +407,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83145241}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
 --- !u!1 &109106996
 GameObject:
   m_ObjectHideFlags: 0
