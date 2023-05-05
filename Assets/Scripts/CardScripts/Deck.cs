@@ -8,6 +8,8 @@ public class Deck : MonoBehaviour
 {
     private Image DeckImage;
 
+    public bool isDeckNull;
+
     public GameObject[] DeckCardType; //牌組卡片種類大全
     public int[] CardQuantity; //各自卡片數量
     public List<GameObject> DeckAllCard; //牌組所有卡片(List)
@@ -15,6 +17,7 @@ public class Deck : MonoBehaviour
 
     private void Awake()
     {
+        isDeckNull = false;
         //遊戲開始時將卡加入牌組
         DeckAllCard = new List<GameObject>();
         for (int i = 0; i < DeckCardType.Length; i++)
@@ -43,6 +46,7 @@ public class Deck : MonoBehaviour
         if (DeckAllCard.Count == 0)
         {
             DeckImage.enabled = false;
+            isDeckNull = true;
         }
         else
         {

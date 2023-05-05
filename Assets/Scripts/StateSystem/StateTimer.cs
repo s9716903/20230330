@@ -25,6 +25,7 @@ public class StateTimer : MonoBehaviour
 
         if (startTime <= 0)
         {
+            //yield return new WaitForSeconds(3);
             stopStateTime = true;
             StopCoroutine("StartToTime");
         }

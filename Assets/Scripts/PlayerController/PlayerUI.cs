@@ -44,11 +44,16 @@ public class PlayerUI : MonoBehaviour
         yield return 0;
     }
 
-    public void ReadyToChooseMove() //MoveState Deside Choose Move Where
+    public void PlayerCardReady()
     {
-        if (ThisPlayer.GetComponent<Player>().isReady == false)
+        if (ThisPlayer.GetComponent<Player>().canMove == false && DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
         {
-            ThisPlayer.GetComponent<Player>().canMove = !ThisPlayer.GetComponent<Player>().canMove;
+            ThisPlayer.GetComponent<Player>().canMove = true;
+        }
+        else if (ThisPlayer.GetComponent<Player>().isReady == false && DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
+        {
+            ThisPlayer.GetComponent<Player>().canMove = true;
+            ThisPlayer.GetComponent<Player>().isReady = true;
         }
     }
 }

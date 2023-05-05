@@ -103,14 +103,14 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        //跳出大卡圖及效果文UI
-        if (gameObject.GetComponent<CardTurnOver>().cardState == CardState.Top)
-        {     
-            InformationUI.readCardInformation = true;
-        }
-
         if (DuelStateManager.canInterect)
         {
+            //跳出大卡圖及效果文UI
+            if (gameObject.GetComponent<CardTurnOver>().cardState == CardState.Top)
+            {
+                InformationUI.readCardInformation = true;
+            }
+
             if (isPlayerUse)
             {
                 if (DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing)
@@ -137,9 +137,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                             }
                         }
                     }
-
-                    //滑鼠右鍵卡片時卡片翻轉+更換資料
-                    if (pointerEventData.button == PointerEventData.InputButton.Right && canChangeUpOrDown)
+                    else if (pointerEventData.button == PointerEventData.InputButton.Right && canChangeUpOrDown) //滑鼠右鍵卡片時卡片翻轉+更換資料
                     {
                         if (isCardUp == true)
                         {

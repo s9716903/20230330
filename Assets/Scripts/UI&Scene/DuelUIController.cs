@@ -22,6 +22,7 @@ public class DuelUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        StateText.GetComponent<TextMeshProUGUI>().text = DuelStateManager.duelStateType.ToString();
         if (Player1.GetComponent<PlayerUI>().readyToDuel)
         {
             StartCoroutine(StartDuel());

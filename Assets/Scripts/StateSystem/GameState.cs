@@ -101,6 +101,10 @@ public class MoveResultState : IState //移動階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        var ThePlayer = GameObject.Find("Player").GetComponent<Player>();
+        var TheEnemy = GameObject.Find("Enemy").GetComponent<Player>();
+        ThePlayer.TargetLocation = ThePlayer.MoveToLocation;
+        TheEnemy.TargetLocation = TheEnemy.MoveToLocation;
         var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
         player_handcards.HealthDrawCard();
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
@@ -291,8 +295,6 @@ public class DamageState : IState //傷害處理階段(引用IState的運行模式)
 public class ReadyState : IState //準備進入結算階段(引用IState的運行模式)
 {
     private DuelStateManager manager;
-    private GameObject ThePlayer;
-    private GameObject TheEnemy;
     public ReadyState(DuelStateManager manager)
     {
         this.manager = manager;
@@ -304,11 +306,11 @@ public class ReadyState : IState //準備進入結算階段(引用IState的運行模式)
         //TheEnemy = GameObject.Find("Enemy");
         if (DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
         {
-            player_handcards.PlayerIsReady();
+            player_handcards.PlayerIdleReady();
         }
         else if (DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
         {
-            player_handcards.PlayerAttackIsReady();
+            player_handcards.PlayerIdleReady();
         }
         player.isReady = false;
         //TheEnemy.GetComponent<Player>().isReady = false;

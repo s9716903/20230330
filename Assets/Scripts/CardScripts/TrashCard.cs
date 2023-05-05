@@ -9,6 +9,7 @@ public class TrashCard : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public GameObject TrashCardsText; //棄牌區卡片數文字顯示
     public List<GameObject> TrashCardsObject; //棄牌區卡片們
 
+
     // Start is called before the first frame update
     void Start()
     {
