@@ -66,7 +66,7 @@ public class HandCards : MonoBehaviour
     }
     public void PlayerCardValueReady() //If Card by choose,CardValue will show
     {
-        //準備中的卡片數值計算
+        //準備中的卡片數值總和計算/攻擊是否有造成傷害
         if (DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
         {
             for (int i = 0; i < transform.childCount; i++)
@@ -94,17 +94,31 @@ public class HandCards : MonoBehaviour
             for (int i = 0; i < transform.childCount; i++)
             {
                 var handcard = transform.GetChild(i).GetComponent<CardManager>();
+                var PlayerLocation = ThisPlayer.GetComponent<Player>().TargetLocation;
+                var EnemyLocation = ThisEnemy.GetComponent<Player>().TargetLocation;
                 if (handcard.isUseThisCard)
                 {
                     if (handcard.ID == 1)
                     {
                         if (handcard.Type == 0)
                         {
-                            ThisEnemy.GetComponent<Player>().PhysicDamage += handcard.Value;
+                            for (int a = 0; a < handcard.AttackZone.Length; a++)
+                            {
+                                if (PlayerLocation + handcard.AttackZone[a] == EnemyLocation)
+                                {
+                                    ThisEnemy.GetComponent<Player>().PhysicDamage += handcard.Value;
+                                }
+                            }
                         }
                         else if (handcard.Type == 1)
                         {
-                            ThisEnemy.GetComponent<Player>().MagicDamage += handcard.Value;
+                            for (int b = 0; b < handcard.AttackZone.Length; b++)
+                            {
+                                if (handcard.AttackZone[b] == EnemyLocation)
+                                {
+                                    ThisEnemy.GetComponent<Player>().MagicDamage += handcard.Value;
+                                }
+                            }
                         }
                     }
                     else if (handcard.ID == 2)

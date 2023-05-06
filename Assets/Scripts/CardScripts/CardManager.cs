@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using DG.Tweening;
+using UnityEngine.UI;
+using TMPro;
 
 public class CardManager : MonoBehaviour,IPointerClickHandler
 {
@@ -29,7 +30,14 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public int Type; 
     public string Name; 
     public int Value; 
-    public int[] AttackZone; 
+    public int[] AttackZone;
+
+    [Header("CardIcon")]
+    public GameObject Icon1Sprite;
+    public GameObject Icon2Sprite;
+    public GameObject Icon1Value;
+    public GameObject Icon2Value;
+    public List<Sprite> IconList;
 
     private void OnEnable()
     {     
@@ -41,6 +49,39 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         isDropThisCard = false;
         DamagedDropCard = false;
         isPlayerUse = false;
+    }
+    private void Start()
+    {
+        if (_cardValueManager[0].cardValue.ID == 0)
+        {
+            Icon1Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[0].cardValue.ID];
+            Icon1Value.GetComponent<TextMeshPro>().text = _cardValueManager[0].cardValue.Value.ToString();
+        }
+        if (_cardValueManager[1].cardValue.ID == 0)
+        {
+            Icon2Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[1].cardValue.ID];
+            Icon2Value.GetComponent<TextMeshPro>().text = _cardValueManager[1].cardValue.Value.ToString();
+        }
+        if (_cardValueManager[0].cardValue.ID == 1)
+        {
+            Icon1Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[0].cardValue.Type + 1];
+            Icon1Value.GetComponent<TextMeshPro>().text = _cardValueManager[0].cardValue.Value.ToString();
+        }
+        if (_cardValueManager[1].cardValue.ID == 1)
+        {
+            Icon2Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[1].cardValue.Type + 1];
+            Icon2Value.GetComponent<TextMeshPro>().text = _cardValueManager[1].cardValue.Value.ToString();
+        }
+        if (_cardValueManager[0].cardValue.ID >= 2)
+        {
+            Icon1Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[0].cardValue.ID + 1];
+            Icon1Value.GetComponent<TextMeshPro>().text = _cardValueManager[0].cardValue.Value.ToString();
+        }
+        if (_cardValueManager[1].cardValue.ID >= 2)
+        {
+            Icon2Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[1].cardValue.ID + 1];
+            Icon2Value.GetComponent<TextMeshPro>().text = _cardValueManager[1].cardValue.Value.ToString();
+        }
     }
     // Update is called once per frame
     void Update()

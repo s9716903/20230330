@@ -482,6 +482,15 @@ MonoBehaviour:
   Name: 
   Value: 0
   AttackZone: 
+  Icon1Sprite: {fileID: 1590296028934011108}
+  Icon2Sprite: {fileID: 1041759659627832497}
+  Icon1Value: {fileID: 8713421458155828405}
+  Icon2Value: {fileID: 8322220740009518773}
+  IconList:
+  - {fileID: -7935226861627755592, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 1286911616419735441, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 45672960052206199, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 21300000, guid: adeb23e57e592f44fa949bcbda8e1a29, type: 3}
 --- !u!210 &5976938603909453594
 SortingGroup:
   m_ObjectHideFlags: 0

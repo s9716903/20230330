@@ -18,4 +18,4 @@ MonoBehaviour:
     Name: MagAttack
     Value: 1
     Type: 1
-    AttackZone: 
+    AttackZone: 02000000

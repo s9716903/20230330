@@ -68,6 +68,15 @@ MonoBehaviour:
   Name: 
   Value: 0
   AttackZone: 
+  Icon1Sprite: {fileID: 1590902579391787029}
+  Icon2Sprite: {fileID: 3978811558210455791}
+  Icon1Value: {fileID: 5721472759807338658}
+  Icon2Value: {fileID: 5240849432861033323}
+  IconList:
+  - {fileID: -7935226861627755592, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 1286911616419735441, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 45672960052206199, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 21300000, guid: adeb23e57e592f44fa949bcbda8e1a29, type: 3}
 --- !u!210 &5065882267987466399
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -649,7 +658,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 3362691173700564545}
+  m_renderer: {fileID: 1100257136857193105}
   m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0

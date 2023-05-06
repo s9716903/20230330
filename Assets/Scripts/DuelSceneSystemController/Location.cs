@@ -33,7 +33,7 @@ public class Location : MonoBehaviour,IPointerClickHandler
             canStop = false;
         }
 
-        if (ThisPlayer == Player && canStop == true)
+        if (ThisPlayer == Player && canStop == true && DuelStateManager.duelStateType == GameState.DuelStateMode.Move && ThisPlayer.GetComponent<Player>().canMove && ThisPlayer.GetComponent<Player>().isReady == false)
         {
             gameObject.GetComponent<Image>().color = new Color32(255, 255, 0,255);
         }

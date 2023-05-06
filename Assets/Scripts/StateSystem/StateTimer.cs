@@ -18,16 +18,9 @@ public class StateTimer : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         startTime--;
-        if (stopStateTime == true)
-        {
-            StopCoroutine("StartToTime");
-        }
-
         if (startTime <= 0)
         {
-            //yield return new WaitForSeconds(3);
             stopStateTime = true;
-            StopCoroutine("StartToTime");
         }
         else
         {
@@ -42,6 +35,10 @@ public class StateTimer : MonoBehaviour
         {
             StartCoroutine("StartToTime");
             isStartTime = false;
+        }
+        if (stopStateTime)
+        {
+            StopCoroutine("StartToTime");
         }
     }
 }

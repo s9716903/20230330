@@ -86,7 +86,11 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
     }
     public void OnUpdate()
     {
-        if (StateTimer.stopStateTime == true || (ThePlayer.GetComponent<Player>().isReady && TheEnemy.GetComponent<Player>().isReady))
+        if (ThePlayer.GetComponent<Player>().isReady && TheEnemy.GetComponent<Player>().isReady)
+        {
+            StateTimer.stopStateTime = true;
+        }
+        if (StateTimer.stopStateTime == true)
         {
             DuelStateManager.playerStateType = GameState.PlayerStateMode.Ready;
             manager.TransitionPlayerState(DuelStateManager.playerStateType);
@@ -160,7 +164,11 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
     }
     public void OnUpdate()
     {
-        if (StateTimer.stopStateTime == true || (ThePlayer.GetComponent<Player>().isReady && TheEnemy.GetComponent<Player>().isReady))
+        if (ThePlayer.GetComponent<Player>().isReady && TheEnemy.GetComponent<Player>().isReady)
+        {
+            StateTimer.stopStateTime = true;
+        }
+        if (StateTimer.stopStateTime == true)
         {
             DuelStateManager.playerStateType = GameState.PlayerStateMode.Ready;
             manager.TransitionPlayerState(DuelStateManager.playerStateType);
@@ -321,7 +329,6 @@ public class ReadyState : IState //準備進入結算階段(引用IState的運行模式)
         var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
         var enemy = GameObject.Find("Enemy").GetComponent<Player>();
         var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
-        //TheEnemy = GameObject.Find("Enemy");
         if (DuelStateManager.duelStateType == GameState.DuelStateMode.Move)
         {
             player_handcards.PlayerIdleReady();

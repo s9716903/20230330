@@ -690,7 +690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardvaluemanager: {fileID: 0}
   _cardValueManager:
-  - {fileID: 11400000, guid: 8a3fee13d09cc4844a929ec104b706bd, type: 2}
+  - {fileID: 11400000, guid: f929f814f015ba548860b3e97fdf3f8d, type: 2}
   - {fileID: 11400000, guid: 7bc5d3d386b10ed4f9aca8c2a1572b9e, type: 2}
   isCardUp: 0
   isUseThisCard: 0
@@ -703,6 +703,15 @@ MonoBehaviour:
   Name: 
   Value: 0
   AttackZone: 
+  Icon1Sprite: {fileID: 180819921835917054}
+  Icon2Sprite: {fileID: 8506802805005445162}
+  Icon1Value: {fileID: 2528735310888354531}
+  Icon2Value: {fileID: 2776775685598568131}
+  IconList:
+  - {fileID: -7935226861627755592, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 1286911616419735441, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 45672960052206199, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 21300000, guid: adeb23e57e592f44fa949bcbda8e1a29, type: 3}
 --- !u!210 &3161628577929365896
 SortingGroup:
   m_ObjectHideFlags: 0

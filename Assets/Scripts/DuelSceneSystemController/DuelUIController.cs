@@ -11,9 +11,16 @@ public class DuelUIController : MonoBehaviour
     public GameObject Player2;
     public GameObject StateText;
     public GameObject DuelTimer;
+    public GameObject ResultUI;
+
+    private bool startMoveStateResult;
+    private bool startAttackStateResult;
     // Start is called before the first frame update
     void Start()
     {
+        ResultUI.SetActive(false);
+        startMoveStateResult = false;
+        startAttackStateResult = false;
         Duelstatemanager.SetActive(false);
         //DuelTimer.SetActive(false);
         StateText.SetActive(false);
@@ -31,6 +38,12 @@ public class DuelUIController : MonoBehaviour
         {
             StartCoroutine(ShowStateText());
         }
+        if (startMoveStateResult)
+        {
+            startMoveStateResult = false;
+
+        }
+
     }
     public IEnumerator StartDuel()
     {
@@ -47,5 +60,20 @@ public class DuelUIController : MonoBehaviour
         StateText.SetActive(true);
         yield return new WaitForSeconds(1);
         StateText.SetActive(false);
+    }
+
+    public IEnumerator MoveStateResult()
+    {
+        var Player1HandCard = Player1.GetComponent<PlayerUI>().PlayerHandZone.gameObject;
+        var Player2HandCard = Player2.GetComponent<PlayerUI>().PlayerHandZone.gameObject;
+        ResultUI.SetActive(true);
+        for (int i = 0; i < Player1HandCard.transform.childCount; i++)
+        {
+            if (Player1HandCard.transform.GetChild(i).gameObject.activeInHierarchy)
+            {
+                //Instantiate(Player1HandCard.transform.GetChild(i), ); //卡片變成手牌子物件
+            }
+        }
+        yield return 0;
     }
 }

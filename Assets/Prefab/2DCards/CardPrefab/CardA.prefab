@@ -190,7 +190,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1286911616419735441, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5d590a1afd5827418d2956a46ee87b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -306,6 +306,15 @@ MonoBehaviour:
   Name: 
   Value: 0
   AttackZone: 
+  Icon1Sprite: {fileID: 790562605964313756}
+  Icon2Sprite: {fileID: 460413714642956484}
+  Icon1Value: {fileID: 3204295432461594729}
+  Icon2Value: {fileID: 4471140237877643728}
+  IconList:
+  - {fileID: -7935226861627755592, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 1286911616419735441, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 45672960052206199, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  - {fileID: 21300000, guid: adeb23e57e592f44fa949bcbda8e1a29, type: 3}
 --- !u!210 &6525120216775197026
 SortingGroup:
   m_ObjectHideFlags: 0
