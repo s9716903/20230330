@@ -17,7 +17,7 @@ public class CardTurnOver : MonoBehaviour
     public GameObject CardBottom;
     private float ChangeTime = 0.3f;
 
-    public static bool isChangeTopOrBottom; //是否正在翻轉中
+    public bool isChangeTopOrBottom; //是否正在翻轉中
     public static bool isChangeUpOrDown;
 
     public void CardInit()
@@ -49,14 +49,7 @@ public class CardTurnOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.K))
-        {
-            CardStartTop();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            CardStartBottom();
-        }*/
+       
     }
 
     public void CardStartTop()

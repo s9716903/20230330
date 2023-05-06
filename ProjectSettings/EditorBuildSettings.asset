@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/DontTouch/UI Scene/main.unity
-    guid: 11a81cd6dff9ca244986b9874ac482d0
-  - enabled: 1
     path: Assets/Scenes/Duel.unity
     guid: 196d8e49f284e3146bf7dfe7d4058674
   m_configObjects: {}

@@ -32,12 +32,12 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public int Value; 
     public int[] AttackZone;
 
-    [Header("CardIcon")]
+    /*[Header("CardIcon")]
     public GameObject Icon1Sprite;
     public GameObject Icon2Sprite;
     public GameObject Icon1Value;
     public GameObject Icon2Value;
-    public List<Sprite> IconList;
+    public List<Sprite> IconList;*/
 
     private void OnEnable()
     {     
@@ -52,7 +52,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     }
     private void Start()
     {
-        if (_cardValueManager[0].cardValue.ID == 0)
+        /*if (_cardValueManager[0].cardValue.ID == 0)
         {
             Icon1Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[0].cardValue.ID];
             Icon1Value.GetComponent<TextMeshPro>().text = _cardValueManager[0].cardValue.Value.ToString();
@@ -81,7 +81,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         {
             Icon2Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[1].cardValue.ID + 1];
             Icon2Value.GetComponent<TextMeshPro>().text = _cardValueManager[1].cardValue.Value.ToString();
-        }
+        }*/
     }
     // Update is called once per frame
     void Update()
