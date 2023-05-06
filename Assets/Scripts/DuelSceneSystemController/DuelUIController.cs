@@ -23,7 +23,7 @@ public class DuelUIController : MonoBehaviour
     void Update()
     {
         StateText.GetComponent<TextMeshProUGUI>().text = DuelStateManager.duelStateType.ToString();
-        if (Player1.GetComponent<PlayerUI>().readyToDuel)
+        if (Player1.GetComponent<PlayerUI>().readyToDuel && Player2.GetComponent<PlayerUI>().readyToDuel)
         {
             StartCoroutine(StartDuel());
         }
@@ -35,7 +35,7 @@ public class DuelUIController : MonoBehaviour
     public IEnumerator StartDuel()
     {
         Player1.GetComponent<PlayerUI>().readyToDuel = false;
-        //Player2.GetComponent<PlayerUI>().readyToDuel = false;
+        Player2.GetComponent<PlayerUI>().readyToDuel = false;
         Duelstatemanager.SetActive(true);
         //DuelStateManager.showStateText = true;
         yield return 0;
