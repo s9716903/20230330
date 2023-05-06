@@ -277,7 +277,7 @@ public class HandCards : MonoBehaviour
                 yield return 0;
             }
             HandAllCard.Add(PlayerDeck.GetComponent<Deck>().DeckAllCard[0]); //卡牌加入手牌List
-            Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], this.transform); //卡片變成手牌子物件
+            Instantiate(PlayerDeck.GetComponent<Deck>().DeckAllCard[0], transform); //卡片變成手牌子物件
             PlayerDeck.GetComponent<Deck>().DeckAllCard.RemoveAt(0); //牌組List中移除卡牌
             Destroy(thisdeckcard);
             if (ThisPlayer.name == "Player")

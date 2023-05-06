@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
 public class SkillUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
-    private RectTransform rectTransform;
+    public GameObject SkillUp;
+    public GameObject SkillDown;
     public TextMeshProUGUI Hp;
     public TextMeshProUGUI Defense;
 
     // Start is called before the first frame update
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
+        SkillUp.SetActive(false);
+        SkillDown.SetActive(true);
     }
 
     // Update is called once per frame
@@ -25,11 +26,13 @@ public class SkillUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public void OnPointerEnter(PointerEventData pointerEventData) //菲公村夹簿
     {
         Debug.Log("SkillUIUP");
-        rectTransform.position += new Vector3(0, 0, 42);
+        SkillUp.SetActive(true);
+        SkillDown.SetActive(false);
     }
     public void OnPointerExit(PointerEventData pointerEventData) //菲公村夹簿
     {
         Debug.Log("SkillUIDOWN");
-        rectTransform.position -= new Vector3(0, 0, 42);
+        SkillUp.SetActive(false);
+        SkillDown.SetActive(true);
     }
 }

@@ -35,7 +35,8 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     {     
         isCardUp = true;
         canUseThisCard = false;
-        
+        canChangeUpOrDown = true;
+
         isUseThisCard = false;
         isDropThisCard = false;
         DamagedDropCard = false;
@@ -137,7 +138,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                             }
                         }
                     }
-                    else if (pointerEventData.button == PointerEventData.InputButton.Right && canChangeUpOrDown) //滑鼠右鍵卡片時卡片翻轉+更換資料
+                    if (pointerEventData.button == PointerEventData.InputButton.Right && canChangeUpOrDown) //滑鼠右鍵卡片時卡片翻轉+更換資料
                     {
                         if (isCardUp == true)
                         {
