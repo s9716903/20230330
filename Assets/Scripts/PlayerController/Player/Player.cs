@@ -35,7 +35,9 @@ public class Player : MonoBehaviour
         TargetLocation = 2;
         isReady = false;
         canMove = false;
+
         MaxHp = GetComponent<JobManager>().thisJob.TheMaxHp;
+        Hp = GetComponent<JobManager>().thisJob.Hp;
         Defense = GetComponent<JobManager>().thisJob.TheDefense;
         MoveValue = 0;
         Stars = 0;

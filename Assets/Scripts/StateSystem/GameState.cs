@@ -113,23 +113,14 @@ public class MoveResultState : IState //移動階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        var ThePlayer = GameObject.Find("Player").GetComponent<Player>();
-        var TheEnemy = GameObject.Find("Enemy").GetComponent<Player>();
-        ThePlayer.TargetLocation = ThePlayer.MoveToLocation;
-        TheEnemy.TargetLocation = TheEnemy.MoveToLocation;
-        var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
-        var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
-        player_handcards.HealthDrawCard();
-        enemy_handcards.HealthDrawCard();
+        DuelUIController.startMoveStateResult = true;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
-        StateTimer.startTime = 5;
-        StateTimer.isStartTime = true;
-        StateTimer.stopStateTime = false;
     }
     public void OnUpdate()
     {
-        if (StateTimer.stopStateTime == true)
+        if (DuelUIController.resultEnd)
         {
+            DuelUIController.resultEnd = false;
             DuelStateManager.duelStateType = GameState.DuelStateMode.Attack;
             DuelStateManager.playerStateType = GameState.PlayerStateMode.DoThing;
             manager.TransitionDuelState(DuelStateManager.duelStateType);
@@ -193,19 +184,14 @@ public class AttackResultState : IState //移動階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
-        var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
-        player_handcards.HealthDrawCard();
-        enemy_handcards.HealthDrawCard();
+        DuelUIController.startAttackStateResult = true;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
-        StateTimer.startTime = 5;
-        StateTimer.isStartTime = true;
-        StateTimer.stopStateTime = false;
     }
     public void OnUpdate()
     {
-        if (StateTimer.stopStateTime == true)
+        if (DuelUIController.resultEnd)
         {
+            DuelUIController.resultEnd = false;
             DuelStateManager.duelStateType = GameState.DuelStateMode.End;
             DuelStateManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
             manager.TransitionDuelState(DuelStateManager.duelStateType);

@@ -44,10 +44,10 @@ public class PlayerUI : MonoBehaviour
         PlayerDeck.SetActive(true);
         ThisTrashCardZone.SetActive(true);
         PlayerSkill.SetActive(true);
+        ThisPlayer.SetActive(true);
         yield return new WaitForSeconds(1);
         PlayerHandZone.SetActive(true);
         yield return new WaitForSeconds(2.5f);
-        ThisPlayer.SetActive(true);
         readyToDuel = true;
         yield return 0;
     }

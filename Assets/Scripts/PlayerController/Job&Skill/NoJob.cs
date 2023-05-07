@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Warrior : SkillManager
+public class NoJob : SkillManager
 {
     public static bool Skill1UnLock = false;
     public static bool Skill2UnLock = false;
@@ -15,20 +15,18 @@ public class Warrior : SkillManager
         canUsePassiveSkill = PassiveSkillUnLock;
         TheMaxHp = 6;
         Hp = 5;
-        TheDefense = 4;
+        TheDefense = 2;
     }
     public override void Skill1()
     {
-        
+    
     }
     public override void Skill2()
     {
-        
-    }
 
-    public override void PassiveSkill()
-    { 
-    
     }
-    // Update is called once per frame
+    public override void PassiveSkill()
+    {
+
+    }
 }

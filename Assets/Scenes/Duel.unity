@@ -2133,7 +2133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50cb571b0cbcfa44c8234ac6db6c8563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChooseJob: 
+  ChooseJob: 0
   thisJob: {fileID: 0}
 --- !u!1 &348493258
 GameObject:
@@ -2891,7 +2891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50cb571b0cbcfa44c8234ac6db6c8563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChooseJob: 
+  ChooseJob: 0
   thisJob: {fileID: 0}
 --- !u!1 &509996826
 GameObject:
@@ -4491,7 +4491,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 75dd195236684c848ad727b438d2148a, type: 2}
-  m_sharedMaterial: {fileID: -1878060366779125954, guid: 996ea5acc1a26d948925d4d4f5c9ca62, type: 2}
+  m_sharedMaterial: {fileID: -1146126433193000392, guid: 75dd195236684c848ad727b438d2148a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6720,6 +6720,7 @@ MonoBehaviour:
   Player2: {fileID: 1340496969}
   StateText: {fileID: 58235882}
   DuelTimer: {fileID: 2088525344}
+  ReadyButton: {fileID: 42987028}
   ResultUI: {fileID: 1162709174}
 --- !u!1 &1809869284
 GameObject:
@@ -7613,7 +7614,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
