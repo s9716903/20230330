@@ -11,6 +11,7 @@ public class PlayerUI : MonoBehaviour
     public GameObject PlayerDeck; 
     public GameObject ThisTrashCardZone;
     public GameObject PlayerSkill;
+    public GameObject ReadyText;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,14 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (ThisPlayer.GetComponent<Player>().isReady && (DuelStateManager.duelStateType == GameState.DuelStateMode.Move || DuelStateManager.duelStateType == GameState.DuelStateMode.Attack))
+        {
+            ReadyText.SetActive(true);
+        }
+        else
+        {
+            ReadyText.SetActive(false);
+        }
     }
 
     public IEnumerator StartDuel()

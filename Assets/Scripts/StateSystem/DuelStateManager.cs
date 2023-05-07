@@ -50,7 +50,6 @@ public class DuelStateManager : MonoBehaviour
     {
         currentduelState.OnUpdate();
         currentplayerState.OnUpdate();
-
     }
     public virtual void TransitionDuelState() //切換決鬥階段時所執行
     {

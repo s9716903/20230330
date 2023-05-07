@@ -22,7 +22,7 @@ public class DuelUIController : MonoBehaviour
         startMoveStateResult = false;
         startAttackStateResult = false;
         Duelstatemanager.SetActive(false);
-        //DuelTimer.SetActive(false);
+        DuelTimer.SetActive(false);
         StateText.SetActive(false);
     }
 
@@ -49,8 +49,9 @@ public class DuelUIController : MonoBehaviour
     {
         Player1.GetComponent<PlayerUI>().readyToDuel = false;
         Player2.GetComponent<PlayerUI>().readyToDuel = false;
+        DuelTimer.SetActive(true);
+        yield return new WaitForSeconds(1f);
         Duelstatemanager.SetActive(true);
-        //DuelStateManager.showStateText = true;
         yield return 0;
     }
     public IEnumerator ShowStateText()
@@ -58,7 +59,7 @@ public class DuelUIController : MonoBehaviour
         DuelStateManager.showStateText = false;
         StateText.GetComponent<TextMeshProUGUI>().text = DuelStateManager.duelStateType.ToString();
         StateText.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         StateText.SetActive(false);
     }
 
