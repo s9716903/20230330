@@ -33,11 +33,11 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public int[] AttackZone;
 
     /*[Header("CardIcon")]
-    public GameObject Icon1Sprite;
-    public GameObject Icon2Sprite;
     public GameObject Icon1Value;
     public GameObject Icon2Value;
     public List<Sprite> IconList;*/
+    public GameObject Icon1Sprite;
+    public GameObject Icon2Sprite;
 
     private void OnEnable()
     {     
@@ -148,9 +148,9 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         if (DuelStateManager.canInterect)
         {
             //跳出大卡圖及效果文UI
-            if (gameObject.GetComponent<CardTurnOver>().cardState == CardState.Top)
+            if (gameObject.GetComponent<CardTurnOver>().cardState == CardState.Top && pointerEventData.button == PointerEventData.InputButton.Left)
             {
-                InformationUI.readCardInformation = true;
+                StartCoroutine(ReadCardInformation());
             }
 
             if (isPlayerUse)
@@ -236,5 +236,15 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
             canChangeUpOrDown = true;
             //GameManager.Damaged--;
         }
+    }
+    public IEnumerator ReadCardInformation()
+    {
+        var CardInformation = GameObject.Find("InformationUI").GetComponent<InformationUI>();
+        CardInformation.CardIconUp.sprite = Icon1Sprite.GetComponent<SpriteRenderer>().sprite;
+        CardInformation.CardIconDown.sprite = Icon2Sprite.GetComponent<SpriteRenderer>().sprite;
+        CardInformation.CardValueUp.text = _cardValueManager[0].cardValue.Value.ToString();
+        CardInformation.CardValueDown.text = _cardValueManager[1].cardValue.Value.ToString();
+        InformationUI.readCardInformation = true;
+        yield return 0;
     }
 }

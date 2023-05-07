@@ -14,7 +14,6 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     private bool isopenInformationUI;
     public static bool readCardInformation;
 
-
     // Start is called before the first frame update
     void Start()
     {

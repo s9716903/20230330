@@ -282,6 +282,10 @@ public class HandCards : MonoBehaviour
                 yield return StartCoroutine(TrashCardBackDeck());
                 yield return TrashCardBackDeck();
             }
+            if (PlayerDeck.GetComponent<Deck>().DeckAllCard.Count == 1)
+            {
+                PlayerDeck.GetComponent<Deck>().DeckImage.enabled = false;
+            }
             var deckcard = PlayerDeck.GetComponent<Deck>().DeckAllCard[0];
             Instantiate(deckcard, PlayerDeck.transform); //卡片變成手牌子物件
             var thisdeckcard = PlayerDeck.transform.GetChild(0).gameObject;
@@ -310,6 +314,10 @@ public class HandCards : MonoBehaviour
             {
                 yield return StartCoroutine(TrashCardBackDeck());
                 yield return TrashCardBackDeck();
+            }
+            if (PlayerDeck.GetComponent<Deck>().DeckAllCard.Count == 1)
+            {
+                PlayerDeck.GetComponent<Deck>().DeckImage.enabled = false;
             }
             var deckcard = PlayerDeck.GetComponent<Deck>().DeckAllCard[0];
             Instantiate(deckcard, PlayerDeck.transform); //卡片變成手牌子物件
@@ -350,6 +358,10 @@ public class HandCards : MonoBehaviour
                 yield return 0;
             }
             PlayerDeck.GetComponent<Deck>().DeckAllCard.Add(ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject[0]); //卡牌加入牌組List
+            if (i == 0)
+            {
+                PlayerDeck.GetComponent<Deck>().DeckImage.enabled = true;
+            }
             ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.RemoveAt(0); //牌組List中移除卡牌*/
             Destroy(thistrashcard);
             yield return new WaitForSeconds(0);

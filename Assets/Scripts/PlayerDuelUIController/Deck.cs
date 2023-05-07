@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
+using UnityEngine.EventSystems;
+using TMPro;
 
-public class Deck : MonoBehaviour
+
+public class Deck : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
-    private Image DeckImage;
+    public Image DeckImage;
 
     public bool isDeckNull;
+
+    public GameObject DeckCardsText; //卡片數量文字
 
     public GameObject[] DeckCardType; //牌組卡片種類大全
     public int[] CardQuantity; //各自卡片數量
@@ -39,18 +43,29 @@ public class Deck : MonoBehaviour
     }
     private void Start()
     {
+        
+        DeckCardsText.SetActive(false);
         DeckImage = GetComponent<Image>();
+        DeckImage.enabled = true;
     }
     private void Update()
     {
+        if (DeckAllCard.Count != 0)
+        {
+            DeckCardsText.GetComponent<TextMeshProUGUI>().text = DeckAllCard.Count.ToString();
+        }
+
         if (DeckAllCard.Count == 0)
         {
-            DeckImage.enabled = false;
             isDeckNull = true;
         }
-        else
-        {
-            DeckImage.enabled = true;
-        }
+    }
+    public void OnPointerEnter(PointerEventData pointerEventData) //滑鼠游標移入
+    {
+        DeckCardsText.SetActive(true);
+    }
+    public void OnPointerExit(PointerEventData pointerEventData) //滑鼠游標移出
+    {
+        DeckCardsText.SetActive(false);
     }
 }

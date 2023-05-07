@@ -27,8 +27,8 @@ public class TrashCard : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         TrashCardsText.SetActive(false);
     }
-    public void ClickTrashZone()
+    /*public void ClickTrashZone()
     {
         TrashZoneUI.readTrashZoneList = true;
-    }
+    }*/
 }
