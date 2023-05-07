@@ -28,7 +28,7 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ThisPlayer.GetComponent<Player>().isReady && (DuelStateManager.duelStateType == GameState.DuelStateMode.Move || DuelStateManager.duelStateType == GameState.DuelStateMode.Attack))
+        if (ThisPlayer.GetComponent<Player>().isReady && (DuelStateManager.duelStateType == GameState.DuelStateMode.Move || DuelStateManager.duelStateType == GameState.DuelStateMode.Attack || DuelStateManager.duelStateType == GameState.DuelStateMode.AttackResult))
         {
             ReadyText.SetActive(true);
         }

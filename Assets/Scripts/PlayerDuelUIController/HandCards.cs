@@ -343,8 +343,9 @@ public class HandCards : MonoBehaviour
             if (ThisPlayer.GetComponent<Player>().Hp == ThisPlayer.GetComponent<Player>().MaxHp)
             {
                 ThisPlayer.GetComponent<Player>().NormalDrawAmount = 0;
+                yield return new WaitForSeconds(0.5f);
                 ThisPlayer.GetComponent<Player>().isReady = true;
-                break;
+                yield break;
             }
             if (PlayerDeck.GetComponent<Deck>().isDeckNull)
             {
@@ -373,6 +374,11 @@ public class HandCards : MonoBehaviour
             }
             yield return 0;
         }
+        if (DuelStateManager.duelStateType == GameState.DuelStateMode.Draw)
+        {
+            yield return new WaitForSeconds(1f);
+            ThisPlayer.GetComponent<Player>().isReady = true;
+        }
         if (DuelStateManager.duelStateType == GameState.DuelStateMode.End)
         {
             if (ThisPlayer.GetComponent<Player>().NormalDrawAmount == 0)
@@ -387,11 +393,6 @@ public class HandCards : MonoBehaviour
             }
         }
         ThisPlayer.GetComponent<Player>().NormalDrawAmount = 0;
-        if (DuelStateManager.duelStateType == GameState.DuelStateMode.Draw)
-        {
-            yield return new WaitForSeconds(1f);
-            ThisPlayer.GetComponent<Player>().isReady = true;
-        }
     }
     public IEnumerator HealthDraw()
     {

@@ -37,11 +37,9 @@ public class DrawState : IState //抽牌階段(引用IState的運行模式)
         var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
         var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
 
+        DuelStateManager.showStateText = true;
         player.isReady = false;
         enemy.isReady = false;
-        
-        DuelStateManager.showStateText = true;
-        
         player_handcards.NormalDrawCard();
         enemy_handcards.NormalDrawCard();
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
@@ -76,13 +74,17 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        ThePlayer = GameObject.Find("Player");
+        TheEnemy = GameObject.Find("Enemy");
+        var player = ThePlayer.GetComponent<Player>();
+        var enemy = TheEnemy.GetComponent<Player>();
         DuelStateManager.showStateText = true;
+        player.isReady = false;
+        enemy.isReady = false;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
         StateTimer.startTime = 10;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
-        ThePlayer = GameObject.Find("Player");
-        TheEnemy = GameObject.Find("Enemy");
     }
     public void OnUpdate()
     {
