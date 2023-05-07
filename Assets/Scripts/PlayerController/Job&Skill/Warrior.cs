@@ -14,7 +14,6 @@ public class Warrior : SkillManager
         canUseSkill2 = Skill2UnLock;
         canUsePassiveSkill = PassiveSkillUnLock;
         TheMaxHp = 6;
-        Hp = 5;
         TheDefense = 4;
     }
     public override void Skill1()

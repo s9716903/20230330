@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     public int NormalDrawAmount; //玩家結束時抽牌數
     public int HealthDrawAmount; //玩家回血抽牌數
+    public int DamageDropAmount; //玩家扣血棄牌數
 
     public int MoveToLocation; //玩家將要移動到的位置
 
@@ -37,7 +38,6 @@ public class Player : MonoBehaviour
         canMove = false;
 
         MaxHp = GetComponent<JobManager>().thisJob.TheMaxHp;
-        Hp = GetComponent<JobManager>().thisJob.Hp;
         Defense = GetComponent<JobManager>().thisJob.TheDefense;
         MoveValue = 0;
         Stars = 0;
@@ -56,6 +56,15 @@ public class Player : MonoBehaviour
             TargetLocation = 0;
         }*/
         //TargetLocation = MoveToLocation;
+        if (PhysicDamage < Defense)
+        {
+            AllDamaged = MagicDamage;
+        }
+        else
+        {
+            AllDamaged = MagicDamage + (PhysicDamage - Defense);
+        }
+
         if (groundLocation.name == "A")
         {
             transform.position = new Vector3(Ground.GetComponent<Ground>().Alocation[TargetLocation].transform.position.x, 5, Ground.GetComponent<Ground>().Alocation[TargetLocation].transform.position.z);

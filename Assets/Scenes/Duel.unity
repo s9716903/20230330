@@ -524,6 +524,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1490340158}
+        m_TargetAssemblyTypeName: HandCards, Assembly-CSharp
+        m_MethodName: PlayerDamageReady
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &42987031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,7 +897,7 @@ RectTransform:
   - {fileID: 231801384}
   - {fileID: 1239113601}
   m_Father: {fileID: 1767415009}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2086,7 +2098,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1767415009}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2118,6 +2130,7 @@ MonoBehaviour:
   TargetLocation: 0
   NormalDrawAmount: 0
   HealthDrawAmount: 0
+  DamageDropAmount: 0
   MoveToLocation: 0
   canMove: 0
   isReady: 0
@@ -2844,7 +2857,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1767415009}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2876,6 +2889,7 @@ MonoBehaviour:
   TargetLocation: 0
   NormalDrawAmount: 0
   HealthDrawAmount: 0
+  DamageDropAmount: 0
   MoveToLocation: 0
   canMove: 0
   isReady: 0
@@ -4554,7 +4568,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1128675058
@@ -6689,9 +6703,9 @@ RectTransform:
   - {fileID: 1340496970}
   - {fileID: 577498290}
   - {fileID: 1460067158}
-  - {fileID: 77445750}
   - {fileID: 335061388}
   - {fileID: 501299635}
+  - {fileID: 77445750}
   - {fileID: 2088525345}
   - {fileID: 58235885}
   - {fileID: 1162709177}

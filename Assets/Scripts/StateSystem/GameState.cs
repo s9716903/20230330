@@ -192,9 +192,8 @@ public class AttackResultState : IState //移動階段(引用IState的運行模式)
         if (DuelUIController.resultEnd)
         {
             DuelUIController.resultEnd = false;
-            DuelStateManager.duelStateType = GameState.DuelStateMode.End;
-            DuelStateManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
-            manager.TransitionDuelState(DuelStateManager.duelStateType);
+            DuelStateManager.playerStateType = GameState.PlayerStateMode.Damage;
+            manager.TransitionPlayerState(DuelStateManager.playerStateType);
         }
     }
     public void OnExit()
@@ -221,6 +220,12 @@ public class EndState : IState //結束階段(引用IState的運行模式)
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
         player_handcards.NormalDrawCard();
         enemy_handcards.NormalDrawCard();
+        player.PhysicDamage = 0;
+        player.MagicDamage = 0;
+        player.MoveValue = 0;
+        enemy.PhysicDamage = 0;
+        enemy.MagicDamage = 0;
+        enemy.MoveValue = 0;
     }
     public void OnUpdate()
     {
@@ -286,6 +291,8 @@ public class NoDoThingState : IState //玩家不可做事階段(引用IState的運行模式)
 public class DamageState : IState //傷害處理階段(引用IState的運行模式)
 {
     private DuelStateManager manager;
+    private GameObject ThePlayer;
+    private GameObject TheEnemy;
     public DamageState(DuelStateManager manager)
     {
         this.manager = manager;
@@ -293,10 +300,29 @@ public class DamageState : IState //傷害處理階段(引用IState的運行模式)
     public void OnEnter()
     {
         DuelStateManager.canInterect = true;
+        var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
+        var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
+        player_handcards.ShowHandCard();
+        enemy_handcards.ShowHandCard();
+        StateTimer.startTime = 10;
+        StateTimer.isStartTime = true;
+        StateTimer.stopStateTime = false;
+        ThePlayer = GameObject.Find("Player");
+        TheEnemy = GameObject.Find("Enemy");
     }
     public void OnUpdate()
     {
-
+        var player = ThePlayer.GetComponent<Player>();
+        var enemy = TheEnemy.GetComponent<Player>();
+        if (player.isReady && enemy.isReady)
+        {
+            StateTimer.startTime = 0;
+        }
+        if (StateTimer.stopStateTime == true)
+        {
+            DuelStateManager.playerStateType = GameState.PlayerStateMode.Ready;
+            manager.TransitionPlayerState(DuelStateManager.playerStateType);
+        }
     }
     public void OnExit()
     {
@@ -327,6 +353,11 @@ public class ReadyState : IState //準備進入結算階段(引用IState的運行模式)
             player_handcards.PlayerIdleReady();
             enemy_handcards.PlayerIdleReady();
         }
+        else if (DuelStateManager.duelStateType == GameState.DuelStateMode.AttackResult)
+        {
+            player_handcards.PlayerIdleReady();
+            enemy_handcards.PlayerIdleReady();
+        }
         player.isReady = false;
         enemy.isReady = false;
         player.canMove = false;
@@ -343,6 +374,12 @@ public class ReadyState : IState //準備進入結算階段(引用IState的運行模式)
         else if (DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
         {
             DuelStateManager.duelStateType = GameState.DuelStateMode.AttackResult;
+            DuelStateManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
+            manager.TransitionDuelState(DuelStateManager.duelStateType);
+        }
+        else if (DuelStateManager.duelStateType == GameState.DuelStateMode.AttackResult)
+        {
+            DuelStateManager.duelStateType = GameState.DuelStateMode.End;
             DuelStateManager.playerStateType = GameState.PlayerStateMode.NoDoThing;
             manager.TransitionDuelState(DuelStateManager.duelStateType);
         }

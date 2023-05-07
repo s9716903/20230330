@@ -35,7 +35,9 @@ public class HandCards : MonoBehaviour
             { ThisPlayer.GetComponent<Player>().Stars }, 
             { ThisPlayer.GetComponent<Player>().HealthDrawAmount }
         }; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
-        
+
+        ThisPlayer.GetComponent<Player>().Hp = HandAllCard.Count;
+
         for (int a = 0; a <= 4; a++) //卡片數值字體
         {
             TestText.transform.GetChild(a).GetComponent<TextMeshProUGUI>().text = TypeValue[a, 0].ToString();
@@ -205,10 +207,45 @@ public class HandCards : MonoBehaviour
             Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
         }
     }
+    public void PlayerDamageReady()
+    {
+        if (DuelStateManager.playerStateType == GameState.PlayerStateMode.Damage)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var targetcard = transform.GetChild(i);
+                if (targetcard.GetComponent<CardManager>().DamagedDropCard == true)
+                {
+                    ThisPlayer.GetComponent<Player>().DamageDropAmount += 1;
+                }
+            }
+            if (ThisPlayer.GetComponent<Player>().DamageDropAmount == ThisPlayer.GetComponent<Player>().AllDamaged)
+            {
+                for (int j = 0; j < transform.childCount; j++)
+                {
+                    var targetcard = transform.GetChild(j);
+                    if (targetcard.GetComponent<CardManager>().DamagedDropCard == true)
+                    {
+                        targetcard.transform.position -= new Vector3(0, 0, 10);
+                    }
+                    else
+                    {
+                        targetcard.gameObject.SetActive(false);
+                    }
+                    ThisPlayer.GetComponent<Player>().canMove = true;
+                    ThisPlayer.GetComponent<Player>().isReady = true;
+                }
+            }
+            else
+            {
+                ThisPlayer.GetComponent<Player>().DamageDropAmount = 0;
+            }
+        }
+    }
 
     public void PlayerIdleReady()
     {
-        if (ThisPlayer.GetComponent<Player>().canMove == false && ThisPlayer.GetComponent<Player>().isReady == false)
+        if (ThisPlayer.GetComponent<Player>().canMove == false && ThisPlayer.GetComponent<Player>().isReady == false && DuelStateManager.duelStateType != GameState.DuelStateMode.AttackResult)
         {
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -233,6 +270,32 @@ public class HandCards : MonoBehaviour
                 }
             }
             Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
+        }
+        else if (ThisPlayer.GetComponent<Player>().canMove == false && ThisPlayer.GetComponent<Player>().isReady == false && DuelStateManager.duelStateType == GameState.DuelStateMode.AttackResult)
+        {
+            var needDrop = ThisPlayer.GetComponent<Player>();
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var targetcard = transform.GetChild(i);
+                if (targetcard.GetComponent<CardManager>().DamagedDropCard == true)
+                {
+                    targetcard.transform.position -= new Vector3(0, 0, 10);
+                    targetcard.GetComponent<CardManager>().DamagedDropCard = false;
+                }
+            }
+            for (int j = 0; j < needDrop.AllDamaged; j++)
+            {
+                var targetcard = transform.GetChild(j);
+                targetcard.GetComponent<CardManager>().DamagedDropCard = true;
+            }
+            for (int k = 0; k < transform.childCount; k++)
+            {
+                var targetcard = transform.GetChild(k);
+                if (targetcard.GetComponent<CardManager>().DamagedDropCard == false)
+                {
+                    targetcard.gameObject.SetActive(false);
+                }
+            }
         }
     }
 
@@ -277,12 +340,12 @@ public class HandCards : MonoBehaviour
     {
         for (int i = 0; i < ThisPlayer.GetComponent<Player>().NormalDrawAmount; i++)
         {
-            /*if (ThisPlayer.GetComponent<Player>().Hp == ThisPlayer.GetComponent<Player>().MaxHp)
+            if (ThisPlayer.GetComponent<Player>().Hp == ThisPlayer.GetComponent<Player>().MaxHp)
             {
                 ThisPlayer.GetComponent<Player>().NormalDrawAmount = 0;
                 ThisPlayer.GetComponent<Player>().isReady = true;
                 break;
-            }*/
+            }
             if (PlayerDeck.GetComponent<Deck>().isDeckNull)
             {
                 yield return StartCoroutine(TrashCardBackDeck());
@@ -334,11 +397,11 @@ public class HandCards : MonoBehaviour
     {
         for (int i = 0; i < ThisPlayer.GetComponent<Player>().HealthDrawAmount; i++)
         {
-            /*if (ThisPlayer.GetComponent<Player>().Hp == ThisPlayer.GetComponent<Player>().MaxHp)
+            if (ThisPlayer.GetComponent<Player>().Hp == ThisPlayer.GetComponent<Player>().MaxHp)
             {
                 ThisPlayer.GetComponent<Player>().NormalDrawAmount = 0;
                 break;
-            }*/
+            }
             if (PlayerDeck.GetComponent<Deck>().isDeckNull)
             {
                 yield return StartCoroutine(TrashCardBackDeck());

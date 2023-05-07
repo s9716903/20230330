@@ -690,7 +690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardvaluemanager: {fileID: 0}
   _cardValueManager:
-  - {fileID: 11400000, guid: f929f814f015ba548860b3e97fdf3f8d, type: 2}
+  - {fileID: 11400000, guid: 780a68b5b7059d144831e9e310f6bd3c, type: 2}
   - {fileID: 11400000, guid: 7bc5d3d386b10ed4f9aca8c2a1572b9e, type: 2}
   isCardUp: 0
   isUseThisCard: 0
