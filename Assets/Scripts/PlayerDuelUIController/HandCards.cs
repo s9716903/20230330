@@ -350,7 +350,6 @@ public class HandCards : MonoBehaviour
             if (PlayerDeck.GetComponent<Deck>().isDeckNull)
             {
                 yield return StartCoroutine(TrashCardBackDeck());
-                yield return TrashCardBackDeck();
             }
             if (PlayerDeck.GetComponent<Deck>().DeckAllCard.Count == 1)
             {
@@ -406,7 +405,6 @@ public class HandCards : MonoBehaviour
             if (PlayerDeck.GetComponent<Deck>().isDeckNull)
             {
                 yield return StartCoroutine(TrashCardBackDeck());
-                yield return TrashCardBackDeck();
             }
             if (PlayerDeck.GetComponent<Deck>().DeckAllCard.Count == 1)
             {
@@ -440,8 +438,7 @@ public class HandCards : MonoBehaviour
     }
     public IEnumerator TrashCardBackDeck()
     {
-        for (int i = 0; i < ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.Count + 1; i++)
-        {
+
             var trashcard = ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject[0];
             Instantiate(trashcard, ThisTrashCardZone.transform); //卡片變成棄牌區子物件
             var thistrashcard = ThisTrashCardZone.transform.GetChild(1).gameObject;
@@ -450,15 +447,11 @@ public class HandCards : MonoBehaviour
                 thistrashcard.transform.position = Vector3.MoveTowards(thistrashcard.transform.position, PlayerDeck.transform.position, 300 * Time.deltaTime);
                 yield return 0;
             }
-            PlayerDeck.GetComponent<Deck>().DeckAllCard.Add(ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject[0]); //卡牌加入牌組List
-            if (i == 0)
-            {
-                PlayerDeck.GetComponent<Deck>().DeckImage.enabled = true;
-            }
-            ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.RemoveAt(0); //牌組List中移除卡牌*/
+            PlayerDeck.GetComponent<Deck>().DeckAllCard = ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.GetRange(0, ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.Count); //卡牌加入牌組List
+            PlayerDeck.GetComponent<Deck>().DeckImage.enabled = true;
+            ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.RemoveRange(0, ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.Count); //牌組List中移除卡牌*/
             Destroy(thistrashcard);
             yield return new WaitForSeconds(0);
-        }
         yield return 0;
         PlayerDeck.GetComponent<Deck>().isDeckNull = false;
     }
