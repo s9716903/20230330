@@ -36,6 +36,8 @@ public class PlayerUI : MonoBehaviour
         {
             ReadyText.SetActive(false);
         }
+        PlayerSkill.GetComponent<SkillUI>().MaxHp.text = ":" + ThisPlayer.GetComponent<Player>().MaxHp.ToString();
+        PlayerSkill.GetComponent<SkillUI>().Defense.text = ":" + ThisPlayer.GetComponent<Player>().Defense.ToString();
     }
 
     public IEnumerator StartDuel()

@@ -12,7 +12,8 @@ public class DuelUIController : MonoBehaviour
     public GameObject StateText;
     public GameObject DuelTimer;
     public GameObject ReadyButton;
-    public GameObject ResultUI;
+    public GameObject MoveResultUI;
+    public GameObject ATKResultUI;
 
     public static bool startMoveStateResult;
     public static bool startAttackStateResult;
@@ -25,7 +26,8 @@ public class DuelUIController : MonoBehaviour
         startAttackStateResult = false;
         resultEnd = false;
 
-        ResultUI.SetActive(false);
+        MoveResultUI.SetActive(false);
+        ATKResultUI.SetActive(false);
         Duelstatemanager.SetActive(false);
         DuelTimer.SetActive(false);
         ReadyButton.SetActive(false);
@@ -76,7 +78,7 @@ public class DuelUIController : MonoBehaviour
     public IEnumerator MoveStateResult()
     {
         startMoveStateResult = false;
-        ResultUI.SetActive(true);
+        MoveResultUI.SetActive(true);
         var ThePlayer = GameObject.Find("Player").GetComponent<Player>();
         var TheEnemy = GameObject.Find("Enemy").GetComponent<Player>();
         ThePlayer.TargetLocation = ThePlayer.MoveToLocation;
@@ -86,14 +88,14 @@ public class DuelUIController : MonoBehaviour
         player_handcards.HealthDrawCard();
         enemy_handcards.HealthDrawCard();
         yield return new WaitForSeconds(2);
-        ResultUI.SetActive(false);
+        MoveResultUI.SetActive(false);
         resultEnd = true;
         yield return 0;
     }
     public IEnumerator AttackStateResult()
     {
         startAttackStateResult = false;
-        ResultUI.SetActive(true);
+        ATKResultUI.SetActive(true);
         var ThePlayer = GameObject.Find("Player").GetComponent<Player>();
         var TheEnemy = GameObject.Find("Enemy").GetComponent<Player>();
         var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
@@ -101,7 +103,7 @@ public class DuelUIController : MonoBehaviour
         player_handcards.HealthDrawCard();
         enemy_handcards.HealthDrawCard();
         yield return new WaitForSeconds(2);
-        ResultUI.SetActive(false);
+        ATKResultUI.SetActive(false);
         resultEnd = true;
         yield return 0;
     }

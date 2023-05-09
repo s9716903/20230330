@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2022460293787478636}
   - component: {fileID: 7368484923540608511}
-  - component: {fileID: 5065882267987466399}
   - component: {fileID: 6095885434712921531}
   - component: {fileID: 5985338650234737740}
+  - component: {fileID: 3503148366656949443}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -70,17 +70,6 @@ MonoBehaviour:
   AttackZone: 
   Icon1Sprite: {fileID: 1590902579391787029}
   Icon2Sprite: {fileID: 3978811558210455791}
---- !u!210 &5065882267987466399
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87090410100075278}
-  m_Enabled: 1
-  m_SortingLayerID: 1428611937
-  m_SortingLayer: 2
-  m_SortingOrder: 0
 --- !u!65 &6095885434712921531
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,6 +99,17 @@ MonoBehaviour:
   CardTop: {fileID: 4014058303576476678}
   CardBottom: {fileID: 2631119589948813102}
   isChangeTopOrBottom: 0
+--- !u!210 &3503148366656949443
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87090410100075278}
+  m_Enabled: 1
+  m_SortingLayerID: 1428611937
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!1 &1578402298794676994
 GameObject:
   m_ObjectHideFlags: 0

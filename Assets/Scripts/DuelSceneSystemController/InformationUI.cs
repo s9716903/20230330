@@ -40,6 +40,14 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
                 gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-300, 0, 0);
             }
         }
+
+        if (!DuelStateManager.canInterect)
+        {
+            isopenInformationUI = false;
+            readCardInformation = false;
+            gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-300, 0, 0);
+        }
+
     }
     public void OnPointerEnter(PointerEventData pointerEventData)
     {

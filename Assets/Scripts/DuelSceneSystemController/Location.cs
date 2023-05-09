@@ -13,6 +13,7 @@ public class Location : MonoBehaviour,IPointerClickHandler
     {
         canStop = false;
         Player = GameObject.Find("Player");
+        gameObject.GetComponent<Image>().enabled = false;
     }
     private void Update()
     {
@@ -35,11 +36,11 @@ public class Location : MonoBehaviour,IPointerClickHandler
 
         if (ThisPlayer == Player && canStop == true && DuelStateManager.duelStateType == GameState.DuelStateMode.Move && ThisPlayer.GetComponent<Player>().canMove && ThisPlayer.GetComponent<Player>().isReady == false)
         {
-            gameObject.GetComponent<Image>().color = new Color32(255, 255, 0,255);
+            gameObject.GetComponent<Image>().enabled = true;
         }
         else
         {
-            gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            gameObject.GetComponent<Image>().enabled = false;
         }
 
     }

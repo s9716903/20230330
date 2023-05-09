@@ -14,8 +14,6 @@ public class HandCards : MonoBehaviour
 
     private GridLayoutGroup gridLayoutGroup; //HandCardZone Group
 
-    public GameObject TestText; //玩家可得知的數值
-
     public int[,] TypeValue;  //卡片數值種類
 
 
@@ -37,11 +35,6 @@ public class HandCards : MonoBehaviour
         }; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
 
         ThisPlayer.GetComponent<Player>().Hp = HandAllCard.Count;
-
-        for (int a = 0; a <= 4; a++) //卡片數值字體
-        {
-            TestText.transform.GetChild(a).GetComponent<TextMeshProUGUI>().text = TypeValue[a, 0].ToString();
-        }
 
         for (int b = 0; b < transform.childCount; b++) //判斷底下的卡片是否能與滑鼠互動
         {
@@ -397,10 +390,10 @@ public class HandCards : MonoBehaviour
     {
         for (int i = 0; i < ThisPlayer.GetComponent<Player>().HealthDrawAmount; i++)
         {
-            if (ThisPlayer.GetComponent<Player>().Hp == ThisPlayer.GetComponent<Player>().MaxHp)
+            if(ThisPlayer.GetComponent<Player>().Hp == ThisPlayer.GetComponent<Player>().MaxHp)
             {
-                ThisPlayer.GetComponent<Player>().NormalDrawAmount = 0;
-                break;
+                ThisPlayer.GetComponent<Player>().HealthDrawAmount = 0;
+                yield break;
             }
             if (PlayerDeck.GetComponent<Deck>().isDeckNull)
             {

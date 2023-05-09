@@ -241,8 +241,8 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         var CardInformation = GameObject.Find("InformationUI").GetComponent<InformationUI>();
         CardInformation.CardIconUp.sprite = Icon1Sprite.GetComponent<SpriteRenderer>().sprite;
         CardInformation.CardIconDown.sprite = Icon2Sprite.GetComponent<SpriteRenderer>().sprite;
-        CardInformation.CardValueUp.text = _cardValueManager[0].cardValue.Value.ToString();
-        CardInformation.CardValueDown.text = _cardValueManager[1].cardValue.Value.ToString();
+        CardInformation.CardValueUp.text = ":" + _cardValueManager[0].cardValue.Value.ToString();
+        CardInformation.CardValueDown.text = ":" + _cardValueManager[1].cardValue.Value.ToString();
         InformationUI.readCardInformation = true;
         yield return 0;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class SkillUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
@@ -13,8 +14,7 @@ public class SkillUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IP
     public GameObject SkillUpBottom;
     public GameObject SkillDown;
 
-    
-    public TextMeshProUGUI Hp;
+    public TextMeshProUGUI MaxHp;
     public TextMeshProUGUI Defense;
 
    
@@ -45,6 +45,11 @@ public class SkillUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IP
                 SkillUp.SetActive(false);
                 SkillDown.SetActive(true);
             }
+        }
+        if (!DuelStateManager.canInterect)
+        {
+            SkillUp.SetActive(false);
+            SkillDown.SetActive(true);
         }
     }
 
