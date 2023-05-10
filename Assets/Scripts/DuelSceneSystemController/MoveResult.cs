@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class MoveResult : MonoBehaviour
@@ -27,9 +26,12 @@ public class MoveResult : MonoBehaviour
     public GameObject FirstAttackText;
     public GameObject SecondAttackText;
 
+    private int CoinValue;
+
     // Start is called before the first frame update
     private void OnEnable()
     {
+        CoinValue = Random.Range(0, 2);
         CoinAni.SetActive(false);
         Player1Value.SetActive(false);
         Player2Value.SetActive(false);
@@ -45,13 +47,13 @@ public class MoveResult : MonoBehaviour
     {
         var player = Player.GetComponent<Player>();
         var enemy = Enemy.GetComponent<Player>();
-        Player1MoveValueText.text = player.MoveValue.ToString();
-        Player1StarValueText.text = player.Stars.ToString();
-        Player1DrawValueText.text = player.HealthDrawAmount.ToString();
+        Player1MoveValueText.text = ":" + player.MoveValue.ToString();
+        Player1StarValueText.text = ":" + player.Stars.ToString();
+        Player1DrawValueText.text = ":" + player.HealthDrawAmount.ToString();
         PlayerMovePointTotalText.text = player.MoveStatePoint.ToString();
-        Player2MoveValueText.text = enemy.MoveValue.ToString();
-        Player2StarValueText.text = enemy.Stars.ToString();
-        Player2DrawValueText.text = enemy.HealthDrawAmount.ToString();
+        Player2MoveValueText.text = enemy.MoveValue.ToString() + ":";
+        Player2StarValueText.text = enemy.Stars.ToString() + ":";
+        Player2DrawValueText.text = enemy.HealthDrawAmount.ToString() + ":";
         Player2MovePointTotalText.text = enemy.MoveStatePoint.ToString();
     }
     public IEnumerator StartResult()
@@ -68,14 +70,17 @@ public class MoveResult : MonoBehaviour
         if (player.MoveStatePoint < enemy.MoveStatePoint)
         {
             SecondAttackText.SetActive(true);
+            player.isFirstATK = false;
+            enemy.isFirstATK = true;
         }
         else if (player.MoveStatePoint > enemy.MoveStatePoint)
         {
             FirstAttackText.SetActive(true);
+            player.isFirstATK = true;
+            enemy.isFirstATK = false;
         }
         else if (player.MoveStatePoint == enemy.MoveStatePoint)
         {
-            var CoinValue = Random.Range(0, 2);
             var CoinAnimation = Coin.GetComponent<Animation>();
             CoinAnimation.clip = CoinTopOrBottom[CoinValue];
             if (CoinValue == 0)
@@ -84,6 +89,8 @@ public class MoveResult : MonoBehaviour
                 yield return new WaitForSeconds(3);
                 CoinAni.SetActive(false);
                 FirstAttackText.SetActive(true);
+                player.isFirstATK = true;
+                enemy.isFirstATK = false;
                 Debug.Log("CoinValue:" + 0);
             }
             else if(CoinValue == 1)
@@ -92,6 +99,8 @@ public class MoveResult : MonoBehaviour
                 yield return new WaitForSeconds(3);
                 CoinAni.SetActive(false);
                 SecondAttackText.SetActive(true);
+                player.isFirstATK = false;
+                enemy.isFirstATK = true;
                 Debug.Log("CoinValue:" + 1);
             }
         }

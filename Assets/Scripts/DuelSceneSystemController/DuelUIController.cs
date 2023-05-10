@@ -82,9 +82,13 @@ public class DuelUIController : MonoBehaviour
         var TheEnemy = GameObject.Find("Enemy").GetComponent<Player>();
         var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
         var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
+        Player1.SetActive(false);
+        Player2.SetActive(false);
         MoveResultUI.SetActive(true);
         yield return StartCoroutine(MoveResultUI.GetComponent<MoveResult>().StartResult());
         MoveResultUI.SetActive(false);
+        Player1.SetActive(true);
+        Player2.SetActive(true);
         yield return new WaitForSeconds(1f);
         player_handcards.ShowHandCard();
         enemy_handcards.ShowHandCard();
@@ -106,9 +110,13 @@ public class DuelUIController : MonoBehaviour
         var TheEnemy = GameObject.Find("Enemy").GetComponent<Player>();
         var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
         var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
+        Player1.SetActive(false);
+        Player2.SetActive(false);
         ATKResultUI.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return StartCoroutine(ATKResultUI.GetComponent<AttackResult>().StartResult());
         ATKResultUI.SetActive(false);
+        Player1.SetActive(true);
+        Player2.SetActive(true);
         player_handcards.ShowHandCard();
         enemy_handcards.ShowHandCard();
         yield return new WaitForSeconds(1f);

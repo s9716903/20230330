@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 8701742627606153666}
   - component: {fileID: 8520641817463051456}
   - component: {fileID: 6517740943464489102}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CardValueUPText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 1372848995470585419}
   - component: {fileID: 1901555119082818907}
   - component: {fileID: 2918952472049542243}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CardValueDownText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

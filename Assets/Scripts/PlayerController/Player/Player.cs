@@ -31,12 +31,14 @@ public class Player : MonoBehaviour
 
     public  bool canMove; //可以移動
     public  bool isReady; //玩家是否已進入準備狀態
+    public  bool isFirstATK; //是否先攻
     // Start is called before the first frame update
     private void Start()
     {
         TargetLocation = 2;
         isReady = false;
         canMove = false;
+        isFirstATK = true;
 
         MaxHp = GetComponent<JobManager>().thisJob.TheMaxHp;
         Defense = GetComponent<JobManager>().thisJob.TheDefense;
