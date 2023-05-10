@@ -79,32 +79,21 @@ public class DuelUIController : MonoBehaviour
     {
         startMoveStateResult = false;
         MoveResultUI.SetActive(true);
+        yield return new WaitForSeconds(3);
+        MoveResultUI.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
         var ThePlayer = GameObject.Find("Player").GetComponent<Player>();
         var TheEnemy = GameObject.Find("Enemy").GetComponent<Player>();
         ThePlayer.TargetLocation = ThePlayer.MoveToLocation;
         TheEnemy.TargetLocation = TheEnemy.MoveToLocation;
-        var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
-        var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
-        player_handcards.HealthDrawCard();
-        enemy_handcards.HealthDrawCard();
-        yield return new WaitForSeconds(2);
-        MoveResultUI.SetActive(false);
-        resultEnd = true;
         yield return 0;
     }
     public IEnumerator AttackStateResult()
     {
         startAttackStateResult = false;
         ATKResultUI.SetActive(true);
-        var ThePlayer = GameObject.Find("Player").GetComponent<Player>();
-        var TheEnemy = GameObject.Find("Enemy").GetComponent<Player>();
-        var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
-        var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
-        player_handcards.HealthDrawCard();
-        enemy_handcards.HealthDrawCard();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         ATKResultUI.SetActive(false);
-        resultEnd = true;
         yield return 0;
     }
 }

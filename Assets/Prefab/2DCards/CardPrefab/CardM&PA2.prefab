@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25037316744618447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 1.8, z: 0}
+  m_LocalPosition: {x: -1.07, y: 1.7, z: 0}
   m_LocalScale: {x: 0.14, y: 0.14, z: 0}
   m_Children: []
   m_Father: {fileID: 7346656065870504588}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7935226861627755592, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  m_Sprite: {fileID: 5597492459990643904, guid: 8bb44d90861d8f946afe0b03d39e2bf3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -660,7 +660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8070071086075967785}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 1.8, z: 0}
+  m_LocalPosition: {x: -1.07, y: 1.7, z: 0}
   m_LocalScale: {x: 0.14, y: 0.14, z: 0}
   m_Children: []
   m_Father: {fileID: 7239773895979587449}
@@ -706,7 +706,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1286911616419735441, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  m_Sprite: {fileID: -1689654979014069289, guid: 8bb44d90861d8f946afe0b03d39e2bf3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -727,9 +727,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8403230803369871601}
   - component: {fileID: 1709099805767811229}
-  - component: {fileID: 1440007031838308255}
   - component: {fileID: -712969460355897593}
   - component: {fileID: -6738445454401373275}
+  - component: {fileID: -3627356239760440825}
   m_Layer: 0
   m_Name: CardM&PA2
   m_TagString: Untagged
@@ -787,19 +787,6 @@ MonoBehaviour:
   AttackZone: 
   Icon1Sprite: {fileID: 8070071086075967785}
   Icon2Sprite: {fileID: 25037316744618447}
---- !u!65 &1440007031838308255
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8124639466306731628}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.29, y: 4.62, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-712969460355897593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,8 +812,21 @@ SortingGroup:
   m_GameObject: {fileID: 8124639466306731628}
   m_Enabled: 1
   m_SortingLayerID: 1428611937
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
+--- !u!65 &-3627356239760440825
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8124639466306731628}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.29, y: 4.62, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8403987252156427032
 GameObject:
   m_ObjectHideFlags: 0

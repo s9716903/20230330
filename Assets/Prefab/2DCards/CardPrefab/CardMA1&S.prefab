@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180819921835917054}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 1.8, z: 0}
+  m_LocalPosition: {x: -1.07, y: 1.7, z: 0}
   m_LocalScale: {x: 0.14, y: 0.14, z: 0}
   m_Children: []
   m_Father: {fileID: 2031381881809604533}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 45672960052206199, guid: 0c6b3895ae6f6924083008265710c695, type: 3}
+  m_Sprite: {fileID: 954129550050909782, guid: 8bb44d90861d8f946afe0b03d39e2bf3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -645,9 +645,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8195642636085443451}
   - component: {fileID: 860153007660483816}
-  - component: {fileID: 4122221806770275500}
   - component: {fileID: 239292621565645816}
   - component: {fileID: 5033851547663973331}
+  - component: {fileID: -3789179292663882107}
   m_Layer: 0
   m_Name: CardMA1&S
   m_TagString: Untagged
@@ -705,19 +705,6 @@ MonoBehaviour:
   AttackZone: 
   Icon1Sprite: {fileID: 180819921835917054}
   Icon2Sprite: {fileID: 8506802805005445162}
---- !u!65 &4122221806770275500
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7825168325133498905}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.29, y: 4.62, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &239292621565645816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,6 +732,19 @@ SortingGroup:
   m_SortingLayerID: 1428611937
   m_SortingLayer: 2
   m_SortingOrder: 0
+--- !u!65 &-3789179292663882107
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7825168325133498905}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.29, y: 4.62, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8506802805005445162
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +770,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8506802805005445162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 1.8, z: 0}
+  m_LocalPosition: {x: -1.07, y: 1.7, z: 0}
   m_LocalScale: {x: 0.14, y: 0.14, z: 0}
   m_Children: []
   m_Father: {fileID: 5894235467345580719}

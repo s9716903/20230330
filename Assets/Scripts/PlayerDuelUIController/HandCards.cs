@@ -343,6 +343,7 @@ public class HandCards : MonoBehaviour
             if (PlayerDeck.GetComponent<Deck>().isDeckNull)
             {
                 yield return StartCoroutine(TrashCardBackDeck());
+                yield return new WaitForSeconds(1);
             }
             if (PlayerDeck.GetComponent<Deck>().DeckAllCard.Count == 1)
             {
@@ -393,11 +394,13 @@ public class HandCards : MonoBehaviour
             if(ThisPlayer.GetComponent<Player>().Hp == ThisPlayer.GetComponent<Player>().MaxHp)
             {
                 ThisPlayer.GetComponent<Player>().HealthDrawAmount = 0;
+                ThisPlayer.GetComponent<Player>().isReady = true;
                 yield break;
             }
             if (PlayerDeck.GetComponent<Deck>().isDeckNull)
             {
                 yield return StartCoroutine(TrashCardBackDeck());
+                yield return new WaitForSeconds(1);
             }
             if (PlayerDeck.GetComponent<Deck>().DeckAllCard.Count == 1)
             {
@@ -428,6 +431,8 @@ public class HandCards : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         ThisPlayer.GetComponent<Player>().HealthDrawAmount = 0;
+        yield return new WaitForSeconds(1f);
+        ThisPlayer.GetComponent<Player>().isReady = true;
     }
     public IEnumerator TrashCardBackDeck()
     {
