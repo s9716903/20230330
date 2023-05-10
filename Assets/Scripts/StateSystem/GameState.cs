@@ -157,13 +157,7 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
-        var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
-        var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
         DuelStateManager.showStateText = true;
-        player_handcards.ShowHandCard();
-        enemy_handcards.ShowHandCard();
-        player_handcards.HealthDrawCard();
-        enemy_handcards.HealthDrawCard();
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
         StateTimer.startTime = 10;
         StateTimer.isStartTime = true;
@@ -206,7 +200,7 @@ public class AttackResultState : IState //移動階段(引用IState的運行模式)
         TheEnemy = GameObject.Find("Enemy");
         DuelUIController.startAttackStateResult = true;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
-    }
+}
     public void OnUpdate()
     {
         var player = ThePlayer.GetComponent<Player>();
@@ -243,9 +237,9 @@ public class EndState : IState //結束階段(引用IState的運行模式)
         var enemy = GameObject.Find("Enemy").GetComponent<Player>();
         var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
         DuelStateManager.showStateText = true;
+        manager.TransitionPlayerState(DuelStateManager.playerStateType);
         player_handcards.ShowHandCard();
         enemy_handcards.ShowHandCard();
-        manager.TransitionPlayerState(DuelStateManager.playerStateType);
         player_handcards.NormalDrawCard();
         enemy_handcards.NormalDrawCard();
         player.PhysicDamage = 0;
@@ -328,12 +322,6 @@ public class DamageState : IState //傷害處理階段(引用IState的運行模式)
     public void OnEnter()
     {
         DuelStateManager.canInterect = true;
-        var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
-        var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
-        player_handcards.ShowHandCard();
-        enemy_handcards.ShowHandCard();
-        player_handcards.HealthDrawCard();
-        enemy_handcards.HealthDrawCard();
         StateTimer.startTime = 10;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;

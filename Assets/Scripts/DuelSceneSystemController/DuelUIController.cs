@@ -78,22 +78,46 @@ public class DuelUIController : MonoBehaviour
     public IEnumerator MoveStateResult()
     {
         startMoveStateResult = false;
-        MoveResultUI.SetActive(true);
-        yield return new WaitForSeconds(3);
-        MoveResultUI.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
         var ThePlayer = GameObject.Find("Player").GetComponent<Player>();
         var TheEnemy = GameObject.Find("Enemy").GetComponent<Player>();
+        var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
+        var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
+        MoveResultUI.SetActive(true);
+        yield return StartCoroutine(MoveResultUI.GetComponent<MoveResult>().StartResult());
+        MoveResultUI.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        player_handcards.ShowHandCard();
+        enemy_handcards.ShowHandCard();
         ThePlayer.TargetLocation = ThePlayer.MoveToLocation;
         TheEnemy.TargetLocation = TheEnemy.MoveToLocation;
+        yield return new WaitForSeconds(1f);
+        player_handcards.HealthDrawCard();
+        enemy_handcards.HealthDrawCard();
         yield return 0;
+        /*yield return new WaitForSeconds(1);
+        ThePlayer.isReady = true;
+        TheEnemy.isReady = true;
+        yield return 0;*/
     }
     public IEnumerator AttackStateResult()
     {
         startAttackStateResult = false;
+        var ThePlayer = GameObject.Find("Player").GetComponent<Player>();
+        var TheEnemy = GameObject.Find("Enemy").GetComponent<Player>();
+        var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
+        var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
         ATKResultUI.SetActive(true);
         yield return new WaitForSeconds(3);
         ATKResultUI.SetActive(false);
+        player_handcards.ShowHandCard();
+        enemy_handcards.ShowHandCard();
+        yield return new WaitForSeconds(1f);
+        player_handcards.HealthDrawCard();
+        enemy_handcards.HealthDrawCard();
         yield return 0;
+        /*yield return new WaitForSeconds(0.5f);
+        ThePlayer.isReady = true;
+        TheEnemy.isReady = true;
+        yield return 0;*/
     }
 }

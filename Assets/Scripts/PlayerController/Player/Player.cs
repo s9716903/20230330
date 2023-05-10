@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public int NormalDrawAmount; //玩家結束時抽牌數
     public int HealthDrawAmount; //玩家回血抽牌數
     public int DamageDropAmount; //玩家扣血棄牌數
+    public int MoveStatePoint; //移動階段點數
 
     public int MoveToLocation; //玩家將要移動到的位置
 
@@ -55,7 +56,10 @@ public class Player : MonoBehaviour
         {
             TargetLocation = 0;
         }*/
+
         //TargetLocation = MoveToLocation;
+        MoveStatePoint = MoveValue + Stars;
+
         if (PhysicDamage < Defense)
         {
             AllDamaged = MagicDamage;

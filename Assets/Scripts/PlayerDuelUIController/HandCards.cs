@@ -394,6 +394,7 @@ public class HandCards : MonoBehaviour
             if(ThisPlayer.GetComponent<Player>().Hp == ThisPlayer.GetComponent<Player>().MaxHp)
             {
                 ThisPlayer.GetComponent<Player>().HealthDrawAmount = 0;
+                yield return new WaitForSeconds(0.5f);
                 ThisPlayer.GetComponent<Player>().isReady = true;
                 yield break;
             }
@@ -425,13 +426,7 @@ public class HandCards : MonoBehaviour
             yield return 0;
         }
         yield return new WaitForSeconds(0.5f);
-        for (int j = 0; j < ThisPlayer.GetComponent<Player>().HealthDrawAmount; j++)
-        {
-            transform.GetChild(index: transform.childCount - (j+1)).gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.5f);
-        }
         ThisPlayer.GetComponent<Player>().HealthDrawAmount = 0;
-        yield return new WaitForSeconds(1f);
         ThisPlayer.GetComponent<Player>().isReady = true;
     }
     public IEnumerator TrashCardBackDeck()
