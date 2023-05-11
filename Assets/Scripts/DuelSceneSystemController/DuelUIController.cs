@@ -123,9 +123,5 @@ public class DuelUIController : MonoBehaviour
         player_handcards.HealthDrawCard();
         enemy_handcards.HealthDrawCard();
         yield return 0;
-        /*yield return new WaitForSeconds(0.5f);
-        ThePlayer.isReady = true;
-        TheEnemy.isReady = true;
-        yield return 0;*/
     }
 }

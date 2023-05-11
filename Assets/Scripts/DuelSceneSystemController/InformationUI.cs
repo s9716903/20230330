@@ -11,6 +11,9 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     public TextMeshProUGUI CardValueDown;
     public Image CardIconUp;
     public Image CardIconDown;
+    public TextMeshProUGUI CardExplainUp;
+    public TextMeshProUGUI CardExplainDown;
+
     private bool isopenInformationUI;
     public static bool readCardInformation;
 
@@ -47,7 +50,6 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
             readCardInformation = false;
             gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-300, 0, 0);
         }
-
     }
     public void OnPointerEnter(PointerEventData pointerEventData)
     {

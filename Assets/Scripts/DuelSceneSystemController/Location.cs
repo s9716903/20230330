@@ -7,13 +7,17 @@ using UnityEngine.UI;
 public class Location : MonoBehaviour,IPointerClickHandler
 {
     public bool canStop; //可以停留在此 
+
+    private Image Icon;
+
     public GameObject ThisPlayer;
     private GameObject Player;
     private void Start()
     {
         canStop = false;
         Player = GameObject.Find("Player");
-        gameObject.GetComponent<Image>().enabled = false;
+        Icon = gameObject.GetComponent<Image>();
+        Icon.enabled = false;
     }
     private void Update()
     {
@@ -36,11 +40,11 @@ public class Location : MonoBehaviour,IPointerClickHandler
 
         if (ThisPlayer == Player && canStop == true && DuelStateManager.duelStateType == GameState.DuelStateMode.Move && ThisPlayer.GetComponent<Player>().canMove && ThisPlayer.GetComponent<Player>().isReady == false)
         {
-            gameObject.GetComponent<Image>().enabled = true;
+            Icon.enabled = true;
         }
         else
         {
-            gameObject.GetComponent<Image>().enabled = false;
+            Icon.enabled = false;
         }
 
     }
