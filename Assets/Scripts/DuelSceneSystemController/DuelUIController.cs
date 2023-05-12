@@ -14,10 +14,13 @@ public class DuelUIController : MonoBehaviour
     public GameObject ReadyButton;
     public GameObject MoveResultUI;
     public GameObject ATKResultUI;
+    public GameObject DuelEndUI;
 
     public static bool startMoveStateResult;
     public static bool startAttackStateResult;
     public static bool resultEnd;
+    public static bool player1lose;
+    public static bool player2lose;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +28,12 @@ public class DuelUIController : MonoBehaviour
         startMoveStateResult = false;
         startAttackStateResult = false;
         resultEnd = false;
+        player1lose = false;
+        player2lose = false;
 
         MoveResultUI.SetActive(false);
         ATKResultUI.SetActive(false);
+        DuelEndUI.SetActive(false);
         Duelstatemanager.SetActive(false);
         DuelTimer.SetActive(false);
         ReadyButton.SetActive(false);
@@ -114,14 +120,32 @@ public class DuelUIController : MonoBehaviour
         Player2.SetActive(false);
         ATKResultUI.SetActive(true);
         yield return StartCoroutine(ATKResultUI.GetComponent<AttackResult>().StartResult());
-        ATKResultUI.SetActive(false);
-        Player1.SetActive(true);
-        Player2.SetActive(true);
-        player_handcards.ShowHandCard();
-        enemy_handcards.ShowHandCard();
-        yield return new WaitForSeconds(1f);
-        player_handcards.HealthDrawCard();
-        enemy_handcards.HealthDrawCard();
-        yield return 0;
+        if (player1lose || player2lose)
+        {
+            if (player1lose)
+            {
+                ATKResultUI.SetActive(false);
+                DuelEndUI.SetActive(true);
+                yield break;
+            }
+            else if (player2lose)
+            {
+                ATKResultUI.SetActive(false);
+                DuelEndUI.SetActive(true);
+                yield break;
+            }
+        }
+        else
+        {
+            ATKResultUI.SetActive(false);
+            Player1.SetActive(true);
+            Player2.SetActive(true);
+            player_handcards.ShowHandCard();
+            enemy_handcards.ShowHandCard();
+            yield return new WaitForSeconds(1f);
+            player_handcards.HealthDrawCard();
+            enemy_handcards.HealthDrawCard();
+            yield return 0;
+        }
     }
 }

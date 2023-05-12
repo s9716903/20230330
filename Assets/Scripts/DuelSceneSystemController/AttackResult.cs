@@ -53,32 +53,49 @@ public class AttackResult : MonoBehaviour
     {
         var player = Player.GetComponent<Player>();
         var enemy = Enemy.GetComponent<Player>();
+        var player_hp = player.Hp + player.HealthDrawAmount;
+        var enemy_hp = enemy.Hp + enemy.HealthDrawAmount;
+        if (player_hp > player.MaxHp)
+        {
+            player_hp = player.MaxHp;
+        }
+        if (enemy_hp > enemy.MaxHp)
+        {
+            enemy_hp = enemy.MaxHp;
+        }
         yield return new WaitForSeconds(1f);
         Player1Value.SetActive(true);
         Player2Value.SetActive(true);
         yield return new WaitForSeconds(1f);
         PlayerTotalDamaged.SetActive(true);
         Player2TotalDamaged.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         if (player.isFirstATK)
         {
-            if ((enemy.Hp + enemy.HealthDrawAmount) <= enemy.AllDamaged)
+            if (enemy_hp <= enemy.AllDamaged)
             {
                 Player2Life.GetComponent<TextMeshProUGUI>().text = "Die";
                 Player2Life.SetActive(true);
+                yield return new WaitForSeconds(2);
+                DuelUIController.player2lose = true;
+                yield break;
+
             }
-            else if ((enemy.Hp + enemy.HealthDrawAmount) > enemy.AllDamaged)
+            else if (enemy_hp > enemy.AllDamaged)
             {
                 Player2Life.GetComponent<TextMeshProUGUI>().text = "Alive";
                 Player2Life.SetActive(true);
             }
-            yield return new WaitForSeconds(1);
-            if ((player.Hp + player.HealthDrawAmount) <= player.AllDamaged)
+            yield return new WaitForSeconds(2);
+            if (player_hp <= player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
                 Player1Life.SetActive(true);
+                yield return new WaitForSeconds(2);
+                DuelUIController.player1lose = true;
+                yield break;
             }
-            else if ((player.Hp + player.HealthDrawAmount) > player.AllDamaged)
+            else if (player_hp > player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Alive";
                 Player1Life.SetActive(true);
@@ -86,23 +103,29 @@ public class AttackResult : MonoBehaviour
         }
         else if (enemy.isFirstATK)
         {
-            if ((player.Hp + player.HealthDrawAmount) <= player.AllDamaged)
+            if (player_hp <= player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
                 Player1Life.SetActive(true);
+                yield return new WaitForSeconds(2);
+                DuelUIController.player1lose = true;
+                yield break;
             }
-            else if ((player.Hp + player.HealthDrawAmount) > player.AllDamaged)
+            else if (player_hp > player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Alive";
                 Player1Life.SetActive(true);
             }
             yield return new WaitForSeconds(1);
-            if ((enemy.Hp + enemy.HealthDrawAmount) <= enemy.AllDamaged)
+            if (enemy_hp <= enemy.AllDamaged)
             {
                 Player2Life.GetComponent<TextMeshProUGUI>().text = "Die";
                 Player2Life.SetActive(true);
+                yield return new WaitForSeconds(2);
+                DuelUIController.player2lose = true;
+                yield break;
             }
-            else if ((enemy.Hp + enemy.HealthDrawAmount) > enemy.AllDamaged)
+            else if (enemy_hp > enemy.AllDamaged)
             {
                 Player2Life.GetComponent<TextMeshProUGUI>().text = "Alive";
                 Player2Life.SetActive(true);
