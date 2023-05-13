@@ -12,7 +12,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
 
     //CardState
     public bool isCardUp; //卡片是否為正位置(判斷用上半還是下半效果)
-    private bool canUseThisCard; //該卡片是否能用(判斷此時能否使用(非丟棄)) 
+    public bool canUseThisCard; //該卡片是否能用(判斷此時能否使用(非丟棄)) 
     private bool canChangeUpOrDown; 
 
     //CardState(UsingState)
@@ -160,16 +160,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                     //滑鼠左鍵卡片時
                     if (pointerEventData.button == PointerEventData.InputButton.Left && !CardTurnOver.isChangeUpOrDown)
                     {
-                            if (!canUseThisCard)
-                            {
-                                isDropThisCard = !isDropThisCard;
-                                DropCard();
-                            }
-                            else
-                            {
-                                isUseThisCard = !isUseThisCard;
-                                UseCard();
-                            }
+                        ChooseUseCard();
                     }
                     if (pointerEventData.button == PointerEventData.InputButton.Right && canChangeUpOrDown) //滑鼠右鍵卡片時卡片翻轉+更換資料
                     {
@@ -188,13 +179,41 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                     //滑鼠左鍵卡片時
                     if (pointerEventData.button == PointerEventData.InputButton.Left)
                     {
-                            DamagedDropCard = !DamagedDropCard;
-                            DamageDropCard();
+                        ChooseDamageDropCard();
                     }
                 }
             }
         }
     }
+    public void ChooseUseCard()
+    {
+        if (!canUseThisCard)
+        {
+            isDropThisCard = !isDropThisCard;
+            if (isPlayerUse)
+            {
+                DropCard();
+            }
+        }
+        else
+        {
+            isUseThisCard = !isUseThisCard;
+            if (isPlayerUse)
+            {
+                UseCard();
+            }
+        }
+    }
+
+    public void ChooseDamageDropCard()
+    {
+        DamagedDropCard = !DamagedDropCard;
+        if (isPlayerUse)
+        {
+            DamageDropCard();
+        }
+    }
+
     private void UseCard() //卡片被使用時
     {
         if (isUseThisCard)

@@ -93,6 +93,7 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
         if (player.isReady && enemy.isReady)
         {
             StateTimer.startTime = 0;
+            StateTimer.pauseStateTime = false;
         }
         if (StateTimer.stopStateTime == true)
         {
@@ -172,6 +173,7 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
         if (player.isReady && enemy.isReady)
         {
             StateTimer.startTime = 0;
+            StateTimer.pauseStateTime = false;
         }
         if (StateTimer.stopStateTime == true)
         {

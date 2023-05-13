@@ -60,13 +60,13 @@ public class MoveResult : MonoBehaviour
     {
         var player = Player.GetComponent<Player>();
         var enemy = Enemy.GetComponent<Player>();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         Player1Value.SetActive(true);
         Player2Value.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         PlayerTotal.SetActive(true);
         Player2Total.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         if (player.MoveStatePoint < enemy.MoveStatePoint)
         {
             SecondAttackText.SetActive(true);

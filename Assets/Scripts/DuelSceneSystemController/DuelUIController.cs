@@ -30,6 +30,7 @@ public class DuelUIController : MonoBehaviour
         resultEnd = false;
         player1lose = false;
         player2lose = false;
+        
 
         MoveResultUI.SetActive(false);
         ATKResultUI.SetActive(false);
@@ -60,7 +61,6 @@ public class DuelUIController : MonoBehaviour
         {
             StartCoroutine(AttackStateResult());
         }
-
     }
     public IEnumerator StartDuel()
     {

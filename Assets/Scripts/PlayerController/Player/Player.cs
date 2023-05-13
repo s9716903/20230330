@@ -42,23 +42,16 @@ public class Player : MonoBehaviour
 
         MaxHp = GetComponent<JobManager>().thisJob.TheMaxHp;
         Defense = GetComponent<JobManager>().thisJob.TheDefense;
+        Hp = GetComponent<JobManager>().thisJob.TheHP;
         MoveValue = 0;
         Stars = 0;
         MoveToLocation = TargetLocation;
         Debug.Log(MaxHp);
+        Debug.Log(Hp);
         Debug.Log(Defense);
     }
     private void Update()
     {
-        /*if (TargetLocation >= groundLocation.GetComponent<Ground>().Locations)
-        {
-            TargetLocation = groundLocation.GetComponent<Ground>().Locations - 1;
-        }
-        if (TargetLocation < 0)
-        {
-            TargetLocation = 0;
-        }*/
-
         //TargetLocation = MoveToLocation;
         MoveStatePoint = MoveValue + Stars;
 

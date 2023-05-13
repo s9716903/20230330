@@ -18,6 +18,7 @@ public class DuelStateManager : MonoBehaviour
     public static bool showStateText;
     public static bool canInterect; //玩家是否可以與特定東西互動
 
+
     // Start is called before the first frame update
     private void Awake()
     {

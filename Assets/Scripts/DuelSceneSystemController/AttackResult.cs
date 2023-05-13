@@ -23,9 +23,13 @@ public class AttackResult : MonoBehaviour
     public GameObject Player1Life;
     public GameObject Player2Life;
 
+    private AudioSource audiosource;
+    public AudioClip[] audioClips;
+
     // Start is called before the first frame update
     private void OnEnable()
     {
+        audiosource = GetComponent<AudioSource>();
         Player1Value.SetActive(false);
         Player2Value.SetActive(false);
         PlayerTotalDamaged.SetActive(false);
@@ -34,7 +38,6 @@ public class AttackResult : MonoBehaviour
         Player2Life.SetActive(false);
         StartCoroutine(StartResult());
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -43,11 +46,11 @@ public class AttackResult : MonoBehaviour
         Player1PhysicATKValueText.text = ":" + enemy.PhysicDamage.ToString();
         Player1MagicATKValueText.text = ":" + enemy.MagicDamage.ToString();
         Player1DrawValueText.text = ":" + player.HealthDrawAmount.ToString();
-        PlayerTotalDamagedValueText.text = player.AllDamaged.ToString();
+        PlayerTotalDamagedValueText.text = "-" + player.AllDamaged.ToString();
         Player2PhysicATKValueText.text = player.PhysicDamage.ToString() + ":";
         Player2MagicATKValueText.text = player.MagicDamage.ToString() + ":";
         Player2DrawValueText.text = enemy.HealthDrawAmount.ToString() + ":";
-        Player2TotalDamagedValueText.text = enemy.AllDamaged.ToString();
+        Player2TotalDamagedValueText.text = "-" + enemy.AllDamaged.ToString();
     }
     public IEnumerator StartResult()
     {
@@ -64,14 +67,22 @@ public class AttackResult : MonoBehaviour
             enemy_hp = enemy.MaxHp;
         }
         yield return new WaitForSeconds(1f);
-        Player1Value.SetActive(true);
-        Player2Value.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        PlayerTotalDamaged.SetActive(true);
-        Player2TotalDamaged.SetActive(true);
-        yield return new WaitForSeconds(2f);
         if (player.isFirstATK)
         {
+            Player2Value.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            Player2TotalDamaged.SetActive(true);
+            if (player.TargetLocation == enemy.TargetLocation)
+            {
+                audiosource.clip = audioClips[0];
+                audiosource.Play();
+            }
+            else
+            {
+                audiosource.clip = audioClips[1];
+                audiosource.Play();
+            }
+            yield return new WaitForSeconds(2f);
             if (enemy_hp <= enemy.AllDamaged)
             {
                 Player2Life.GetComponent<TextMeshProUGUI>().text = "Die";
@@ -87,6 +98,20 @@ public class AttackResult : MonoBehaviour
                 Player2Life.SetActive(true);
             }
             yield return new WaitForSeconds(2);
+            Player1Value.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            PlayerTotalDamaged.SetActive(true);
+            if (player.TargetLocation == enemy.TargetLocation)
+            {
+                audiosource.clip = audioClips[0];
+                audiosource.Play();
+            }
+            else
+            {
+                audiosource.clip = audioClips[1];
+                audiosource.Play();
+            }
+            yield return new WaitForSeconds(2f);
             if (player_hp <= player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
@@ -103,6 +128,20 @@ public class AttackResult : MonoBehaviour
         }
         else if (enemy.isFirstATK)
         {
+            Player1Value.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            PlayerTotalDamaged.SetActive(true);
+            if (player.TargetLocation == enemy.TargetLocation)
+            {
+                audiosource.clip = audioClips[0];
+                audiosource.Play();
+            }
+            else
+            {
+                audiosource.clip = audioClips[1];
+                audiosource.Play();
+            }
+            yield return new WaitForSeconds(2f);
             if (player_hp <= player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
@@ -117,6 +156,20 @@ public class AttackResult : MonoBehaviour
                 Player1Life.SetActive(true);
             }
             yield return new WaitForSeconds(1);
+            Player2Value.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            Player2TotalDamaged.SetActive(true);
+            if (player.TargetLocation == enemy.TargetLocation)
+            {
+                audiosource.clip = audioClips[0];
+                audiosource.Play();
+            }
+            else
+            {
+                audiosource.clip = audioClips[1];
+                audiosource.Play();
+            }
+            yield return new WaitForSeconds(2f);
             if (enemy_hp <= enemy.AllDamaged)
             {
                 Player2Life.GetComponent<TextMeshProUGUI>().text = "Die";
@@ -131,6 +184,6 @@ public class AttackResult : MonoBehaviour
                 Player2Life.SetActive(true);
             }
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
     }
 }

@@ -333,7 +333,7 @@ SortingGroup:
   m_GameObject: {fileID: 2993796187430144026}
   m_Enabled: 1
   m_SortingLayerID: 1428611937
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
 --- !u!65 &-478700616764650196
 BoxCollider:
@@ -404,7 +404,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3111339761244642535, guid: 18cdaf7b9a41e7c42b77b213494ab316, type: 2}
+  - {fileID: 4845093087293862658, guid: 18cdaf7b9a41e7c42b77b213494ab316, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18cdaf7b9a41e7c42b77b213494ab316, type: 2}
-  m_sharedMaterial: {fileID: 3111339761244642535, guid: 18cdaf7b9a41e7c42b77b213494ab316, type: 2}
+  m_sharedMaterial: {fileID: 4845093087293862658, guid: 18cdaf7b9a41e7c42b77b213494ab316, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -574,7 +574,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3111339761244642535, guid: 18cdaf7b9a41e7c42b77b213494ab316, type: 2}
+  - {fileID: 4845093087293862658, guid: 18cdaf7b9a41e7c42b77b213494ab316, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -621,7 +621,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18cdaf7b9a41e7c42b77b213494ab316, type: 2}
-  m_sharedMaterial: {fileID: 3111339761244642535, guid: 18cdaf7b9a41e7c42b77b213494ab316, type: 2}
+  m_sharedMaterial: {fileID: 4845093087293862658, guid: 18cdaf7b9a41e7c42b77b213494ab316, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

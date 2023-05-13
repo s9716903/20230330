@@ -9,9 +9,11 @@ public class StateTimer : MonoBehaviour
     public static int startTime; //起始時間
     public static bool isStartTime; //每隔一秒執行一次
     public static bool stopStateTime; //是否停止計時器
+    public static bool pauseStateTime;
     // Start is called before the first frame update
     void Start()
     {
+        pauseStateTime = false;
         timer_text = GetComponent<TextMeshProUGUI>();
     }
     public IEnumerator StartToTime()
@@ -31,7 +33,7 @@ public class StateTimer : MonoBehaviour
     void Update()
     {
         timer_text.text = startTime.ToString();
-        if (isStartTime == true)
+        if (isStartTime == true && !pauseStateTime)
         {
             StartCoroutine("StartToTime");
             isStartTime = false;

@@ -15,12 +15,12 @@ public class HandCards : MonoBehaviour
     private GridLayoutGroup gridLayoutGroup; //HandCardZone Group
 
     public int[,] TypeValue;  //卡片數值種類
-
+    public int AttackResultHP;
 
     void Start()
     {
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        ThisPlayer.GetComponent<Player>().NormalDrawAmount = 5;
+        ThisPlayer.GetComponent<Player>().NormalDrawAmount = ThisPlayer.GetComponent<Player>().Hp;
         StartCoroutine(NormalDraw());
     }
     // Update is called once per frame
@@ -34,7 +34,14 @@ public class HandCards : MonoBehaviour
             { ThisPlayer.GetComponent<Player>().HealthDrawAmount }
         }; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
 
-        ThisPlayer.GetComponent<Player>().Hp = HandAllCard.Count;
+        if (DuelStateManager.duelStateType == GameState.DuelStateMode.AttackResult && DuelStateManager.playerStateType == GameState.PlayerStateMode.NoDoThing)
+        {
+            ThisPlayer.GetComponent<Player>().Hp = AttackResultHP;
+        }
+        else
+        {
+            ThisPlayer.GetComponent<Player>().Hp = HandAllCard.Count;
+        }       
 
         for (int b = 0; b < transform.childCount; b++) //判斷底下的卡片是否能與滑鼠互動
         {
@@ -128,6 +135,17 @@ public class HandCards : MonoBehaviour
             }
         }
     }
+    public void HowManyAttackResultHP()
+    {
+        AttackResultHP = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (!transform.GetChild(i).gameObject.activeInHierarchy)
+            {
+                AttackResultHP++;
+            }
+        }
+    }
 
     public void PlayerIsReady()
     {
@@ -199,6 +217,7 @@ public class HandCards : MonoBehaviour
             }
             Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
         }
+        HowManyAttackResultHP();
     }
     public void PlayerDamageReady()
     {
@@ -263,6 +282,7 @@ public class HandCards : MonoBehaviour
                 }
             }
             Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
+            HowManyAttackResultHP();
         }
         else if (ThisPlayer.GetComponent<Player>().canMove == false && ThisPlayer.GetComponent<Player>().isReady == false && DuelStateManager.duelStateType == GameState.DuelStateMode.AttackResult)
         {
@@ -354,7 +374,7 @@ public class HandCards : MonoBehaviour
             var thisdeckcard = PlayerDeck.transform.GetChild(0).gameObject;
             while (thisdeckcard.transform.position != transform.position)
             {
-                thisdeckcard.transform.position = Vector3.MoveTowards(thisdeckcard.transform.position, transform.position, 250 * Time.deltaTime);
+                thisdeckcard.transform.position = Vector3.MoveTowards(thisdeckcard.transform.position, transform.position, 300 * Time.deltaTime);
                 yield return 0;
             }
             HandAllCard.Add(PlayerDeck.GetComponent<Deck>().DeckAllCard[0]); //卡牌加入手牌List
@@ -412,7 +432,7 @@ public class HandCards : MonoBehaviour
             var thisdeckcard = PlayerDeck.transform.GetChild(0).gameObject;
             while (thisdeckcard.transform.position != transform.position)
             {
-                thisdeckcard.transform.position = Vector3.MoveTowards(thisdeckcard.transform.position, transform.position, 250 * Time.deltaTime);
+                thisdeckcard.transform.position = Vector3.MoveTowards(thisdeckcard.transform.position, transform.position, 300 * Time.deltaTime);
                 yield return 0;
             }
             HandAllCard.Add(PlayerDeck.GetComponent<Deck>().DeckAllCard[0]); //卡牌加入手牌List
