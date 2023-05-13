@@ -56,8 +56,8 @@ public class AttackResult : MonoBehaviour
     {
         var player = Player.GetComponent<Player>();
         var enemy = Enemy.GetComponent<Player>();
-        var player_hp = player.Hp + player.HealthDrawAmount;
-        var enemy_hp = enemy.Hp + enemy.HealthDrawAmount;
+        var player_hp = player.AttackResultHP + player.HealthDrawAmount;
+        var enemy_hp = enemy.AttackResultHP + enemy.HealthDrawAmount;
         if (player_hp > player.MaxHp)
         {
             player_hp = player.MaxHp;

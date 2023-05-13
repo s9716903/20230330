@@ -370,6 +370,8 @@ public class ReadyState : IState //準備進入結算階段(引用IState的運行模式)
         }
         else if (DuelStateManager.duelStateType == GameState.DuelStateMode.Attack)
         {
+            player_handcards.HowManyAttackResultHP();
+            enemy_handcards.HowManyAttackResultHP();
             player_handcards.PlayerIdleReady();
             enemy_handcards.PlayerIdleReady();
         }
