@@ -10,6 +10,7 @@ public class EnemyAIController : MonoBehaviour
     public int MaxThinkingTime;
     public int ThinkingTime;
   
+
     public int HowManyCardCanUse;
     public int HowManyCardUsing;
 
@@ -24,7 +25,7 @@ public class EnemyAIController : MonoBehaviour
         HowManyCardCanUse = 0;
         HowManyCardUsing = 0;
         AIDoThing = false;
-        ThinkingTime = Random.Range(LeastThinkingTime, MaxThinkingTime);
+        //ThinkingTime = Random.Range(LeastThinkingTime, MaxThinkingTime);
     }
 
     // Update is called once per frame
@@ -32,21 +33,21 @@ public class EnemyAIController : MonoBehaviour
     {
         if (DuelStateManager.duelStateType == GameState.DuelStateMode.Move && DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing)
         {
-            if ((StateTimer.startTime == ThinkingTime || ThisEnemy.GetComponent<Player>().isReady == true) && AIDoThing == false)
+            if ((StateTimer.startTime == 50 || ThisEnemy.GetComponent<Player>().isReady == true) && AIDoThing == false)
             {
                 StartCoroutine(MoveState());
             }
         }
         else if (DuelStateManager.duelStateType == GameState.DuelStateMode.Attack && DuelStateManager.playerStateType == GameState.PlayerStateMode.DoThing)
         {
-            if ((StateTimer.startTime == ThinkingTime || ThisEnemy.GetComponent<Player>().isReady) && AIDoThing == false)
+            if ((StateTimer.startTime == 50 || ThisEnemy.GetComponent<Player>().isReady) && AIDoThing == false)
             {
                 StartCoroutine(AttackState());
             }
         }
         else if (DuelStateManager.duelStateType == GameState.DuelStateMode.AttackResult && DuelStateManager.playerStateType == GameState.PlayerStateMode.Damage)
         {
-            if ((StateTimer.startTime == ThinkingTime || ThisEnemy.GetComponent<Player>().isReady) && AIDoThing == false)
+            if ((StateTimer.startTime == 20 || ThisEnemy.GetComponent<Player>().isReady) && AIDoThing == false)
             {
                 StartCoroutine(DamageState());
             }
@@ -75,7 +76,7 @@ public class EnemyAIController : MonoBehaviour
     public IEnumerator MoveState()
     {
         AIDoThing = true;
-        ThinkingTime = Random.Range(LeastThinkingTime, MaxThinkingTime);
+        //ThinkingTime = Random.Range(LeastThinkingTime, MaxThinkingTime);
         yield return StartCoroutine(CanUseThisCard());
         if (ThisEnemy.GetComponent<Player>().isReady == true)
         {
@@ -83,17 +84,20 @@ public class EnemyAIController : MonoBehaviour
         }
         var AIplayeer = ThisPlayer.GetComponent<Player>();
         var handcard = GetComponent<HandCards>();
-        var howmanyuse = Random.Range(0, HowManyCardCanUse - 1);
+        //var howmanyuse = Random.Range(0, HowManyCardCanUse - 1);
+        var howmanyuse = 0;
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).GetComponent<CardManager>().ID == 0 && HowManyCardUsing <= howmanyuse)
             {
                 transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseUseCard();
                 ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
+                HowManyCardUsing++;
             }
             else if (transform.GetChild(i).GetComponent<CardManager>().ID == 3 && HowManyCardUsing <= howmanyuse)
             {
                 transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseUseCard();
+                HowManyCardUsing++;
             }
         }
         handcard.PlayerCardValueReady();
@@ -113,7 +117,7 @@ public class EnemyAIController : MonoBehaviour
     public IEnumerator AttackState()
     {
         AIDoThing = true;
-        ThinkingTime = Random.Range(LeastThinkingTime, MaxThinkingTime);
+        //ThinkingTime = Random.Range(LeastThinkingTime, MaxThinkingTime);
         yield return StartCoroutine(CanUseThisCard());
         if (ThisEnemy.GetComponent<Player>().isReady == true)
         {
@@ -121,11 +125,8 @@ public class EnemyAIController : MonoBehaviour
         }
         var AIplayeer = ThisPlayer.GetComponent<Player>();
         var handcard = GetComponent<HandCards>();
-        var howmanyuse = Random.Range(0, HowManyCardCanUse - 1);
-        if (!AIplayeer.isFirstATK)
-        {
-            howmanyuse = 0;
-        }
+        //var howmanyuse = Random.Range(0, HowManyCardCanUse - 1);
+        var howmanyuse = 0;
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).GetComponent<CardManager>().ID == 1 && HowManyCardUsing <= howmanyuse)
@@ -166,7 +167,7 @@ public class EnemyAIController : MonoBehaviour
     {
         AIDoThing = true;
         HowManyCardUsing = 0;
-        ThinkingTime = Random.Range(LeastThinkingTime,30);
+        //ThinkingTime = Random.Range(LeastThinkingTime,30);
         if (ThisEnemy.GetComponent<Player>().isReady == true)
         {
             yield return new WaitForSeconds(1);
