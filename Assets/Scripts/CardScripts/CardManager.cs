@@ -278,6 +278,8 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         InformationUI.InformationDownID = _cardValueManager[1].cardValue.ID;
         InformationUI.InformationUpAttackType = _cardValueManager[0].cardValue.Type;
         InformationUI.InformationDownAttackType = _cardValueManager[1].cardValue.Type;
+        InformationUI.InformationUpName = _cardValueManager[0].cardValue.Name;
+        InformationUI.InformationDownName = _cardValueManager[1].cardValue.Name;
         InformationUI.readCardInformation = true;
         CardInformation.Clear();
         yield return 0;

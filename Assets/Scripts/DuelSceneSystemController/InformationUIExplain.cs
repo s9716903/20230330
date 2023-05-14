@@ -57,6 +57,7 @@ public class InformationUIExplain : MonoBehaviour
         }
         else
         {
+            ExplainUpText.GetComponent<TextMeshProUGUI>().text = InformationUI.InformationUpName;
             ExplainUpText.SetActive(true);
             ExplainUpATK.SetActive(false);
         }
@@ -88,6 +89,7 @@ public class InformationUIExplain : MonoBehaviour
         }
         else
         {
+            ExplainDownText.GetComponent<TextMeshProUGUI>().text = InformationUI.InformationDownName;
             ExplainDownText.SetActive(true);
             ExplainDownATK.SetActive(false);
         }

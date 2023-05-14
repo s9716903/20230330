@@ -18,6 +18,8 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     public static int InformationDownID;
     public static int InformationUpAttackType;
     public static int InformationDownAttackType;
+    public static string InformationUpName;
+    public static string InformationDownName;
 
     private bool isopenInformationUI;
     public static bool readCardInformation;

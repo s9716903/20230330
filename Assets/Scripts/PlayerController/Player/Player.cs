@@ -53,6 +53,14 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        if (MoveToLocation < 0)
+        {
+            MoveToLocation = 0;
+        }
+        else if (MoveToLocation > 4)
+        {
+            MoveToLocation = 4;
+        }
         //TargetLocation = MoveToLocation;
         MoveStatePoint = MoveValue + Stars;
 

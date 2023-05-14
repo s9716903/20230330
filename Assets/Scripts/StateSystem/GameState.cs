@@ -32,6 +32,7 @@ public class DrawState : IState //抽牌階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        EnemyAIController.AIDoThing = false;
         var player = GameObject.Find("Player").GetComponent<Player>();
         var enemy = GameObject.Find("Enemy").GetComponent<Player>();
         var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
@@ -82,7 +83,7 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
         player.isReady = false;
         enemy.isReady = false;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
-        StateTimer.startTime = 30;
+        StateTimer.startTime = 60;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
     }
@@ -118,6 +119,7 @@ public class MoveResultState : IState //移動階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        EnemyAIController.AIDoThing = false;
         ThePlayer = GameObject.Find("Player");
         TheEnemy = GameObject.Find("Enemy");
         DuelUIController.startMoveStateResult = true;
@@ -160,7 +162,7 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
     {
         DuelStateManager.showStateText = true;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
-        StateTimer.startTime = 30;
+        StateTimer.startTime = 60;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
         ThePlayer = GameObject.Find("Player");
@@ -198,6 +200,7 @@ public class AttackResultState : IState //移動階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        EnemyAIController.AIDoThing = false;
         ThePlayer = GameObject.Find("Player");
         TheEnemy = GameObject.Find("Enemy");
         DuelUIController.startAttackStateResult = true;
@@ -207,7 +210,7 @@ public class AttackResultState : IState //移動階段(引用IState的運行模式)
     {
         var player = ThePlayer.GetComponent<Player>();
         var enemy = TheEnemy.GetComponent<Player>();
-        if (player.isReady && enemy.isReady)
+        if (player.isReady && enemy.isReady && DuelStateManager.playerStateType != GameState.PlayerStateMode.Damage)
         {
             player.isReady = false;
             enemy.isReady = false;
