@@ -60,6 +60,7 @@ public class InformationUIExplain : MonoBehaviour
             ExplainUpText.SetActive(true);
             ExplainUpATK.SetActive(false);
         }
+
         if (InformationUI.InformationDownID == 1)
         {
             if (InformationUI.InformationDownAttackType == 0)

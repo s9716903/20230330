@@ -82,7 +82,7 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
         player.isReady = false;
         enemy.isReady = false;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
-        StateTimer.startTime = 10;
+        StateTimer.startTime = 30;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
     }
@@ -160,7 +160,7 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
     {
         DuelStateManager.showStateText = true;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
-        StateTimer.startTime = 10;
+        StateTimer.startTime = 30;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
         ThePlayer = GameObject.Find("Player");
@@ -324,7 +324,7 @@ public class DamageState : IState //傷害處理階段(引用IState的運行模式)
     public void OnEnter()
     {
         DuelStateManager.canInterect = true;
-        StateTimer.startTime = 10;
+        StateTimer.startTime = 30;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
         ThePlayer = GameObject.Find("Player");
