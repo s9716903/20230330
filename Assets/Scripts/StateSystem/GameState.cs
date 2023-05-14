@@ -253,6 +253,8 @@ public class EndState : IState //結束階段(引用IState的運行模式)
         enemy.PhysicDamage = 0;
         enemy.MagicDamage = 0;
         enemy.MoveValue = 0;
+        player.Stars = 0;
+        enemy.Stars = 0;
     }
     public void OnUpdate()
     {

@@ -42,8 +42,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public GameObject Icon2Sprite;
 
     private void OnEnable()
-    {     
-        isCardUp = true;
+    {
         canUseThisCard = false;
         canChangeUpOrDown = true;
 
@@ -56,6 +55,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     }
     private void Start()
     {
+        isCardUp = true;
         /*if (_cardValueManager[0].cardValue.ID == 0)
         {
             Icon1Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[0].cardValue.ID];

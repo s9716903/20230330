@@ -72,7 +72,6 @@ public class Player : MonoBehaviour
         {
             AllDamaged = MagicDamage + (PhysicDamage - Defense);
         }
-
         if (groundLocation.name == "A")
         {
             transform.position = new Vector3(Ground.GetComponent<Ground>().Alocation[TargetLocation].transform.position.x, 5, Ground.GetComponent<Ground>().Alocation[TargetLocation].transform.position.z);

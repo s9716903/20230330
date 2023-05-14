@@ -15,6 +15,7 @@ public class DuelUIController : MonoBehaviour
     public GameObject MoveResultUI;
     public GameObject ATKResultUI;
     public GameObject DuelEndUI;
+    public GameObject DamageDropText;
 
     public static bool startMoveStateResult;
     public static bool startAttackStateResult;
@@ -39,6 +40,7 @@ public class DuelUIController : MonoBehaviour
         DuelTimer.SetActive(false);
         ReadyButton.SetActive(false);
         StateText.SetActive(false);
+        DamageDropText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -60,6 +62,15 @@ public class DuelUIController : MonoBehaviour
         if (startAttackStateResult)
         {
             StartCoroutine(AttackStateResult());
+        }
+
+        if (DuelStateManager.playerStateType == GameState.PlayerStateMode.Damage)
+        {
+            DamageDropText.SetActive(true);
+        }
+        else
+        {
+            DamageDropText.SetActive(false);
         }
     }
     public IEnumerator StartDuel()
