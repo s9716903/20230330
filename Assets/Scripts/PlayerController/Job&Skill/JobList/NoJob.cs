@@ -13,8 +13,8 @@ public class NoJob : SkillManager
         canUseSkill1 = Skill1UnLock;
         canUseSkill2 = Skill2UnLock;
         canUsePassiveSkill = PassiveSkillUnLock;
-        TheMaxHp = 4;
-        TheHP = 3;
+        TheMaxHp = 6;
+        TheHP = 5;
         TheDefense = 1;
     }
     public override void Skill1()

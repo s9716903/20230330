@@ -11,8 +11,15 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     public TextMeshProUGUI CardValueDown;
     public Image CardIconUp;
     public Image CardIconDown;
-    public TextMeshProUGUI CardExplainUp;
-    public TextMeshProUGUI CardExplainDown;
+    public static int[] AttackZoneUP;
+    public static int[] AttackZoneDown;
+
+    public static int InformationUpID;
+    public static int InformationDownID;
+    public static int InformationUpAttackType;
+    public static int InformationDownAttackType;
+    public static string InformationUpName;
+    public static string InformationDownName;
 
     private bool isopenInformationUI;
     public static bool readCardInformation;
@@ -58,5 +65,9 @@ public class InformationUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     public void OnPointerExit(PointerEventData pointerEventData)
     {
         isopenInformationUI = false;
+    }
+    public void Clear()
+    {
+        GetComponent<InformationUIExplain>().ClearInformation();
     }
 }

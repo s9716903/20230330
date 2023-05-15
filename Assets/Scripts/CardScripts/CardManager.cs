@@ -23,6 +23,8 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     //CardStateTrue
     public bool isPlayerUse; //判斷是否能與玩家滑鼠互動
 
+    private AudioSource audioSource;
+    public AudioClip[] audioClip;
 
     [Header("CardValue")]
     public int ID; 
@@ -40,8 +42,7 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public GameObject Icon2Sprite;
 
     private void OnEnable()
-    {     
-        isCardUp = true;
+    {
         canUseThisCard = false;
         canChangeUpOrDown = true;
 
@@ -49,9 +50,12 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         isDropThisCard = false;
         DamagedDropCard = false;
         isPlayerUse = false;
+
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
+        isCardUp = true;
         /*if (_cardValueManager[0].cardValue.ID == 0)
         {
             Icon1Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[0].cardValue.ID];
@@ -160,10 +164,14 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                     //滑鼠左鍵卡片時
                     if (pointerEventData.button == PointerEventData.InputButton.Left && !CardTurnOver.isChangeUpOrDown)
                     {
+                        audioSource.clip = audioClip[0];
+                        audioSource.Play();
                         ChooseUseCard();
                     }
                     if (pointerEventData.button == PointerEventData.InputButton.Right && canChangeUpOrDown) //滑鼠右鍵卡片時卡片翻轉+更換資料
                     {
+                        audioSource.clip = audioClip[1];
+                        audioSource.Play();
                         if (isCardUp == true)
                         {
                             gameObject.GetComponent<CardTurnOver>().CardStartDown();
@@ -179,6 +187,8 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
                     //滑鼠左鍵卡片時
                     if (pointerEventData.button == PointerEventData.InputButton.Left)
                     {
+                        audioSource.clip = audioClip[0];
+                        audioSource.Play();
                         ChooseDamageDropCard();
                     }
                 }
@@ -262,7 +272,16 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         CardInformation.CardIconDown.sprite = Icon2Sprite.GetComponent<SpriteRenderer>().sprite;
         CardInformation.CardValueUp.text = ":" + _cardValueManager[0].cardValue.Value.ToString();
         CardInformation.CardValueDown.text = ":" + _cardValueManager[1].cardValue.Value.ToString();
+        InformationUI.AttackZoneUP = _cardValueManager[0].cardValue.AttackZone;
+        InformationUI.AttackZoneDown = _cardValueManager[1].cardValue.AttackZone;
+        InformationUI.InformationUpID = _cardValueManager[0].cardValue.ID;
+        InformationUI.InformationDownID = _cardValueManager[1].cardValue.ID;
+        InformationUI.InformationUpAttackType = _cardValueManager[0].cardValue.Type;
+        InformationUI.InformationDownAttackType = _cardValueManager[1].cardValue.Type;
+        InformationUI.InformationUpName = _cardValueManager[0].cardValue.Name;
+        InformationUI.InformationDownName = _cardValueManager[1].cardValue.Name;
         InformationUI.readCardInformation = true;
+        CardInformation.Clear();
         yield return 0;
     }
 }

@@ -13,7 +13,7 @@ public class CheatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.T) && Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKey(KeyCode.C) && Input.GetKeyDown(KeyCode.P))
         {
             StateTimer.pauseStateTime = !StateTimer.pauseStateTime;
         }

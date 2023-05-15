@@ -9,9 +9,10 @@ public class Player : MonoBehaviour
     public GameObject groundLocation; //玩家所站區域
 
     //玩家基礎數值
-    public  int MaxHp; //最大血量
-    public  int Hp; //目前血量
-    public  int Defense; //防禦值
+    public int MaxHp; //最大血量
+    public int Hp; //目前血量
+    public int Defense; //防禦值
+    public int AttackResultHP; //計算傷害時用的HP
 
     //決鬥中可變動數值
     public  int MoveValue; //移動值
@@ -52,6 +53,14 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        if (MoveToLocation < 0)
+        {
+            MoveToLocation = 0;
+        }
+        else if (MoveToLocation > 4)
+        {
+            MoveToLocation = 4;
+        }
         //TargetLocation = MoveToLocation;
         MoveStatePoint = MoveValue + Stars;
 
@@ -63,7 +72,6 @@ public class Player : MonoBehaviour
         {
             AllDamaged = MagicDamage + (PhysicDamage - Defense);
         }
-
         if (groundLocation.name == "A")
         {
             transform.position = new Vector3(Ground.GetComponent<Ground>().Alocation[TargetLocation].transform.position.x, 5, Ground.GetComponent<Ground>().Alocation[TargetLocation].transform.position.z);

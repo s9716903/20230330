@@ -15,7 +15,6 @@ public class HandCards : MonoBehaviour
     private GridLayoutGroup gridLayoutGroup; //HandCardZone Group
 
     public int[,] TypeValue;  //卡片數值種類
-    public int AttackResultHP;
 
     void Start()
     {
@@ -34,14 +33,7 @@ public class HandCards : MonoBehaviour
             { ThisPlayer.GetComponent<Player>().HealthDrawAmount }
         }; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
 
-        if (DuelStateManager.duelStateType == GameState.DuelStateMode.AttackResult && DuelStateManager.playerStateType == GameState.PlayerStateMode.NoDoThing)
-        {
-            ThisPlayer.GetComponent<Player>().Hp = AttackResultHP;
-        }
-        else
-        {
-            ThisPlayer.GetComponent<Player>().Hp = HandAllCard.Count;
-        }       
+        ThisPlayer.GetComponent<Player>().Hp = HandAllCard.Count;    
 
         for (int b = 0; b < transform.childCount; b++) //判斷底下的卡片是否能與滑鼠互動
         {
@@ -137,12 +129,12 @@ public class HandCards : MonoBehaviour
     }
     public void HowManyAttackResultHP()
     {
-        AttackResultHP = 0;
+        ThisPlayer.GetComponent<Player>().AttackResultHP = 0;
         for (int i = 0; i < transform.childCount; i++)
         {
             if (!transform.GetChild(i).gameObject.activeInHierarchy)
             {
-                AttackResultHP++;
+                ThisPlayer.GetComponent<Player>().AttackResultHP++;
             }
         }
     }
@@ -217,7 +209,6 @@ public class HandCards : MonoBehaviour
             }
             Debug.Log(ThisPlayer.name + "Draw:" + ThisPlayer.GetComponent<Player>().NormalDrawAmount);
         }
-        HowManyAttackResultHP();
     }
     public void PlayerDamageReady()
     {

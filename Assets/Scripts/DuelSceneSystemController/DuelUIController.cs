@@ -15,6 +15,7 @@ public class DuelUIController : MonoBehaviour
     public GameObject MoveResultUI;
     public GameObject ATKResultUI;
     public GameObject DuelEndUI;
+    public GameObject DamageDropText;
 
     public static bool startMoveStateResult;
     public static bool startAttackStateResult;
@@ -39,6 +40,7 @@ public class DuelUIController : MonoBehaviour
         DuelTimer.SetActive(false);
         ReadyButton.SetActive(false);
         StateText.SetActive(false);
+        DamageDropText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -60,6 +62,15 @@ public class DuelUIController : MonoBehaviour
         if (startAttackStateResult)
         {
             StartCoroutine(AttackStateResult());
+        }
+
+        if (DuelStateManager.playerStateType == GameState.PlayerStateMode.Damage)
+        {
+            DamageDropText.SetActive(true);
+        }
+        else
+        {
+            DamageDropText.SetActive(false);
         }
     }
     public IEnumerator StartDuel()
@@ -118,6 +129,7 @@ public class DuelUIController : MonoBehaviour
         var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
         Player1.SetActive(false);
         Player2.SetActive(false);
+        ReadyButton.SetActive(false);
         ATKResultUI.SetActive(true);
         yield return StartCoroutine(ATKResultUI.GetComponent<AttackResult>().StartResult());
         if (player1lose || player2lose)
@@ -140,6 +152,7 @@ public class DuelUIController : MonoBehaviour
             ATKResultUI.SetActive(false);
             Player1.SetActive(true);
             Player2.SetActive(true);
+            ReadyButton.SetActive(true);
             player_handcards.ShowHandCard();
             enemy_handcards.ShowHandCard();
             yield return new WaitForSeconds(1f);
