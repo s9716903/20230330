@@ -11,6 +11,8 @@ public class MoveResult : MonoBehaviour
     public GameObject Player2Value;
     public GameObject PlayerTotal;
     public GameObject Player2Total;
+    public GameObject Player1Draw;
+    public GameObject Player2Draw;
     public GameObject CoinAni;
     public GameObject Coin;
     public AnimationClip[] CoinTopOrBottom;
@@ -44,6 +46,8 @@ public class MoveResult : MonoBehaviour
         Player2Value.SetActive(false);
         PlayerTotal.SetActive(false);
         Player2Total.SetActive(false);
+        Player1Draw.SetActive(false);
+        Player2Draw.SetActive(false);
         FirstAttackText.SetActive(false);
         SecondAttackText.SetActive(false);
         StartCoroutine(StartResult());
@@ -73,6 +77,9 @@ public class MoveResult : MonoBehaviour
         yield return new WaitForSeconds(1f);
         PlayerTotal.SetActive(true);
         Player2Total.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        Player1Draw.SetActive(true);
+        Player2Draw.SetActive(true);
         yield return new WaitForSeconds(2f);
         if (player.MoveStatePoint < enemy.MoveStatePoint)
         {

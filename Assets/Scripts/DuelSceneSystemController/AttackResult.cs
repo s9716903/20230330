@@ -11,6 +11,8 @@ public class AttackResult : MonoBehaviour
     public GameObject Player2Value;
     public GameObject PlayerTotalDamaged;
     public GameObject Player2TotalDamaged;
+    public GameObject Player1Draw;
+    public GameObject Player2Draw;
 
     public TextMeshProUGUI Player1PhysicATKValueText;
     public TextMeshProUGUI Player1MagicATKValueText;
@@ -34,6 +36,8 @@ public class AttackResult : MonoBehaviour
         Player2Value.SetActive(false);
         PlayerTotalDamaged.SetActive(false);
         Player2TotalDamaged.SetActive(false);
+        Player1Draw.SetActive(false);
+        Player2Draw.SetActive(false);
         Player1Life.SetActive(false);
         Player2Life.SetActive(false);
         StartCoroutine(StartResult());
@@ -83,6 +87,8 @@ public class AttackResult : MonoBehaviour
                 audiosource.clip = audioClips[1];
                 audiosource.Play();
             }
+            yield return new WaitForSeconds(1f);
+            Player2Draw.SetActive(true);
             yield return new WaitForSeconds(2f);
             if (enemy_hp <= enemy.AllDamaged)
             {
@@ -110,7 +116,9 @@ public class AttackResult : MonoBehaviour
                 audiosource.clip = audioClips[1];
                 audiosource.Play();
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1);
+            Player1Draw.SetActive(true);
+            yield return new WaitForSeconds(1);
             if (player_hp <= player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
@@ -141,7 +149,9 @@ public class AttackResult : MonoBehaviour
                 audiosource.clip = audioClips[1];
                 audiosource.Play();
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1);
+            Player1Draw.SetActive(true);
+            yield return new WaitForSeconds(1);
             if (player_hp <= player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
@@ -175,7 +185,9 @@ public class AttackResult : MonoBehaviour
                 audiosource.clip = audioClips[1];
                 audiosource.Play();
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1);
+            Player2Draw.SetActive(true);
+            yield return new WaitForSeconds(2);
             if (enemy_hp <= enemy.AllDamaged)
             {
                 Player2Life.GetComponent<TextMeshProUGUI>().text = "Die";
