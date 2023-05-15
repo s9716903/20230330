@@ -129,6 +129,7 @@ public class DuelUIController : MonoBehaviour
         var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
         Player1.SetActive(false);
         Player2.SetActive(false);
+        ReadyButton.SetActive(false);
         ATKResultUI.SetActive(true);
         yield return StartCoroutine(ATKResultUI.GetComponent<AttackResult>().StartResult());
         if (player1lose || player2lose)
@@ -151,6 +152,7 @@ public class DuelUIController : MonoBehaviour
             ATKResultUI.SetActive(false);
             Player1.SetActive(true);
             Player2.SetActive(true);
+            ReadyButton.SetActive(true);
             player_handcards.ShowHandCard();
             enemy_handcards.ShowHandCard();
             yield return new WaitForSeconds(1f);
