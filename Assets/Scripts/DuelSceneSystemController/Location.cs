@@ -23,21 +23,22 @@ public class Location : MonoBehaviour,IPointerClickHandler
     {
         var PlayerMoveZoneUp = ThisPlayer.GetComponent<Player>().TargetLocation + ThisPlayer.GetComponent<Player>().MoveValue;
         var PlayerMoveZoneDown = ThisPlayer.GetComponent<Player>().TargetLocation - ThisPlayer.GetComponent<Player>().MoveValue;
-      
 
-        if ((gameObject.transform.GetSiblingIndex() >= ThisPlayer.GetComponent<Player>().TargetLocation) && (PlayerMoveZoneUp >= gameObject.transform.GetSiblingIndex()))
+        if (!PracticeLimtedSetting.LimitedOn)
         {
-            canStop = true;
+            if ((gameObject.transform.GetSiblingIndex() >= ThisPlayer.GetComponent<Player>().TargetLocation) && (PlayerMoveZoneUp >= gameObject.transform.GetSiblingIndex()))
+            {
+                canStop = true;
+            }
+            else if ((gameObject.transform.GetSiblingIndex() <= ThisPlayer.GetComponent<Player>().TargetLocation) && (PlayerMoveZoneDown <= gameObject.transform.GetSiblingIndex()))
+            {
+                canStop = true;
+            }
+            else
+            {
+                canStop = false;
+            }
         }
-        else if ((gameObject.transform.GetSiblingIndex() <= ThisPlayer.GetComponent<Player>().TargetLocation) && (PlayerMoveZoneDown <= gameObject.transform.GetSiblingIndex()))
-        {
-            canStop = true;
-        }
-        else
-        {
-            canStop = false;
-        }
-
         if (ThisPlayer == Player && canStop == true && DuelStateManager.duelStateType == GameState.DuelStateMode.Move && ThisPlayer.GetComponent<Player>().canMove && ThisPlayer.GetComponent<Player>().isReady == false)
         {
             Icon.enabled = true;

@@ -69,8 +69,9 @@ public class AttackResult : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (player.isFirstATK)
         {
+            Player1Value.SetActive(true);
             Player2Value.SetActive(true);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2);
             Player2TotalDamaged.SetActive(true);
             if (player.TargetLocation == enemy.TargetLocation)
             {
@@ -98,8 +99,6 @@ public class AttackResult : MonoBehaviour
                 Player2Life.SetActive(true);
             }
             yield return new WaitForSeconds(2);
-            Player1Value.SetActive(true);
-            yield return new WaitForSeconds(2f);
             PlayerTotalDamaged.SetActive(true);
             if (player.TargetLocation == enemy.TargetLocation)
             {
@@ -129,6 +128,7 @@ public class AttackResult : MonoBehaviour
         else if (enemy.isFirstATK)
         {
             Player1Value.SetActive(true);
+            Player2Value.SetActive(true);
             yield return new WaitForSeconds(2f);
             PlayerTotalDamaged.SetActive(true);
             if (player.TargetLocation == enemy.TargetLocation)
@@ -147,17 +147,23 @@ public class AttackResult : MonoBehaviour
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
                 Player1Life.SetActive(true);
                 yield return new WaitForSeconds(2);
-                DuelUIController.player1lose = true;
-                yield break;
+                if (PracticeLimtedSetting.LimitedOn)
+                {
+                    DuelUIController.PracticeEnd = true;
+                    yield break;
+                }
+                else
+                { 
+                    DuelUIController.player1lose = true;
+                    yield break;
+                }
             }
             else if (player_hp > player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Alive";
                 Player1Life.SetActive(true);
             }
-            yield return new WaitForSeconds(1);
-            Player2Value.SetActive(true);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2);
             Player2TotalDamaged.SetActive(true);
             if (player.TargetLocation == enemy.TargetLocation)
             {

@@ -31,7 +31,14 @@ public class MoveResult : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
-        CoinValue = Random.Range(0, 2);
+        if (!PracticeLimtedSetting.LimitedOn)
+        {
+            CoinValue = Random.Range(0, 2);
+        }
+        else
+        {
+            CoinValue = 1;
+        }
         CoinAni.SetActive(false);
         Player1Value.SetActive(false);
         Player2Value.SetActive(false);
@@ -63,7 +70,7 @@ public class MoveResult : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Player1Value.SetActive(true);
         Player2Value.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         PlayerTotal.SetActive(true);
         Player2Total.SetActive(true);
         yield return new WaitForSeconds(2f);

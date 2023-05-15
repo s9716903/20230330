@@ -49,7 +49,7 @@ public class DrawState : IState //抽牌階段(引用IState的運行模式)
     {
         var player = GameObject.Find("Player").GetComponent<Player>();
         var enemy = GameObject.Find("Enemy").GetComponent<Player>();
-        if (player.isReady && enemy.isReady)
+        if (player.isReady && enemy.isReady && !StateTimer.pauseStateTime)
         {
             player.isReady = false;
             enemy.isReady = false;
@@ -75,6 +75,8 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        ReadyButton.LimitedUsing = 0;
+        ReadyButton.PracticeLimited = 0;
         ThePlayer = GameObject.Find("Player");
         TheEnemy = GameObject.Find("Enemy");
         var player = ThePlayer.GetComponent<Player>();
@@ -129,7 +131,7 @@ public class MoveResultState : IState //移動階段(引用IState的運行模式)
     {
         var player = ThePlayer.GetComponent<Player>();
         var enemy = TheEnemy.GetComponent<Player>();
-        if (player.isReady && enemy.isReady)
+        if (player.isReady && enemy.isReady && !StateTimer.pauseStateTime)
         {
             player.isReady = false;
             enemy.isReady = false;
@@ -160,6 +162,8 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        ReadyButton.LimitedUsing = 0;
+        ReadyButton.PracticeLimited = 0;
         DuelStateManager.showStateText = true;
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
         StateTimer.startTime = 60;
@@ -210,7 +214,7 @@ public class AttackResultState : IState //移動階段(引用IState的運行模式)
     {
         var player = ThePlayer.GetComponent<Player>();
         var enemy = TheEnemy.GetComponent<Player>();
-        if (player.isReady && enemy.isReady && DuelStateManager.playerStateType != GameState.PlayerStateMode.Damage)
+        if (player.isReady && enemy.isReady && DuelStateManager.playerStateType != GameState.PlayerStateMode.Damage && !StateTimer.pauseStateTime)
         {
             player.isReady = false;
             enemy.isReady = false;
@@ -237,6 +241,8 @@ public class EndState : IState //結束階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        PracticeLimtedSetting.PracticeTurn += 1;
+
         var player = GameObject.Find("Player").GetComponent<Player>();
         var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
         var enemy = GameObject.Find("Enemy").GetComponent<Player>();
@@ -260,7 +266,7 @@ public class EndState : IState //結束階段(引用IState的運行模式)
     {
         var player = GameObject.Find("Player").GetComponent<Player>();
         var enemy = GameObject.Find("Enemy").GetComponent<Player>();
-        if (player.isReady && enemy.isReady)
+        if (player.isReady && enemy.isReady && !StateTimer.pauseStateTime)
         {
             player.isReady = false;
             enemy.isReady = false;
@@ -328,6 +334,8 @@ public class DamageState : IState //傷害處理階段(引用IState的運行模式)
     }
     public void OnEnter()
     {
+        ReadyButton.LimitedUsing = 0;
+        ReadyButton.PracticeLimited = 0;
         DuelStateManager.canInterect = true;
         StateTimer.startTime = 30;
         StateTimer.isStartTime = true;

@@ -56,36 +56,6 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     private void Start()
     {
         isCardUp = true;
-        /*if (_cardValueManager[0].cardValue.ID == 0)
-        {
-            Icon1Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[0].cardValue.ID];
-            Icon1Value.GetComponent<TextMeshPro>().text = _cardValueManager[0].cardValue.Value.ToString();
-        }
-        if (_cardValueManager[1].cardValue.ID == 0)
-        {
-            Icon2Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[1].cardValue.ID];
-            Icon2Value.GetComponent<TextMeshPro>().text = _cardValueManager[1].cardValue.Value.ToString();
-        }
-        if (_cardValueManager[0].cardValue.ID == 1)
-        {
-            Icon1Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[0].cardValue.Type + 1];
-            Icon1Value.GetComponent<TextMeshPro>().text = _cardValueManager[0].cardValue.Value.ToString();
-        }
-        if (_cardValueManager[1].cardValue.ID == 1)
-        {
-            Icon2Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[1].cardValue.Type + 1];
-            Icon2Value.GetComponent<TextMeshPro>().text = _cardValueManager[1].cardValue.Value.ToString();
-        }
-        if (_cardValueManager[0].cardValue.ID >= 2)
-        {
-            Icon1Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[0].cardValue.ID + 1];
-            Icon1Value.GetComponent<TextMeshPro>().text = _cardValueManager[0].cardValue.Value.ToString();
-        }
-        if (_cardValueManager[1].cardValue.ID >= 2)
-        {
-            Icon2Sprite.GetComponent<SpriteRenderer>().sprite = IconList[_cardValueManager[1].cardValue.ID + 1];
-            Icon2Value.GetComponent<TextMeshPro>().text = _cardValueManager[1].cardValue.Value.ToString();
-        }*/
     }
     // Update is called once per frame
     void Update()
@@ -230,11 +200,21 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         {
             transform.position += new Vector3(0,0,10);
             canChangeUpOrDown = false;
+            ReadyButton.LimitedUsing += 1;
+            if (PracticeLimtedSetting.LimitedOn)
+            {
+                ReadyButton.PracticeLimited += 1;
+            }
         }
         else
         {
             transform.position -= new Vector3(0, 0,10);
             canChangeUpOrDown = true;
+            ReadyButton.LimitedUsing -= 1;
+            if (PracticeLimtedSetting.LimitedOn)
+            {
+                ReadyButton.PracticeLimited -= 1;
+            }
         }
     }
 
@@ -244,11 +224,13 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         {
             transform.position += new Vector3(0, 0, 10);
             canChangeUpOrDown = false;
+            ReadyButton.LimitedUsing += 1;
         }
         else
         {
             transform.position -= new Vector3(0, 0, 10);
             canChangeUpOrDown = true;
+            ReadyButton.LimitedUsing -= 1;
         }
     }
 
@@ -258,11 +240,19 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         {
             transform.position += new Vector3(0, 0, 10);
             canChangeUpOrDown = false;
+            if (PracticeLimtedSetting.LimitedOn)
+            {
+                ReadyButton.PracticeLimited += 1;
+            }
         }
         else
         {
             transform.position -= new Vector3(0, 0, 10);
             canChangeUpOrDown = true;
+            if (PracticeLimtedSetting.LimitedOn)
+            {
+                ReadyButton.PracticeLimited -= 1;
+            }
         }
     }
     public IEnumerator ReadCardInformation()
