@@ -51,7 +51,7 @@ public class PracticeLimtedSetting : MonoBehaviour
             }
             else if (PracticeTurn == 1)
             {
-                LimitedUseHowManyCard = 1;
+                LimitedUseHowManyCard = 2;
                 EnemyLocation = 2;
                 for (int i = 0; i < PlayerGroundLocation.Length; i++)
                 {
@@ -74,12 +74,16 @@ public class PracticeLimtedSetting : MonoBehaviour
             }
             else
             {
-                LimitedUseHowManyCard = 1;
+                LimitedOn = false;
             }
+        }
+        else if (DuelStateManager.duelStateType == GameState.DuelStateMode.AttackResult && PracticeTurn == 1)
+        {
+            LimitedOn = true;
         }
         else if (DuelStateManager.playerStateType == GameState.PlayerStateMode.Damage)
         {
-             LimitedUseHowManyCard = 1;
+            LimitedUseHowManyCard = 1;
         }
     }
 }

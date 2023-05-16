@@ -17,10 +17,12 @@ public class SkillUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IP
     public TextMeshProUGUI MaxHp;
     public TextMeshProUGUI Defense;
 
+    private Button canopenbutton;
    
     // Start is called before the first frame update
     void Start()
     {
+        canopenbutton = transform.GetChild(0).GetComponent<Button>();
         openSkillUI = false;
         SkillUp.SetActive(false);
         SkillDown.SetActive(true);
@@ -50,6 +52,15 @@ public class SkillUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IP
         {
             SkillUp.SetActive(false);
             SkillDown.SetActive(true);
+        }
+
+        if (!DuelStateManager.canInterect)
+        {
+            canopenbutton.enabled = false;
+        }
+        else
+        {
+            canopenbutton.enabled = true;
         }
     }
 

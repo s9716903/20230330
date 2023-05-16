@@ -118,7 +118,7 @@ public class AttackResult : MonoBehaviour
             }
             yield return new WaitForSeconds(1);
             Player1Draw.SetActive(true);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
             if (player_hp <= player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
@@ -151,7 +151,7 @@ public class AttackResult : MonoBehaviour
             }
             yield return new WaitForSeconds(1);
             Player1Draw.SetActive(true);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
             if (player_hp <= player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
