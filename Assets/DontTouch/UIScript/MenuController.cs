@@ -15,26 +15,73 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject comfirmationPrompt = null;
 
     [Header("Levels to Load")]
-    public string _newGameLevel;
     private string levelToLoad;
-    [SerializeField] private GameObject noSavedGameDialog = null; 
+    [SerializeField] private GameObject noSavedGameDialog = null;
 
+    [Header("Graphics Setting")]
+    [SerializeField] private Slider Brightness = null;
+    [SerializeField] private TMP_Text brightnessTextValue = null;
+    [SerializeField] private float defaultBrightness = 1f;
+
+    [Space(10)]
+    [SerializeField] private TMP_Dropdown qualityDropdown;
+    [SerializeField] private Toggle fullScreenToggle;
+
+    [Header("Resolution Dropdown")]
+    public TMP_Dropdown resolutionDropdowm;
+    private Resolution[] resolutions;
+
+    private int _qualityLevel;
+    private bool _isFullScreen;
+    private float _brightnessLevel;
+
+    //////
+    public void Start()
+    {
+        resolutions = Screen.resolutions;
+        resolutionDropdowm.ClearOptions();
+
+        List<string> options = new List<string>();
+
+        int currentResolutionIndox = 0;
+
+        for(int i = 0;i<resolutions.Length;i++)
+        {
+            string option = resolutions[i].width + "x" + resolutions[i].height;
+            options.Add(option);
+
+            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            {
+                currentResolutionIndox = i;
+            }
+        }
+    }
+
+    public void setResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+    //////
     public void NewGameDialogYes()
     {
-        SceneManager.LoadScene(_newGameLevel);
+        LordingUI.NextScene = 2;
+        SceneManager.LoadScene(1);
     }
     
     public void LoadGameDialogYes()
     {
-        if(PlayerPrefs.HasKey("SavedLevel"))
-        {
-            levelToLoad = PlayerPrefs.GetString("SaveLevel");
-            SceneManager.LoadScene(levelToLoad);
-        }
-        else
-        {
-            noSavedGameDialog.SetActive(true);
-        }
+        LordingUI.NextScene = 4;
+        SceneManager.LoadScene(1);
+        //if(PlayerPrefs.HasKey("SavedLevel"))
+        //{
+        //    levelToLoad = PlayerPrefs.GetString("SaveLevel");
+        //    SceneManager.LoadScene(levelToLoad);
+        //}
+        //else
+        // {
+        //     noSavedGameDialog.SetActive(true);
+        // }
     }
 
     public void ExitButton()
@@ -56,7 +103,23 @@ public class MenuController : MonoBehaviour
 
     public void ResetButton(string MenuType)
     {
-        if(MenuType == "Audio")
+        if (MenuType == "Graphics")
+        {
+            Brightness.value = defaultBrightness;
+            brightnessTextValue.text = defaultBrightness.ToString("0.0");
+
+            qualityDropdown.value = 1;
+            QualitySettings.SetQualityLevel(1);
+
+            fullScreenToggle.isOn = false;
+            Screen.fullScreen = false;
+
+            Resolution currentResolution = Screen.currentResolution;
+            Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen);
+            graphicsApply();
+        }
+
+        if (MenuType == "Audio")
         {
             AudioListener.volume = defaulVolume;
             volumeSlider.value = defaulVolume;
@@ -71,4 +134,36 @@ public class MenuController : MonoBehaviour
         yield return new WaitForSeconds(2);
         comfirmationPrompt.SetActive(false);
     }
+
+///////
+    public void SetBrightness(float brightness)
+    {
+        _brightnessLevel = brightness;
+        brightnessTextValue.text = brightness.ToString("0.0");
+    }
+
+    public void SetFullScreen(bool fullscreen)
+    {
+        _isFullScreen = fullscreen;
+    }
+
+    public void SetQuality(int qualityIndex)
+    {
+        _qualityLevel = qualityIndex;
+    }
+
+    public void graphicsApply()
+    {
+        PlayerPrefs.SetFloat("masterBrightness", _brightnessLevel);
+
+        PlayerPrefs.SetInt("masterQuality", _qualityLevel);
+        QualitySettings.SetQualityLevel(_qualityLevel);
+
+        PlayerPrefs.SetInt("masterFullScreen", (_isFullScreen ? 1 : 0));
+        Screen.fullScreen = _isFullScreen;
+
+        StartCoroutine(CondirmationBox());
+    }
+
+////////////
 }

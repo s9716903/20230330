@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class DuelEndUI : MonoBehaviour
@@ -16,5 +17,15 @@ public class DuelEndUI : MonoBehaviour
         {
             DuelEndText.text = "You Win";
         }
+    }
+    public void Continue()
+    {
+        LordingUI.NextScene = 4;
+        SceneManager.LoadScene(1);
+    }
+    public void BackMenu()
+    {
+        LordingUI.NextScene = 0;
+        SceneManager.LoadScene(1);
     }
 }
