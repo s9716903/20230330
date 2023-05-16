@@ -89,7 +89,7 @@ public class AttackResult : MonoBehaviour
             }
             yield return new WaitForSeconds(1f);
             Player2Draw.SetActive(true);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1);
             if (enemy_hp <= enemy.AllDamaged)
             {
                 Player2Life.GetComponent<TextMeshProUGUI>().text = "Die";
@@ -118,7 +118,7 @@ public class AttackResult : MonoBehaviour
             }
             yield return new WaitForSeconds(1);
             Player1Draw.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             if (player_hp <= player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
@@ -151,7 +151,7 @@ public class AttackResult : MonoBehaviour
             }
             yield return new WaitForSeconds(1);
             Player1Draw.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             if (player_hp <= player.AllDamaged)
             {
                 Player1Life.GetComponent<TextMeshProUGUI>().text = "Die";
@@ -187,7 +187,7 @@ public class AttackResult : MonoBehaviour
             }
             yield return new WaitForSeconds(1);
             Player2Draw.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             if (enemy_hp <= enemy.AllDamaged)
             {
                 Player2Life.GetComponent<TextMeshProUGUI>().text = "Die";

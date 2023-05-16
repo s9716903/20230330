@@ -44,6 +44,11 @@ public class DrawState : IState //抽牌階段(引用IState的運行模式)
         player_handcards.NormalDrawCard();
         enemy_handcards.NormalDrawCard();
         manager.TransitionPlayerState(DuelStateManager.playerStateType);
+        if (PracticeLimtedSetting.LimitedOn && PracticeLimtedSetting.PracticeTurn == 0)
+        {
+            PracticeDialodue.practiceduel = 1;
+            PracticeDialodue.DialogueStart = true;
+        }
     }
     public void OnUpdate()
     {
@@ -88,6 +93,16 @@ public class MoveState : IState //移動階段(引用IState的運行模式)
         StateTimer.startTime = 60;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
+        if (PracticeLimtedSetting.LimitedOn && PracticeLimtedSetting.PracticeTurn == 0)
+        {
+            PracticeDialodue.practiceduel = 2;
+            PracticeDialodue.DialogueStart = true;
+        }
+        else if (PracticeLimtedSetting.LimitedOn && PracticeLimtedSetting.PracticeTurn == 1)
+        {
+            PracticeDialodue.practiceduel = 6;
+            PracticeDialodue.DialogueStart = true;
+        }
     }
     public void OnUpdate()
     {
@@ -171,6 +186,16 @@ public class AttackState : IState //主要階段(引用IState的運行模式)
         StateTimer.stopStateTime = false;
         ThePlayer = GameObject.Find("Player");
         TheEnemy = GameObject.Find("Enemy");
+        if (PracticeLimtedSetting.LimitedOn && PracticeLimtedSetting.PracticeTurn == 0)
+        {
+            PracticeDialodue.practiceduel = 3;
+            PracticeDialodue.DialogueStart = true;
+        }
+        else if (PracticeLimtedSetting.LimitedOn && PracticeLimtedSetting.PracticeTurn == 1)
+        {
+            PracticeDialodue.practiceduel = 7;
+            PracticeDialodue.DialogueStart = true;
+        }
     }
     public void OnUpdate()
     {
@@ -342,6 +367,11 @@ public class DamageState : IState //傷害處理階段(引用IState的運行模式)
         StateTimer.stopStateTime = false;
         ThePlayer = GameObject.Find("Player");
         TheEnemy = GameObject.Find("Enemy");
+        if (PracticeLimtedSetting.LimitedOn && PracticeLimtedSetting.PracticeTurn == 0)
+        {
+            PracticeDialodue.practiceduel = 4;
+            PracticeDialodue.DialogueStart = true;
+        }
     }
     public void OnUpdate()
     {
@@ -355,6 +385,11 @@ public class DamageState : IState //傷害處理階段(引用IState的運行模式)
         {
             DuelStateManager.playerStateType = GameState.PlayerStateMode.Ready;
             manager.TransitionPlayerState(DuelStateManager.playerStateType);
+        }
+        if (PracticeLimtedSetting.LimitedOn && player.isReady && enemy.isReady && PracticeDialodue.practiceduel == 10)
+        {
+            PracticeDialodue.practiceduel = 5;
+            PracticeDialodue.DialogueStart = true;
         }
     }
     public void OnExit()

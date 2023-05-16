@@ -148,6 +148,8 @@ public class DuelUIController : MonoBehaviour
             else if (PracticeEnd)
             {
                 ATKResultUI.SetActive(false);
+                PracticeDialodue.practiceduel = 8;
+                PracticeDialodue.DialogueStart = true;
                 yield break;
             }
         }

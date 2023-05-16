@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/DontTouch/UI Scene/main.unity
+    path: Assets/Scenes/UI Scene/main.unity
     guid: 11a81cd6dff9ca244986b9874ac482d0
   - enabled: 1
-    path: Assets/Scenes/LordingScene.unity
+    path: Assets/Scenes/UI Scene/LordingScene.unity
     guid: 422e799a656343344a1b9f552d0047f0
   - enabled: 1
-    path: Assets/Scenes/firstdialogue.unity
+    path: Assets/Scenes/UI Scene/firstdialogue.unity
     guid: 0f5e050700b098b4e9adcb9923ed1b07
   - enabled: 1
-    path: Assets/Scenes/DuelPractice.unity
+    path: Assets/Scenes/DuelScene/DuelPractice.unity
     guid: 99fe0882228d3834cb48dc36c9f2666e
   - enabled: 1
-    path: Assets/Scenes/NormalDuel.unity
+    path: Assets/Scenes/DuelScene/NormalDuel.unity
     guid: 766560d6037efb24bb5f6e761c52c761
   - enabled: 1
-    path: Assets/Scenes/Stage1.unity
+    path: Assets/Scenes/UI Scene/Stage1.unity
     guid: 073e722a1b906d1478ca1555c2b6829d
   m_configObjects: {}

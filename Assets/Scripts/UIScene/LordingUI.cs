@@ -11,11 +11,11 @@ public class LordingUI : MonoBehaviour
     private AsyncOperation async; //異步讀取場景
 
     public GameObject LordingBar;
-
     private float LordingTimer; //計時器
     // Start is called before the first frame update
     void Start()
     {
+
         LordingBar.SetActive(false);
         Cannextscene = false;
         LordingTimer = 0;

@@ -12,11 +12,13 @@ public class firstDialogue : MonoBehaviour
     private int stage = 0;
     public GameObject school;
     public GameObject black;
+    private GameObject Flower;
     // Start is called before the first frame update
     void Start()
     {
         flowerSystem = FlowerManager.Instance.CreateFlowerSystem("firstdialogue", false);
         flowerSystem.SetupDialog();
+        Flower = GameObject.Find("FlowerSystem");
     }
 
     // Update is called once per frame
@@ -62,6 +64,11 @@ public class firstDialogue : MonoBehaviour
             {
                 flowerSystem.Next();
             }
+        }
+        if (isGameEnd)
+        {
+            flowerSystem.RemoveDialog();
+            Destroy(Flower);
         }
     }
 }
