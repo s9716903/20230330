@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-
 public class HandCards : MonoBehaviour
 {
     public List<GameObject> HandAllCard; //該玩家手牌(List)
@@ -16,8 +14,11 @@ public class HandCards : MonoBehaviour
 
     public int[,] TypeValue;  //卡片數值種類
 
+    public bool PracticeLimited;
+
     void Start()
     {
+        PracticeLimited = false;
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
         ThisPlayer.GetComponent<Player>().NormalDrawAmount = ThisPlayer.GetComponent<Player>().Hp;
         StartCoroutine(NormalDraw());
@@ -33,18 +34,36 @@ public class HandCards : MonoBehaviour
             { ThisPlayer.GetComponent<Player>().HealthDrawAmount }
         }; //玩家打出的數值(種類(移動/物理/法術/星星/抽牌),數值)
 
-        ThisPlayer.GetComponent<Player>().Hp = HandAllCard.Count;    
+        ThisPlayer.GetComponent<Player>().Hp = HandAllCard.Count;
 
-        for (int b = 0; b < transform.childCount; b++) //判斷底下的卡片是否能與滑鼠互動
+        if (PracticeLimited == false)
         {
-            var handcard = transform.GetChild(b);
-            if (ThisPlayer.GetComponent<Player>().isReady == false && ThisPlayer.GetComponent<Player>().canMove == false && ThisPlayer.name == "Player")
+            for (int b = 0; b < transform.childCount; b++) //判斷底下的卡片是否能與滑鼠互動
             {
-                handcard.GetComponent<CardManager>().isPlayerUse = true;
+                var handcard = transform.GetChild(b);
+                if (ThisPlayer.GetComponent<Player>().isReady == false && ThisPlayer.GetComponent<Player>().canMove == false && ThisPlayer.name == "Player")
+                {
+                    handcard.GetComponent<CardManager>().isPlayerUse = true;
+                }
+                else
+                {
+                    handcard.GetComponent<CardManager>().isPlayerUse = false;
+                }
             }
-            else
+        }
+        else
+        {
+            for (int b = 0; b < transform.childCount; b++) //判斷底下的卡片是否能與滑鼠互動
             {
-                handcard.GetComponent<CardManager>().isPlayerUse = false;
+                var handcard = transform.GetChild(b);
+                if (b < PracticeLimtedSetting.LimitedUseHowManyCard)
+                {
+                    handcard.GetComponent<CardManager>().isPlayerUse = true;
+                }
+                else
+                {
+                    handcard.GetComponent<CardManager>().isPlayerUse = false;
+                }
             }
         }
 

@@ -8,9 +8,12 @@ using TMPro;
 
 public class Deck : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
+    public bool DeckShuffle;
+
     public Image DeckImage;
 
     public bool isDeckNull;
+
 
     public GameObject DeckCardsText; //卡片數量文字
 
@@ -31,14 +34,16 @@ public class Deck : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
                 DeckAllCard.Add(DeckCardType[i]);
             }
         }
-
-        //遊戲開始時洗牌
-        for (int k = 0; k < DeckAllCard.Count; k++)
+        if (DeckShuffle == true)
         {
-            var temp = DeckAllCard[k]; 
-            int RandomIndex = Random.Range(0, DeckAllCard.Count);
-            DeckAllCard[k] = DeckAllCard[RandomIndex]; 
-            DeckAllCard[RandomIndex] = temp; 
+            //遊戲開始時洗牌
+            for (int k = 0; k < DeckAllCard.Count; k++)
+            {
+                var temp = DeckAllCard[k];
+                int RandomIndex = Random.Range(0, DeckAllCard.Count);
+                DeckAllCard[k] = DeckAllCard[RandomIndex];
+                DeckAllCard[RandomIndex] = temp;
+            }
         }
     }
     private void Start()

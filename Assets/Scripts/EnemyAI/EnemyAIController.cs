@@ -4,15 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyAIController : MonoBehaviour
-{
-    [Header("ThinkingTimeSetting")]
-    public int LeastThinkingTime;
-    public int MaxThinkingTime;
-    public int ThinkingTime;
-  
-
-    public int HowManyCardCanUse;
-    public int HowManyCardUsing;
+{ 
 
     public GameObject ThisPlayer;
     public GameObject ThisEnemy;
@@ -22,10 +14,7 @@ public class EnemyAIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HowManyCardCanUse = 0;
-        HowManyCardUsing = 0;
         AIDoThing = false;
-        //ThinkingTime = Random.Range(LeastThinkingTime, MaxThinkingTime);
     }
 
     // Update is called once per frame
@@ -55,28 +44,18 @@ public class EnemyAIController : MonoBehaviour
     }
     public IEnumerator CanUseThisCard()
     {
-        HowManyCardCanUse = 0;
-        HowManyCardUsing = 0;
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).GetComponent<CardManager>().canUseThisCard == false)
+            if (transform.GetChild(i).GetComponent<CardManager>().canUseThisCard == false || transform.GetChild(i).GetComponent<CardManager>().ID == 2)
             {
                 transform.GetChild(i).GetComponent<CardManager>().isCardUp = !transform.GetChild(i).GetComponent<CardManager>().isCardUp;
             }
         }
         yield return 0;
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            if (transform.GetChild(i).GetComponent<CardManager>().canUseThisCard == true)
-            {
-                HowManyCardCanUse++;
-            }
-        }
     }
     public IEnumerator MoveState()
     {
         AIDoThing = true;
-        //ThinkingTime = Random.Range(LeastThinkingTime, MaxThinkingTime);
         yield return StartCoroutine(CanUseThisCard());
         if (ThisEnemy.GetComponent<Player>().isReady == true)
         {
@@ -84,24 +63,28 @@ public class EnemyAIController : MonoBehaviour
         }
         var AIplayeer = ThisPlayer.GetComponent<Player>();
         var handcard = GetComponent<HandCards>();
-        //var howmanyuse = Random.Range(0, HowManyCardCanUse - 1);
-        var howmanyuse = 0;
+        var howmanyuse = 1;
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).GetComponent<CardManager>().ID == 0 && HowManyCardUsing <= howmanyuse)
+            if (transform.GetChild(i).GetComponent<CardManager>().ID == 0 && i < howmanyuse)
             {
                 transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseUseCard();
                 ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
-                HowManyCardUsing++;
             }
-            else if (transform.GetChild(i).GetComponent<CardManager>().ID == 3 && HowManyCardUsing <= howmanyuse)
+            else if (transform.GetChild(i).GetComponent<CardManager>().ID == 3 && i < howmanyuse)
             {
                 transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseUseCard();
-                HowManyCardUsing++;
             }
         }
         handcard.PlayerCardValueReady();
-        AIplayeer.MoveToLocation = Random.Range(AIplayeer.TargetLocation - AIplayeer.MoveValue, AIplayeer.TargetLocation + AIplayeer.MoveValue + 1);
+        if (!PracticeLimtedSetting.LimitedOn)
+        {
+            AIplayeer.MoveToLocation = Random.Range(AIplayeer.TargetLocation - AIplayeer.MoveValue, AIplayeer.TargetLocation + AIplayeer.MoveValue + 1);
+        }
+        else
+        {
+            AIplayeer.MoveToLocation = PracticeLimtedSetting.EnemyLocation;
+        }
         for (int j = 0; j < transform.childCount; j++)
         {
             var targetcard = transform.GetChild(j);
@@ -117,7 +100,6 @@ public class EnemyAIController : MonoBehaviour
     public IEnumerator AttackState()
     {
         AIDoThing = true;
-        //ThinkingTime = Random.Range(LeastThinkingTime, MaxThinkingTime);
         yield return StartCoroutine(CanUseThisCard());
         if (ThisEnemy.GetComponent<Player>().isReady == true)
         {
@@ -125,29 +107,25 @@ public class EnemyAIController : MonoBehaviour
         }
         var AIplayeer = ThisPlayer.GetComponent<Player>();
         var handcard = GetComponent<HandCards>();
-        //var howmanyuse = Random.Range(0, HowManyCardCanUse - 1);
-        var howmanyuse = 0;
+        var howmanyuse = 1;
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).GetComponent<CardManager>().ID == 1 && HowManyCardUsing <= howmanyuse)
+            if (transform.GetChild(i).GetComponent<CardManager>().ID == 1 && i < howmanyuse)
             {
                 if (transform.GetChild(i).GetComponent<CardManager>().Type == 0)
                 {
                     transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseUseCard();
                     ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
-                    HowManyCardUsing++;
                 }
                 else if (transform.GetChild(i).GetComponent<CardManager>().Type == 1)
                 {
                     transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseUseCard();
                     ThisPlayer.GetComponent<Player>().NormalDrawAmount++;
-                    HowManyCardUsing++;
                 }
             }
-            else if (transform.GetChild(i).GetComponent<CardManager>().ID == 3 && HowManyCardUsing <= howmanyuse)
+            else if (transform.GetChild(i).GetComponent<CardManager>().ID == 3 && i < howmanyuse)
             {
                 transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseUseCard();
-                HowManyCardUsing++;
             }
         }
         handcard.PlayerCardValueReady();
@@ -166,8 +144,6 @@ public class EnemyAIController : MonoBehaviour
     public IEnumerator DamageState()
     {
         AIDoThing = true;
-        HowManyCardUsing = 0;
-        //ThinkingTime = Random.Range(LeastThinkingTime,30);
         if (ThisEnemy.GetComponent<Player>().isReady == true)
         {
             yield return new WaitForSeconds(1);
@@ -177,27 +153,24 @@ public class EnemyAIController : MonoBehaviour
         var howmanyuse = AIplayeer.AllDamaged;
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).GetComponent<CardManager>().ID != 3 && HowManyCardUsing < howmanyuse)
+            if (transform.GetChild(i).GetComponent<CardManager>().ID != 3 && i < howmanyuse)
             {
                 transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
-                HowManyCardUsing++;
             }
         }
         for (int j = 0; j < transform.childCount; j++)
         {
             transform.GetChild(j).GetComponent<CardManager>().isCardUp = !transform.GetChild(j).GetComponent<CardManager>().isCardUp;
-            if (transform.GetChild(j).GetComponent<CardManager>().ID != 3 && HowManyCardUsing < howmanyuse)
+            if (transform.GetChild(j).GetComponent<CardManager>().ID != 3 && j < howmanyuse)
             {
                 transform.GetChild(j).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
-                HowManyCardUsing++;
             }
         }
         for (int k = 0; k < transform.childCount; k++)
         {
-            if (transform.GetChild(k).GetComponent<CardManager>().ID == 3 && HowManyCardUsing < howmanyuse)
+            if (transform.GetChild(k).GetComponent<CardManager>().ID == 3 && k < howmanyuse)
             {
                 transform.GetChild(k).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
-                HowManyCardUsing++;
             }
         }
         for (int l = 0; l < transform.childCount; l++)

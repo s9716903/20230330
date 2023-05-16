@@ -10,6 +10,7 @@ public class JobManager : MonoBehaviour
     private void Awake()
     {
         JobKey.Clear();
+        JobKey.Add(-1, new PracticeNoJob());
         JobKey.Add(0, new NoJob());
         JobKey.Add(1, new Warrior());
         thisJob = JobKey[ChooseJob];

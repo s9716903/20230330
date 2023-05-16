@@ -22,15 +22,18 @@ public class DuelUIController : MonoBehaviour
     public static bool resultEnd;
     public static bool player1lose;
     public static bool player2lose;
+    public static bool PracticeEnd;
 
     // Start is called before the first frame update
     void Start()
     {
+        PracticeLimtedSetting.LimitedOn = false;
         startMoveStateResult = false;
         startAttackStateResult = false;
         resultEnd = false;
         player1lose = false;
         player2lose = false;
+        PracticeEnd = false;
         
 
         MoveResultUI.SetActive(false);
@@ -115,10 +118,6 @@ public class DuelUIController : MonoBehaviour
         player_handcards.HealthDrawCard();
         enemy_handcards.HealthDrawCard();
         yield return 0;
-        /*yield return new WaitForSeconds(1);
-        ThePlayer.isReady = true;
-        TheEnemy.isReady = true;
-        yield return 0;*/
     }
     public IEnumerator AttackStateResult()
     {
@@ -132,7 +131,7 @@ public class DuelUIController : MonoBehaviour
         ReadyButton.SetActive(false);
         ATKResultUI.SetActive(true);
         yield return StartCoroutine(ATKResultUI.GetComponent<AttackResult>().StartResult());
-        if (player1lose || player2lose)
+        if (player1lose || player2lose || PracticeEnd)
         {
             if (player1lose)
             {
@@ -144,6 +143,11 @@ public class DuelUIController : MonoBehaviour
             {
                 ATKResultUI.SetActive(false);
                 DuelEndUI.SetActive(true);
+                yield break;
+            }
+            else if (PracticeEnd)
+            {
+                ATKResultUI.SetActive(false);
                 yield break;
             }
         }

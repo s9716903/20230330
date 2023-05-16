@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -802,8 +802,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -905,7 +905,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &65999311
 MonoBehaviour:
@@ -1011,8 +1011,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1409,7 +1409,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &126112520
 MonoBehaviour:
@@ -1850,8 +1850,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1984,8 +1984,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2087,7 +2087,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215670545
 MonoBehaviour:
@@ -2441,8 +2441,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2741,14 +2741,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -446192762768061765, guid: d65af3148e0ba6b43bc06149ac65c2cd, type: 3}
+  m_Sprite: {fileID: -2390279811801854476, guid: 4f447d0d478b210469c11731fcb5c1e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2815,7 +2815,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &311478763
 MonoBehaviour:
@@ -2958,8 +2958,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3091,14 +3091,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -446192762768061765, guid: d65af3148e0ba6b43bc06149ac65c2cd, type: 3}
+  m_Sprite: {fileID: -2390279811801854476, guid: 4f447d0d478b210469c11731fcb5c1e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3237,7 +3237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50cb571b0cbcfa44c8234ac6db6c8563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChooseJob: 0
+  ChooseJob: -1
   thisJob: {fileID: 0}
 --- !u!1 &348493258
 GameObject:
@@ -3286,8 +3286,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255484
-  m_fontColor: {r: 0.48622775, g: 1, b: 0, a: 1}
+    rgba: 4278228304
+  m_fontColor: {r: 0.3137255, g: 0.5849056, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3790,7 +3790,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &367022006
 MonoBehaviour:
@@ -4335,8 +4335,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4602,14 +4602,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -446192762768061765, guid: d65af3148e0ba6b43bc06149ac65c2cd, type: 3}
+  m_Sprite: {fileID: -2390279811801854476, guid: 4f447d0d478b210469c11731fcb5c1e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4810,7 +4810,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &433854165
 MonoBehaviour:
@@ -4901,14 +4901,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -446192762768061765, guid: d65af3148e0ba6b43bc06149ac65c2cd, type: 3}
+  m_Sprite: {fileID: -2390279811801854476, guid: 4f447d0d478b210469c11731fcb5c1e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5080,14 +5080,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -446192762768061765, guid: d65af3148e0ba6b43bc06149ac65c2cd, type: 3}
+  m_Sprite: {fileID: -2390279811801854476, guid: 4f447d0d478b210469c11731fcb5c1e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5529,7 +5529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+  m_Color: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5625,14 +5625,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -446192762768061765, guid: d65af3148e0ba6b43bc06149ac65c2cd, type: 3}
+  m_Sprite: {fileID: -2390279811801854476, guid: 4f447d0d478b210469c11731fcb5c1e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5956,7 +5956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -299.99997, y: 0}
+  m_AnchoredPosition: {x: -299.99994, y: 0}
   m_SizeDelta: {x: 600, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &577498291
@@ -6238,8 +6238,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6353,8 +6353,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255484
-  m_fontColor: {r: 0.48622775, g: 1, b: 0, a: 1}
+    rgba: 4278228304
+  m_fontColor: {r: 0.3137255, g: 0.5849056, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7535,8 +7535,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7900,34 +7900,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e3425dc808b8545a06dd364f0df591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeckShuffle: 0
   DeckImage: {fileID: 0}
   isDeckNull: 0
   DeckCardsText: {fileID: 509996826}
   DeckCardType:
-  - {fileID: 5390993285868992059, guid: 0e7528371e5eed547a917d523b98c04d, type: 3}
+  - {fileID: 8246533830243364693, guid: f59ade41e4d290348bec18647f80bca2, type: 3}
+  - {fileID: 584378849496010011, guid: 36044a90ea155ff47978048ff0252e04, type: 3}
   - {fileID: 6459629049327439811, guid: 4e4d7d58d1c34814e99f67ab482d644f, type: 3}
   - {fileID: 6502275599896231068, guid: 3d0137293cbdb4b459c57590e0de04ff, type: 3}
-  - {fileID: 413541888306716306, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
-  - {fileID: 584378849496010011, guid: 36044a90ea155ff47978048ff0252e04, type: 3}
-  - {fileID: 8243693658156437927, guid: 7f0512e29e77b22409993c4375ba9bb8, type: 3}
-  - {fileID: 7291716735328108950, guid: cc17150c9eac635419d3e0aca9333bfb, type: 3}
-  - {fileID: 1980691103811723957, guid: 94afedd917ad2aa40ae8f326c1587c52, type: 3}
-  - {fileID: 641562967876518269, guid: d1462cc6aacbea14ab3cf4bbe5a15fe3, type: 3}
-  - {fileID: 5117692353535177049, guid: 5c51678afce35d24fa0651607518fc4d, type: 3}
-  - {fileID: 1942679761897898559, guid: 1bc1cf30080cd4b4aaf00970b613e6dc, type: 3}
-  - {fileID: 1857767873278915137, guid: 853bd463c082801459fd7920251ae127, type: 3}
-  - {fileID: 2821733469771377281, guid: d4866c1ab61d9b4449a3951ccb3ac332, type: 3}
-  - {fileID: 265222042009933828, guid: be9f4341326541247acf7c65c640d603, type: 3}
-  - {fileID: 1655689194502046422, guid: 1b8e90bba28a7c74bb33aec1460ac484, type: 3}
   - {fileID: 8494278875185574952, guid: 3479fc7a22b8bc14098a53ce0d083a58, type: 3}
-  - {fileID: 6968971544844895969, guid: 5d08374f183071c458a595f547c6c8e3, type: 3}
-  - {fileID: 5736684555817565730, guid: 73b76c899e59b4c489cadfab3e26668a, type: 3}
-  - {fileID: 5248958635128987730, guid: 0ef35e777aa87ff4c820aacf2bd87dff, type: 3}
-  - {fileID: 3881375928695573797, guid: 0d3a5b18942c8354ea9a96e6e360cc2b, type: 3}
-  - {fileID: 2515656250830907370, guid: e51c0d5fccf49f6458b5db44315437d6, type: 3}
-  - {fileID: 8246533830243364693, guid: f59ade41e4d290348bec18647f80bca2, type: 3}
   - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
-  CardQuantity: 0400000001000000010000000100000002000000010000000100000002000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000300000001000000
+  - {fileID: 2821733469771377281, guid: d4866c1ab61d9b4449a3951ccb3ac332, type: 3}
+  - {fileID: 5248958635128987730, guid: 0ef35e777aa87ff4c820aacf2bd87dff, type: 3}
+  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
+  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
+  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
+  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
+  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
+  CardQuantity: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   DeckAllCard: []
 --- !u!1 &782238860
 GameObject:
@@ -7980,14 +7971,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -446192762768061765, guid: d65af3148e0ba6b43bc06149ac65c2cd, type: 3}
+  m_Sprite: {fileID: -2390279811801854476, guid: 4f447d0d478b210469c11731fcb5c1e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8754,7 +8745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+  m_Color: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9136,8 +9127,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9364,34 +9355,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e3425dc808b8545a06dd364f0df591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeckShuffle: 0
   DeckImage: {fileID: 0}
   isDeckNull: 0
   DeckCardsText: {fileID: 1809869284}
   DeckCardType:
   - {fileID: 5390993285868992059, guid: 0e7528371e5eed547a917d523b98c04d, type: 3}
   - {fileID: 6459629049327439811, guid: 4e4d7d58d1c34814e99f67ab482d644f, type: 3}
-  - {fileID: 6502275599896231068, guid: 3d0137293cbdb4b459c57590e0de04ff, type: 3}
-  - {fileID: 413541888306716306, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
-  - {fileID: 584378849496010011, guid: 36044a90ea155ff47978048ff0252e04, type: 3}
-  - {fileID: 8243693658156437927, guid: 7f0512e29e77b22409993c4375ba9bb8, type: 3}
-  - {fileID: 7291716735328108950, guid: cc17150c9eac635419d3e0aca9333bfb, type: 3}
-  - {fileID: 1980691103811723957, guid: 94afedd917ad2aa40ae8f326c1587c52, type: 3}
-  - {fileID: 641562967876518269, guid: d1462cc6aacbea14ab3cf4bbe5a15fe3, type: 3}
-  - {fileID: 5117692353535177049, guid: 5c51678afce35d24fa0651607518fc4d, type: 3}
-  - {fileID: 1942679761897898559, guid: 1bc1cf30080cd4b4aaf00970b613e6dc, type: 3}
-  - {fileID: 1857767873278915137, guid: 853bd463c082801459fd7920251ae127, type: 3}
-  - {fileID: 2821733469771377281, guid: d4866c1ab61d9b4449a3951ccb3ac332, type: 3}
-  - {fileID: 265222042009933828, guid: be9f4341326541247acf7c65c640d603, type: 3}
-  - {fileID: 1655689194502046422, guid: 1b8e90bba28a7c74bb33aec1460ac484, type: 3}
-  - {fileID: 8494278875185574952, guid: 3479fc7a22b8bc14098a53ce0d083a58, type: 3}
-  - {fileID: 6968971544844895969, guid: 5d08374f183071c458a595f547c6c8e3, type: 3}
-  - {fileID: 5736684555817565730, guid: 73b76c899e59b4c489cadfab3e26668a, type: 3}
-  - {fileID: 5248958635128987730, guid: 0ef35e777aa87ff4c820aacf2bd87dff, type: 3}
-  - {fileID: 3881375928695573797, guid: 0d3a5b18942c8354ea9a96e6e360cc2b, type: 3}
-  - {fileID: 2515656250830907370, guid: e51c0d5fccf49f6458b5db44315437d6, type: 3}
-  - {fileID: 8246533830243364693, guid: f59ade41e4d290348bec18647f80bca2, type: 3}
   - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
-  CardQuantity: 0400000001000000010000000100000002000000010000000100000002000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000300000001000000
+  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
+  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
+  - {fileID: 5117692353535177049, guid: 5c51678afce35d24fa0651607518fc4d, type: 3}
+  - {fileID: 2821733469771377281, guid: d4866c1ab61d9b4449a3951ccb3ac332, type: 3}
+  CardQuantity: 01000000010000000100000001000000010000000100000001000000
   DeckAllCard: []
 --- !u!114 &946674678
 MonoBehaviour:
@@ -9509,7 +9485,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9972,7 +9948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10158,8 +10134,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10261,7 +10237,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011590362
 MonoBehaviour:
@@ -11054,14 +11030,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -446192762768061765, guid: d65af3148e0ba6b43bc06149ac65c2cd, type: 3}
+  m_Sprite: {fileID: -2390279811801854476, guid: 4f447d0d478b210469c11731fcb5c1e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11158,14 +11134,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -446192762768061765, guid: d65af3148e0ba6b43bc06149ac65c2cd, type: 3}
+  m_Sprite: {fileID: -2390279811801854476, guid: 4f447d0d478b210469c11731fcb5c1e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11346,14 +11322,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -446192762768061765, guid: d65af3148e0ba6b43bc06149ac65c2cd, type: 3}
+  m_Sprite: {fileID: -2390279811801854476, guid: 4f447d0d478b210469c11731fcb5c1e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11573,7 +11549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+  m_Color: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12160,7 +12136,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1216572105
 MonoBehaviour:
@@ -12235,7 +12211,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1227811105
 MonoBehaviour:
@@ -12341,8 +12317,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -12730,7 +12706,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -12924,8 +12900,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13769,6 +13745,7 @@ GameObject:
   - component: {fileID: 1490340158}
   - component: {fileID: 1490340157}
   - component: {fileID: 1490340159}
+  - component: {fileID: 1490340160}
   m_Layer: 5
   m_Name: PlayerHandCards
   m_TagString: Untagged
@@ -13836,6 +13813,7 @@ MonoBehaviour:
   ThisPlayer: {fileID: 335061384}
   ThisEnemy: {fileID: 501299631}
   ThisTrashCardZone: {fileID: 990834230}
+  PracticeLimited: 0
 --- !u!210 &1490340159
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -13847,6 +13825,24 @@ SortingGroup:
   m_SortingLayerID: -1041909759
   m_SortingLayer: 2
   m_SortingOrder: 0
+--- !u!114 &1490340160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490340155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7712657e12555f43b57decc014129f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerGroundLocation:
+  - {fileID: 328566601}
+  - {fileID: 1116187954}
+  - {fileID: 1121416958}
+  - {fileID: 448009477}
+  - {fileID: 428033921}
 --- !u!1 &1491041234
 GameObject:
   m_ObjectHideFlags: 0
@@ -14087,7 +14083,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14319,7 +14315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+  m_Color: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14430,8 +14426,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14639,8 +14635,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14811,8 +14807,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -16407,7 +16403,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17224,8 +17220,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17516,8 +17512,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18684,8 +18680,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18818,8 +18814,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18921,7 +18917,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2127910183
 MonoBehaviour:
@@ -19161,8 +19157,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -19357,6 +19353,7 @@ MonoBehaviour:
   ThisPlayer: {fileID: 501299631}
   ThisEnemy: {fileID: 335061384}
   ThisTrashCardZone: {fileID: 7848330}
+  PracticeLimited: 0
 --- !u!114 &2144498461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19369,11 +19366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbca2def16eb464aae2c0e6f915351c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeastThinkingTime: 0
-  MaxThinkingTime: 31
-  ThinkingTime: 0
-  HowManyCardCanUse: 0
-  HowManyCardUsing: 0
   ThisPlayer: {fileID: 501299631}
   ThisEnemy: {fileID: 335061384}
 --- !u!4 &543450653706232916
