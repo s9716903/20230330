@@ -920,7 +920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.3137255}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.3137255}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2102,7 +2102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.3137255}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2830,7 +2830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.3137255}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3805,7 +3805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.3137255}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4825,7 +4825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.3137255}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5764,6 +5764,8 @@ MonoBehaviour:
   Player2Value: {fileID: 1881373196}
   PlayerTotalDamaged: {fileID: 1126077866}
   Player2TotalDamaged: {fileID: 314286376}
+  Player1Draw: {fileID: 999600601}
+  Player2Draw: {fileID: 1102931519}
   Player1PhysicATKValueText: {fileID: 685328581}
   Player1MagicATKValueText: {fileID: 793276841}
   Player1DrawValueText: {fileID: 1869387369}
@@ -7910,15 +7912,14 @@ MonoBehaviour:
   - {fileID: 6459629049327439811, guid: 4e4d7d58d1c34814e99f67ab482d644f, type: 3}
   - {fileID: 6502275599896231068, guid: 3d0137293cbdb4b459c57590e0de04ff, type: 3}
   - {fileID: 8494278875185574952, guid: 3479fc7a22b8bc14098a53ce0d083a58, type: 3}
-  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
-  - {fileID: 2821733469771377281, guid: d4866c1ab61d9b4449a3951ccb3ac332, type: 3}
+  - {fileID: 5390993285868992059, guid: 0e7528371e5eed547a917d523b98c04d, type: 3}
+  - {fileID: 6502275599896231068, guid: 3d0137293cbdb4b459c57590e0de04ff, type: 3}
   - {fileID: 5248958635128987730, guid: 0ef35e777aa87ff4c820aacf2bd87dff, type: 3}
-  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
-  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
-  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
-  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
-  - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
-  CardQuantity: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  - {fileID: 641562967876518269, guid: d1462cc6aacbea14ab3cf4bbe5a15fe3, type: 3}
+  - {fileID: 584378849496010011, guid: 36044a90ea155ff47978048ff0252e04, type: 3}
+  - {fileID: 1980691103811723957, guid: 94afedd917ad2aa40ae8f326c1587c52, type: 3}
+  - {fileID: 413541888306716306, guid: 34643e489d7f7b74aaae3e0ae1788fe8, type: 3}
+  CardQuantity: 010000000100000001000000010000000100000001000000020000000100000001000000010000000100000001000000
   DeckAllCard: []
 --- !u!1 &782238860
 GameObject:
@@ -8572,7 +8573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 851119026}
   m_Layer: 5
-  m_Name: Draw
+  m_Name: EnemyDraw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10041,7 +10042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 999600602}
   m_Layer: 5
-  m_Name: Draw
+  m_Name: PlayerDraw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10252,7 +10253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.3137255}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10743,7 +10744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1102931520}
   m_Layer: 5
-  m_Name: Draw
+  m_Name: EnemyDraw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11674,6 +11675,8 @@ MonoBehaviour:
   Player2Value: {fileID: 130772268}
   PlayerTotal: {fileID: 1960891781}
   Player2Total: {fileID: 351282069}
+  Player1Draw: {fileID: 1203521178}
+  Player2Draw: {fileID: 851119025}
   CoinAni: {fileID: 1531697953}
   Coin: {fileID: 919132149182725870}
   CoinTopOrBottom:
@@ -11908,7 +11911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1203521179}
   m_Layer: 5
-  m_Name: Draw
+  m_Name: PlayerDraw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12151,7 +12154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.3137255}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12226,7 +12229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.3137255}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -18932,7 +18935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.3137255}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Duel.unity
-    guid: 196d8e49f284e3146bf7dfe7d4058674
+    path: Assets/Scenes/MenuTest.unity
+    guid: ee69a1b86c6e8a64197c60a55d7d4cae
+  - enabled: 1
+    path: Assets/Scenes/LordingScene.unity
+    guid: 422e799a656343344a1b9f552d0047f0
   - enabled: 1
     path: Assets/Scenes/DuelPractice.unity
-    guid: 4868a3a9a85acad46b85d50c75233c3f
+    guid: 99fe0882228d3834cb48dc36c9f2666e
+  - enabled: 1
+    path: Assets/Scenes/NormalDuel.unity
+    guid: 766560d6037efb24bb5f6e761c52c761
   m_configObjects: {}

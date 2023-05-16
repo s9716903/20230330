@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 7757736542852074266}
   - component: {fileID: 1875729739758859021}
   - component: {fileID: 372889161400982385}
+  - component: {fileID: 2444792367341373809}
   m_Layer: 0
   m_Name: CardPA&M1-1
   m_TagString: Untagged
@@ -387,6 +388,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!222 &2444792367341373809
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390993285868992059}
+  m_CullTransparentMesh: 1
 --- !u!1 &5704740927785553480
 GameObject:
   m_ObjectHideFlags: 0

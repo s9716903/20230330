@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: -1584158549252267395}
   - component: {fileID: -5354201852578819697}
   - component: {fileID: 4045853023787300206}
+  - component: {fileID: 8475317936648399127}
   m_Layer: 0
   m_Name: CardD2
   m_TagString: Untagged
@@ -713,6 +714,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!222 &8475317936648399127
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8246533830243364693}
+  m_CullTransparentMesh: 1
 --- !u!1 &8322220740009518773
 GameObject:
   m_ObjectHideFlags: 0
