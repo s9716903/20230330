@@ -41,8 +41,13 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
     public GameObject Icon1Sprite;
     public GameObject Icon2Sprite;
 
+    public GameObject LimitedOn;
+    public Sprite[] LimitedSprite;
+
     private void OnEnable()
     {
+        LimitedOn.SetActive(false);
+
         canUseThisCard = false;
         canChangeUpOrDown = true;
 
@@ -68,6 +73,39 @@ public class CardManager : MonoBehaviour,IPointerClickHandler
         else
         {
             cardvaluemanager = _cardValueManager[1];
+        }
+
+        if (PracticeLimtedSetting.LimitedOn && isPlayerUse)
+        {
+            if (!canUseThisCard && DuelStateManager.playerStateType != GameState.PlayerStateMode.Damage)
+            {
+                LimitedOn.GetComponent<SpriteRenderer>().sprite = LimitedSprite[1];
+            }
+            else
+            {
+                LimitedOn.GetComponent<SpriteRenderer>().sprite = LimitedSprite[0];
+            }
+            if (isUseThisCard == false)
+            {
+                LimitedOn.SetActive(true);
+            }
+            else
+            {
+                LimitedOn.SetActive(false);
+            }
+        }
+
+        if (PracticeDialodue.CardLimitedOnShow == false && isPlayerUse)
+        {
+            LimitedOn.SetActive(false);
+        }
+        else if (PracticeDialodue.CardLimitedOnShow == true && isPlayerUse)
+        {
+            LimitedOn.SetActive(true);
+        }
+        else if (!PracticeLimtedSetting.LimitedOn)
+        {
+            LimitedOn.SetActive(false);
         }
 
         //卡片資料

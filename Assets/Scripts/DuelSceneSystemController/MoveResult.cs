@@ -69,6 +69,7 @@ public class MoveResult : MonoBehaviour
     }
     public IEnumerator StartResult()
     {
+        PracticeDialodue.CardLimitedOnShow = false;
         var player = Player.GetComponent<Player>();
         var enemy = Enemy.GetComponent<Player>();
         yield return new WaitForSeconds(1f);

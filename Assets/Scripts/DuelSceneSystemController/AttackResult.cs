@@ -58,6 +58,7 @@ public class AttackResult : MonoBehaviour
     }
     public IEnumerator StartResult()
     {
+        PracticeDialodue.CardLimitedOnShow = false;
         var player = Player.GetComponent<Player>();
         var enemy = Enemy.GetComponent<Player>();
         var player_hp = player.AttackResultHP + player.HealthDrawAmount;

@@ -11,11 +11,13 @@ public class PracticeDialodue : MonoBehaviour
     private bool isGameEnd = false;
     public static int practiceduel;
     public static bool DialogueStart;
+    public static bool CardLimitedOnShow = false;
 
     private GameObject Flower;
     // Start is called before the first frame update
     void Start()
     {
+        CardLimitedOnShow = false;
         DialogueStart = false;
         practiceduel = 0;
         flowerSystem = FlowerManager.Instance.CreateFlowerSystem("DuelPractice", false);
@@ -30,6 +32,7 @@ public class PracticeDialodue : MonoBehaviour
             switch (practiceduel)
             {
                 case 0:
+                    CardLimitedOnShow = false;
                     StateTimer.pauseStateTime = false;
                     break;
                 case 1:
@@ -72,7 +75,6 @@ public class PracticeDialodue : MonoBehaviour
                     StateTimer.pauseStateTime = true;
                     if (DialogueStart == true)
                     {
-                        DialogueStart = false;
                         flowerSystem.SetupDialog();
                         flowerSystem.ReadTextFromResource("Practice5");
                         practiceduel = 0;
@@ -90,6 +92,7 @@ public class PracticeDialodue : MonoBehaviour
                     StateTimer.pauseStateTime = true;
                     if (DialogueStart == true)
                     {
+                        CardLimitedOnShow = false;
                         flowerSystem.SetupDialog();
                         flowerSystem.ReadTextFromResource("Practice7");
                         practiceduel = 10;
@@ -98,6 +101,7 @@ public class PracticeDialodue : MonoBehaviour
                 case 8:
                     if (DialogueStart == true)
                     {
+                        CardLimitedOnShow = false;
                         DialogueStart = false;
                         flowerSystem.SetupDialog();
                         flowerSystem.ReadTextFromResource("Practice8");
@@ -115,6 +119,10 @@ public class PracticeDialodue : MonoBehaviour
                     {
                         DialogueStart = false;
                         flowerSystem.RemoveDialog();
+                        if (PracticeLimtedSetting.LimitedOn)
+                        {
+                            CardLimitedOnShow = true;
+                        }
                     }
                     break;
             }

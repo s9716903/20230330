@@ -18,7 +18,7 @@ public class DuelEndUI : MonoBehaviour
             DuelEndText.text = "You Win";
         }
     }
-    public void Continue()
+    public void TryAgain()
     {
         LordingUI.NextScene = 4;
         SceneManager.LoadScene(1);
