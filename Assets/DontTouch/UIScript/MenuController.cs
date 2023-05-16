@@ -15,7 +15,6 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject comfirmationPrompt = null;
 
     [Header("Levels to Load")]
-    public string _newGameLevel;
     private string levelToLoad;
     [SerializeField] private GameObject noSavedGameDialog = null;
 
@@ -66,20 +65,23 @@ public class MenuController : MonoBehaviour
     //////
     public void NewGameDialogYes()
     {
-        SceneManager.LoadScene(_newGameLevel);
+        LordingUI.NextScene = 2;
+        SceneManager.LoadScene(1);
     }
     
     public void LoadGameDialogYes()
     {
-        if(PlayerPrefs.HasKey("SavedLevel"))
-        {
-            levelToLoad = PlayerPrefs.GetString("SaveLevel");
-            SceneManager.LoadScene(levelToLoad);
-        }
-        else
-        {
-            noSavedGameDialog.SetActive(true);
-        }
+        LordingUI.NextScene = 4;
+        SceneManager.LoadScene(1);
+        //if(PlayerPrefs.HasKey("SavedLevel"))
+        //{
+        //    levelToLoad = PlayerPrefs.GetString("SaveLevel");
+        //    SceneManager.LoadScene(levelToLoad);
+        //}
+        //else
+        // {
+        //     noSavedGameDialog.SetActive(true);
+        // }
     }
 
     public void ExitButton()

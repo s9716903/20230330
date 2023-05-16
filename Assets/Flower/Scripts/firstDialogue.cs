@@ -11,12 +11,12 @@ public class firstDialogue : MonoBehaviour
     private bool isGameEnd = false;
     private int stage = 0;
     public GameObject school;
+    public GameObject black;
     // Start is called before the first frame update
     void Start()
     {
         flowerSystem = FlowerManager.Instance.CreateFlowerSystem("firstdialogue", false);
         flowerSystem.SetupDialog();
-        flowerSystem.SetScreenReference(1920, 1080);
     }
 
     // Update is called once per frame
@@ -31,19 +31,22 @@ public class firstDialogue : MonoBehaviour
                     break;
                 case 1:
                     school.SetActive(true);
-                    flowerSystem.ReadTextFromResource("Stage1");
+                    black.SetActive(false);
+                    flowerSystem.ReadTextFromResource("Stage0");
                     break;
                 case 2:
                     flowerSystem.SetupButtonGroup();
 
                     flowerSystem.SetupButton("好的，前輩", () =>
                     {
-                        SceneManager.LoadScene(2);
+                        LordingUI.NextScene = 3;
+                        SceneManager.LoadScene(1);
                         flowerSystem.RemoveButtonGroup();
                     });
                     flowerSystem.SetupButton("不，今天就不訓練了", () =>
                     {
-                        SceneManager.LoadScene(3);
+                        LordingUI.NextScene = 5;
+                        SceneManager.LoadScene(1);
                         flowerSystem.RemoveButtonGroup();
                     });
                     break;
@@ -55,7 +58,7 @@ public class firstDialogue : MonoBehaviour
         }
         if (!isGameEnd)
         {
-            if(Input.GetKeyDown(KeyCode.Space)) 
+            if(Input.GetMouseButtonDown(0)) 
             {
                 flowerSystem.Next();
             }
