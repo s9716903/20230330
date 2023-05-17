@@ -18,6 +18,8 @@ public class DuelStateManager : MonoBehaviour
     public static bool showStateText;
     public static bool canInterect; //玩家是否可以與特定東西互動
 
+    private AudioSource audioSource;
+    public static bool listenDuelMusic;
 
     // Start is called before the first frame update
     private void Awake()
@@ -39,6 +41,8 @@ public class DuelStateManager : MonoBehaviour
     }
     private void Start()
     {
+        listenDuelMusic = true;
+        audioSource = GetComponent<AudioSource>();
         //初始化決鬥場景狀態
         showStateText = false;
         canInterect = false;
@@ -51,6 +55,10 @@ public class DuelStateManager : MonoBehaviour
     {
         currentduelState.OnUpdate();
         currentplayerState.OnUpdate();
+        if (!listenDuelMusic)
+        {
+            audioSource.Stop();
+        }
     }
     public virtual void TransitionDuelState() //切換決鬥階段時所執行
     {

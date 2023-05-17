@@ -135,18 +135,21 @@ public class DuelUIController : MonoBehaviour
         {
             if (player1lose)
             {
+                DuelStateManager.listenDuelMusic = false;
                 ATKResultUI.SetActive(false);
                 DuelEndUI.SetActive(true);
                 yield break;
             }
             else if (player2lose)
             {
+                DuelStateManager.listenDuelMusic = false;
                 ATKResultUI.SetActive(false);
                 DuelEndUI.SetActive(true);
                 yield break;
             }
             else if (PracticeEnd)
             {
+                DuelStateManager.listenDuelMusic = false;
                 ATKResultUI.SetActive(false);
                 PracticeDialodue.practiceduel = 8;
                 PracticeDialodue.DialogueStart = true;
