@@ -10,11 +10,13 @@ public class EnemyAIController : MonoBehaviour
     public GameObject ThisEnemy;
 
     public static bool AIDoThing;
+    public int HowManyCardUsing;
 
     // Start is called before the first frame update
     void Start()
     {
         AIDoThing = false;
+        HowManyCardUsing = 0;
     }
 
     // Update is called once per frame
@@ -144,6 +146,7 @@ public class EnemyAIController : MonoBehaviour
     public IEnumerator DamageState()
     {
         AIDoThing = true;
+        HowManyCardUsing = 0;
         if (ThisEnemy.GetComponent<Player>().isReady == true)
         {
             yield return new WaitForSeconds(1);
@@ -151,34 +154,73 @@ public class EnemyAIController : MonoBehaviour
         var AIplayeer = ThisPlayer.GetComponent<Player>();
         var handcard = GetComponent<HandCards>();
         var howmanyuse = AIplayeer.AllDamaged;
-        for (int i = 0; i < transform.childCount; i++)
+        if (PracticeLimtedSetting.LimitedOn)
         {
-            if (transform.GetChild(i).GetComponent<CardManager>().ID != 3 && i < howmanyuse)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
+                if (transform.GetChild(i).GetComponent<CardManager>().ID != 3 && i < howmanyuse)
+                {
+                    transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
+                }
+            }
+            for (int j = 0; j < transform.childCount; j++)
+            {
+                transform.GetChild(j).GetComponent<CardManager>().isCardUp = !transform.GetChild(j).GetComponent<CardManager>().isCardUp;
+                if (transform.GetChild(j).GetComponent<CardManager>().ID != 3 && j < howmanyuse)
+                {
+                    transform.GetChild(j).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
+                }
+            }
+            for (int k = 0; k < transform.childCount; k++)
+            {
+                if (transform.GetChild(k).GetComponent<CardManager>().ID == 3 && k < howmanyuse)
+                {
+                    transform.GetChild(k).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
+                }
+            }
+            for (int l = 0; l < transform.childCount; l++)
+            {
+                var targetcard = transform.GetChild(l);
+                if (targetcard.GetComponent<CardManager>().DamagedDropCard == false)
+                {
+                    targetcard.gameObject.SetActive(false);
+                }
             }
         }
-        for (int j = 0; j < transform.childCount; j++)
+        else
         {
-            transform.GetChild(j).GetComponent<CardManager>().isCardUp = !transform.GetChild(j).GetComponent<CardManager>().isCardUp;
-            if (transform.GetChild(j).GetComponent<CardManager>().ID != 3 && j < howmanyuse)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                transform.GetChild(j).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
+                if (transform.GetChild(i).GetComponent<CardManager>().ID != 3 && HowManyCardUsing < howmanyuse)
+                {
+                    transform.GetChild(i).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
+                    HowManyCardUsing++;
+                }
             }
-        }
-        for (int k = 0; k < transform.childCount; k++)
-        {
-            if (transform.GetChild(k).GetComponent<CardManager>().ID == 3 && k < howmanyuse)
+            for (int j = 0; j < transform.childCount; j++)
             {
-                transform.GetChild(k).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
+                transform.GetChild(j).GetComponent<CardManager>().isCardUp = !transform.GetChild(j).GetComponent<CardManager>().isCardUp;
+                if (transform.GetChild(j).GetComponent<CardManager>().ID != 3 && HowManyCardUsing < howmanyuse)
+                {
+                    transform.GetChild(j).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
+                    HowManyCardUsing++;
+                }
             }
-        }
-        for (int l = 0; l < transform.childCount; l++)
-        {
-            var targetcard = transform.GetChild(l);
-            if (targetcard.GetComponent<CardManager>().DamagedDropCard == false)
+            for (int k = 0; k < transform.childCount; k++)
             {
-                targetcard.gameObject.SetActive(false);
+                if (transform.GetChild(k).GetComponent<CardManager>().ID == 3 && HowManyCardUsing < howmanyuse)
+                {
+                    transform.GetChild(k).gameObject.GetComponent<CardManager>().ChooseDamageDropCard();
+                    HowManyCardUsing++;
+                }
+            }
+            for (int l = 0; l < transform.childCount; l++)
+            {
+                var targetcard = transform.GetChild(l);
+                if (targetcard.GetComponent<CardManager>().DamagedDropCard == false)
+                {
+                    targetcard.gameObject.SetActive(false);
+                }
             }
         }
         AIplayeer.canMove = true;
