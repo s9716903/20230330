@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3045040997218079550}
   - component: {fileID: 4872880920921389145}
+  - component: {fileID: 6146431474156631846}
   m_Layer: 0
   m_Name: Card(Top)
   m_TagString: Untagged
@@ -176,6 +177,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!222 &6146431474156631846
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2739960092026241215}
+  m_CullTransparentMesh: 1
 --- !u!1 &5390993285868992059
 GameObject:
   m_ObjectHideFlags: 0

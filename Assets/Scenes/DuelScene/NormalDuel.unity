@@ -6157,7 +6157,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8800eccb2cbcb0b41bcab5c67ab7c8f6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8253,7 +8253,7 @@ MonoBehaviour:
   - {fileID: 2515656250830907370, guid: e51c0d5fccf49f6458b5db44315437d6, type: 3}
   - {fileID: 8246533830243364693, guid: f59ade41e4d290348bec18647f80bca2, type: 3}
   - {fileID: 8225785585166064123, guid: 77cac6c1a83005447825b26fae8aa7e2, type: 3}
-  CardQuantity: 0400000001000000010000000100000002000000010000000100000002000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000300000001000000
+  CardQuantity: 28000000
   DeckAllCard: []
 --- !u!1 &782238860
 GameObject:
@@ -14473,7 +14473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1490340156
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14513,7 +14513,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 100}
+  m_CellSize: {x: 150, y: 200}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 100
@@ -20095,6 +20095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThisPlayer: {fileID: 501299631}
   ThisEnemy: {fileID: 335061384}
+  HowManyCardUsing: 0
 --- !u!4 &543450653706232916
 Transform:
   m_ObjectHideFlags: 0
