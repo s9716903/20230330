@@ -79,19 +79,19 @@ public class NewMoveResult : MonoBehaviour
         Player1Draw.SetActive(true);
         Player2Draw.SetActive(true);
         yield return new WaitForSeconds(2f);
-        if (player.MoveStatePoint < enemy.MoveStatePoint)
+        if (player.MoveValue + player.Stars < enemy.MoveValue + enemy.Stars)
         {
             SecondAttackText.SetActive(true);
             player.isFirstATK = false;
             enemy.isFirstATK = true;
         }
-        else if (player.MoveStatePoint > enemy.MoveStatePoint)
+        else if (player.MoveValue + player.Stars > enemy.MoveValue + enemy.Stars)
         {
             FirstAttackText.SetActive(true);
             player.isFirstATK = true;
             enemy.isFirstATK = false;
         }
-        else if (player.MoveStatePoint == enemy.MoveStatePoint)
+        else if (player.MoveValue + player.Stars == enemy.MoveValue + enemy.Stars)
         {
             var CoinAnimation = Coin.GetComponent<Animation>();
             CoinAnimation.clip = CoinTopOrBottom[CoinValue];
