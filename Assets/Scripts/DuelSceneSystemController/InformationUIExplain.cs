@@ -61,8 +61,7 @@ public class InformationUIExplain : MonoBehaviour
             ExplainUpText.SetActive(true);
             ExplainUpATK.SetActive(false);
         }
-
-        if (InformationUI.InformationDownID == 1)
+        /*if (InformationUI.InformationDownID == 1)
         {
             if (InformationUI.InformationDownAttackType == 0)
             {
@@ -92,6 +91,6 @@ public class InformationUIExplain : MonoBehaviour
             ExplainDownText.GetComponent<TextMeshProUGUI>().text = InformationUI.InformationDownName;
             ExplainDownText.SetActive(true);
             ExplainDownATK.SetActive(false);
-        }
+        }*/
     }
 }

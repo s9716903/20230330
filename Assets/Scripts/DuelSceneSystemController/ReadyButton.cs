@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class ReadyButton : MonoBehaviour
 {
-    public GameObject ThisPlayer; //玩家本人
     public static int LimitedUsing; //一般對戰限制出牌數
-    public static int PracticeLimited; //新手關對戰限制出牌數
+    public static int PracticeLimited; //教學時限制出牌數
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +16,7 @@ public class ReadyButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!DuelStateManager.canInterect || ThisPlayer.GetComponent<Player>().canMove == true)
+        /*if (!DuelStateManager.canInterect || ThisPlayer.GetComponent<Player>().canMove == true)
         {
             gameObject.GetComponent<Button>().enabled = false;
         }
@@ -45,6 +44,6 @@ public class ReadyButton : MonoBehaviour
                     gameObject.GetComponent<Button>().enabled = true;
                 }               
             }
-        }
+        }*/
     }
 }

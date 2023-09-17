@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(Ground.GetComponent<Ground>().Blocation[TargetLocation].transform.position.x, 5, Ground.GetComponent<Ground>().Blocation[TargetLocation].transform.position.z);
         }
-        Debug.Log("Target:" + TargetLocation);
-        Debug.Log("Move:" + MoveToLocation);
+        //Debug.Log("Target:" + TargetLocation);
+        //Debug.Log("Move:" + MoveToLocation);
     }
 }
