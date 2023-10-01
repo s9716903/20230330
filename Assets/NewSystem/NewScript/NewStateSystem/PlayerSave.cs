@@ -1,29 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Newtonsoft.Json;
+using System.IO;
 public class PlayerSave : MonoBehaviour
 {
-    public int StoryChapterUnlock;
-    public string[] Jobs;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private string datapath;
 
-    // Update is called once per frame
-    void Update()
+    public int StoryChapterUnlock;
+    private int[] PlayerJobUnlock;
+    public List<int[]> JobDataUnlock = new List<int[]>();
+    // Start is called before the first frame update
+    private void Start()
     {
-        
-    }
-    /*public void SavePlayerData()
-    {
-        List<string> datas = new List<string>();
-        datas.Add("StoryChapterUnlock," + StoryChapterUnlock.ToString());
-        for (int i = 0; i < Jobs.Length; i++)
+        datapath = Application.dataPath + "/Save" + "/playersave.json";
+        if (File.Exists(datapath))
         {
-            datas.Add("Jobs," + Jobs[i]);
+            string playersave = File.ReadAllText(datapath);
+            SaveData savedata = JsonConvert.DeserializeObject<SaveData>(playersave);
+            StoryChapterUnlock = savedata.StoryChapterUnlock;
+            JobDataUnlock = savedata.JobData;
         }
-    }*/
+        else
+        {
+            CreateNewSave();
+            NewSaveData();
+        }
+    }
+    private void CreateNewSave()
+    {
+        for (int i = 0; i < NewPlayerSkillManager.Jobs.Count; i++)
+        {
+            PlayerJobUnlock = new int[] { i, 0, 0 };
+            JobDataUnlock.Add(PlayerJobUnlock);
+        }
+    }
+    private void NewSaveData()
+    {
+        SaveData savedata = new SaveData();
+        savedata.StoryChapterUnlock = 0;
+        savedata.JobData = JobDataUnlock;
+        string savejson = JsonConvert.SerializeObject(savedata);
+        File.WriteAllText(datapath, savejson);
+    }
+}
+public class SaveData
+{
+    public int StoryChapterUnlock;
+    public List<int[]> JobData;
 }

@@ -22,7 +22,7 @@ public abstract class SkillManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Setting();
+        Setting();
     }
     public abstract void Setting(); //初始設定
     public abstract void Skill1(); //主技能1

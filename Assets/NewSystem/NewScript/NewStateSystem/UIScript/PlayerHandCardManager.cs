@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerHandCardManager : MonoBehaviour
 {
-    public PlayerDataManager playerdata;
     public List<Card> HandCardList; //該玩家手牌(List)
-    public List<Card> ReadyCardList; //準備使用的手牌(List)
     public GameObject PlayerDeck; //該玩家牌組
     public GameObject PlayerPiece; //該玩家棋子
     public GameObject PlayerTrashCardZone; //該玩家棄牌區
@@ -19,13 +17,11 @@ public class PlayerHandCardManager : MonoBehaviour
     {
         //PracticeLimited = false;
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        //StartCoroutine(NormalDraw());
     }
 
     // Update is called once per frame
     void Update()
-    {      
-        //playerdata.HP = HandCardList.Count;
+    {
         /*if (PracticeLimited == false)
         {
             for (int b = 0; b < transform.childCount; b++) //判斷底下的卡片是否能與滑鼠互動
@@ -66,23 +62,6 @@ public class PlayerHandCardManager : MonoBehaviour
             gridLayoutGroup.cellSize = new Vector2(130 - (transform.childCount * 5), 100);
         }
     }
-    /*public void ShowHandCard()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            if (transform.GetChild(i).gameObject.activeInHierarchy)
-            {
-                Destroy(transform.GetChild(i).gameObject);
-                //ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.Add(HandAllCard[i]);//手牌加入棄牌List
-                //HandAllCard[i] = null; //牌組List中移除卡牌
-            }
-            else if (!transform.GetChild(i).gameObject.activeInHierarchy)
-            {
-                transform.GetChild(i).gameObject.SetActive(true);
-            }
-        }
-        //HandAllCard.RemoveAll(HandAllCard => HandAllCard == null);
-    }*/
     /*public IEnumerator TrashCardBackDeck()
     {
 

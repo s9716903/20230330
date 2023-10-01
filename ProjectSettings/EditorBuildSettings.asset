@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/DuelScene/DuelPractice.unity
     guid: 6a3d4f13b27892842b60ead06e8dc7a7
   - enabled: 1
-    path: Assets/Scenes/DuelScene/NormalDuel.unity
-    guid: fa4b9ea86c3cf3945a72ca026c2a1a94
+    path: Assets/NewSystem/NewNormalDuel.unity
+    guid: 872eff9a23511e048941c4d843a32b54
   - enabled: 1
     path: Assets/Scenes/UI Scene/Stage1.unity
     guid: 073e722a1b906d1478ca1555c2b6829d

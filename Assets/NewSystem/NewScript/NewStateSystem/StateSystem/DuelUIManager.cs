@@ -11,19 +11,21 @@ public class DuelUIManager : MonoBehaviour
     public GameObject DuelTimer;
     public GameObject ReadyButton;
     public GameObject MoveResultUI;
-    public GameObject ATKResultUI;
-    public GameObject DuelEndUI;
+    //public GameObject ATKResultUI;
+    //public GameObject DuelEndUI;
     public GameObject InformationText;
 
-    public static bool startMoveStateResult;
+    public static bool showStateText; //顯示階段文字
+    public static bool startMoveStateResult; //開始呈現結算
     public static bool startAttackStateResult;
-    public static bool resultEnd;
+    public static bool resultEnd; //結束結算
     public static bool player1lose;
     public static bool player2lose;
     public static bool PracticeEnd;
     // Start is called before the first frame update
     void Start()
     {
+        showStateText = false;
         PracticeLimtedSetting.LimitedOn = false;
         startMoveStateResult = false;
         startAttackStateResult = false;
@@ -37,8 +39,8 @@ public class DuelUIManager : MonoBehaviour
         ReadyButton.SetActive(false);
         StateText.SetActive(false);
         MoveResultUI.SetActive(false);
-        ATKResultUI.SetActive(false);
-        DuelEndUI.SetActive(false);
+        //ATKResultUI.SetActive(false);
+        //DuelEndUI.SetActive(false);
         InformationText.SetActive(false);
         
     }
@@ -46,12 +48,12 @@ public class DuelUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StateText.GetComponent<TextMeshProUGUI>().text = DuelBattleManager.duelStateMode.ToString();
+        //StateText.GetComponent<TextMeshProUGUI>().text = DuelBattleManager.duelStateMode.ToString();
         if (PlayerUIManager.GetInstance().readyToDuel && EnemyUIManager.GetInstance().readyToDuel)
         {
             StartCoroutine(StartDuel());
         }
-        if (DuelBattleManager.showStateText)
+        if (showStateText)
         {
             StartCoroutine(ShowStateText());
         }
@@ -63,14 +65,18 @@ public class DuelUIManager : MonoBehaviour
         {
             //StartCoroutine(AttackStateResult());
         }
+        /*if (startMoveStateResult)
+        {
+            StartCoroutine(MoveStateResult());
+        }
+        if (startAttackStateResult)
+        {
+            StartCoroutine(AttackStateResult());
+        }*/
 
         if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.DamageResult)
         {
             InformationText.SetActive(true);
-        }
-        else
-        {
-            InformationText.SetActive(false);
         }
     }
     public IEnumerator StartDuel()
@@ -85,7 +91,7 @@ public class DuelUIManager : MonoBehaviour
     }
     public IEnumerator ShowStateText()
     {
-        DuelBattleManager.showStateText = false;
+        showStateText = false;
         StateText.GetComponent<TextMeshProUGUI>().text = DuelBattleManager.duelStateMode.ToString();
         StateText.SetActive(true);
         yield return new WaitForSeconds(1f);
@@ -97,16 +103,12 @@ public class DuelUIManager : MonoBehaviour
         startMoveStateResult = false;
         var ThePlayer = PlayerUIManager.GetInstance().PlayerData;
         var TheEnemy = EnemyUIManager.GetInstance().EnemyData;
-        //var player_handcards = GameObject.Find("PlayerHandCards").GetComponent<HandCards>();
-        //var enemy_handcards = GameObject.Find("EnemyHandCards").GetComponent<HandCards>();
         MoveResultUI.SetActive(true);
         yield return StartCoroutine(MoveResultUI.GetComponent<NewMoveResult>().StartResult());
         MoveResultUI.SetActive(false);
         yield return new WaitForSeconds(1f);
-        //PlayerUIManager.GetInstance()..ShowHandCard();
+        //PlayerUIManager.GetInstance().ShowHandCard();
         //enemy_handcards.ShowHandCard();
-        ThePlayer.PlayerLocation = ThePlayer.MoveToLocation;
-        TheEnemy.PlayerLocation = TheEnemy.MoveToLocation;
         yield return new WaitForSeconds(1f);
         PlayerUIManager.GetInstance().HealthDrawCard();
         EnemyUIManager.GetInstance().HealthDrawCard();

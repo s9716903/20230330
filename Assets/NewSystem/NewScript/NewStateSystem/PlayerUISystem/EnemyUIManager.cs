@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyUIManager : Singleton<EnemyUIManager>
 {
@@ -16,6 +17,7 @@ public class EnemyUIManager : Singleton<EnemyUIManager>
     public GameObject ReadyText;
     public PlayerDataManager EnemyData;
 
+    public int[] Location;
     public GameObject CardPrefab;
     protected override void Awake()
     {
@@ -25,27 +27,26 @@ public class EnemyUIManager : Singleton<EnemyUIManager>
     void Start()
     {
         EnemyData = new PlayerDataManager();
-        EnemyData.playerStateMode = NewGameState.NewPlayerStateMode.PlayerDeactivate;
-        EnemyData.NormalDrawAmount = 5;
-        //PracticeLimited = false;
+        EnemyData.MoveToLocation[0] = 2;
+        EnemyData.MoveToLocation[1] = 2;
+        EnemyData.SettingValue();
         EnemyData.isPlayer1 = false;
+        //PracticeLimited = false;
+        EnemyData.NormalDrawAmount = EnemyData.StartHP;
         EnemyPiece.SetActive(false);
         EnemyHandCardZone.SetActive(false);
         EnemyDeck.SetActive(false);
         EnemyTrashCardZone.SetActive(false);
         EnemyState.SetActive(false);
         ReadyText.SetActive(false);
-        for (int i = 0; i < 5; i++)
-        {
-            EnemyPieceLocation.transform.GetChild(i).GetComponent<NewLocation>().LocationGraph = i;
-            EnemyPieceLocation.transform.GetChild(i).GetComponent<NewLocation>().playerData = EnemyData;
-        }
         StartCoroutine(StartDuel());
     }
 
     // Update is called once per frame
     void Update()
     {
+        Location = EnemyData.PlayerLocation;
+        EnemyData.EnemyLocation = PlayerUIManager.GetInstance().Location;
         if (EnemyData.isReady && (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Move || DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack || DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.DamageResult))
         {
             EnemyData.playerStateMode = NewGameState.NewPlayerStateMode.PlayerReady;
@@ -57,6 +58,11 @@ public class EnemyUIManager : Singleton<EnemyUIManager>
         }
         //PlayerSkill.GetComponent<SkillUI>().MaxHp.text = ":" + ThisPlayer.GetComponent<Player>().Hp.ToString() + "/" + ThisPlayer.GetComponent<Player>().MaxHp.ToString();
         //PlayerSkill.GetComponent<SkillUI>().Defense.text = ":" + ThisPlayer.GetComponent<Player>().Defense.ToString();
+    }
+    public void MovePiece()
+    {
+        EnemyPiece.transform.DOMove(EnemyPieceLocation.transform.GetChild(EnemyData.MoveToLocation[0] - 2).transform.GetChild(EnemyData.MoveToLocation[1]).transform.position, 2);
+        EnemyData.PlayerLocation = EnemyData.MoveToLocation;
     }
     public void EnemyReady()
     {
@@ -133,11 +139,6 @@ public class EnemyUIManager : Singleton<EnemyUIManager>
     {
         StartCoroutine(HealthDraw());
     }
-    public void MovePiece()
-    {
-        EnemyPiece.transform.position = EnemyPieceLocation.transform.GetChild(EnemyData.MoveToLocation).transform.position;
-        EnemyData.PlayerLocation = EnemyData.MoveToLocation;
-    }
     public virtual IEnumerator NormalDraw()
     {
         for (int i = 0; i < EnemyData.NormalDrawAmount; i++)
@@ -161,16 +162,14 @@ public class EnemyUIManager : Singleton<EnemyUIManager>
             var newcard = Instantiate(CardPrefab, EnemyDeck.transform);
             var decklist = EnemyDeck.GetComponent<PlayerDeck>().CardList;
             newcard.GetComponent<NewCardValueManager>().card = decklist[0];
-            newcard.GetComponent<NewCardValueManager>().playerData = EnemyData;
-            var thisdeckcard = EnemyDeck.transform.GetChild(0).gameObject;
-            while (thisdeckcard.transform.position != EnemyHandCardZone.transform.position)
+            newcard.GetComponent<NewCardValueManager>().isPlayer = false;
+            decklist.RemoveAt(0);
+            while (newcard.transform.position != EnemyHandCardZone.transform.position)
             {
-                thisdeckcard.transform.position = Vector2.MoveTowards(thisdeckcard.transform.position, EnemyHandCardZone.transform.position, 3000 * Time.deltaTime);
+                newcard.transform.position = Vector2.MoveTowards(newcard.transform.position, EnemyHandCardZone.transform.position, 3000 * Time.deltaTime);
                 yield return 0;
             }
-            Instantiate(newcard, EnemyHandCardZone.transform); //卡片變成手牌子物件
-            decklist.RemoveAt(0);
-            Destroy(thisdeckcard);
+            newcard.transform.parent = EnemyHandCardZone.transform; //卡片變成手牌子物件
             yield return 0;
         }
         if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Draw)
@@ -217,16 +216,14 @@ public class EnemyUIManager : Singleton<EnemyUIManager>
             var newcard = Instantiate(CardPrefab, EnemyDeck.transform);
             var decklist = EnemyDeck.GetComponent<PlayerDeck>().CardList;
             newcard.GetComponent<NewCardValueManager>().card = decklist[0];
-            newcard.GetComponent<NewCardValueManager>().playerData = EnemyData;
-            var thisdeckcard = EnemyDeck.transform.GetChild(0).gameObject;
-            while (thisdeckcard.transform.position != EnemyHandCardZone.transform.position)
+            newcard.GetComponent<NewCardValueManager>().isPlayer = false;
+            decklist.RemoveAt(0);
+            while (newcard.transform.position != EnemyHandCardZone.transform.position)
             {
-                thisdeckcard.transform.position = Vector2.MoveTowards(thisdeckcard.transform.position, EnemyHandCardZone.transform.position, 3000 * Time.deltaTime);
+                newcard.transform.position = Vector2.MoveTowards(newcard.transform.position, EnemyHandCardZone.transform.position, 3000 * Time.deltaTime);
                 yield return 0;
             }
-            Instantiate(newcard, EnemyHandCardZone.transform); //卡片變成手牌子物件
-            decklist.RemoveAt(0);
-            Destroy(thisdeckcard);
+            newcard.transform.parent = EnemyHandCardZone.transform; //卡片變成手牌子物件
             yield return 0;
         }
         EnemyData.HealthValue = 0;
@@ -236,11 +233,13 @@ public class EnemyUIManager : Singleton<EnemyUIManager>
     {
         yield return new WaitForSeconds(1);
         EnemyDeck.SetActive(true);
+        EnemyDeck.GetComponent<PlayerDeck>().DeckStartSetting();
         EnemyTrashCardZone.SetActive(true);
         EnemyState.SetActive(true);
         EnemyHandCardZone.SetActive(true);
         yield return new WaitForSeconds(1);
-        MovePiece();
+        EnemyPiece.transform.position = EnemyPieceLocation.transform.GetChild(EnemyData.MoveToLocation[0] - 2).transform.GetChild(EnemyData.MoveToLocation[1]).transform.position;
+        EnemyData.PlayerLocation = EnemyData.MoveToLocation;
         EnemyPiece.SetActive(true);
         yield return new WaitForSeconds(1.5f);
         //PlayerData.NormalDrawAmount = PlayerData.StartHP;

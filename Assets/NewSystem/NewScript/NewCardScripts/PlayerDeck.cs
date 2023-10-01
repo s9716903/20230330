@@ -2,30 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
+using UnityEngine.EventSystems;
 
-public class PlayerDeck : MonoBehaviour
+public class PlayerDeck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    //public static PlayerDeck playerDeck;
     public List<Card> CardList = new List<Card>();
     public TextAsset decklist;
+    public TextMeshProUGUI DeckCardsText;
 
+    private void Start()
+    {
+        DeckCardsText.enabled = false;
+    }
+    private void Update()
+    {
+        DeckCardsText.text = CardList.Count.ToString();
+        Debug.Log(CardList.Count);
+    }
     // Start is called before the first frame update
-    void Start()
+    public void DeckStartSetting()
     {
         LoadDeckData();
         ShuffleDeck();
-        Debug.Log(CardList.Count);
     }
-
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            //TestLoadCard();
-        }
-        //Debug.Log(CardList.Count);
-    }
     public void LoadDeckData()
     {
         string[] deckvalue = decklist.text.Split('\n');
@@ -81,13 +82,12 @@ public class PlayerDeck : MonoBehaviour
             CardList[RandomIndex] = temp;
         }
     }
-    /*public void TestLoadCard()
+    public void OnPointerEnter(PointerEventData pointerEventData) //菲公村夹簿
     {
-        for (int i = 0; i < 5; i++)
-        {
-            GameObject newcard = Instantiate(CardPrefab, PlayerHandCard.transform);
-            newcard.GetComponent<NewCardValueManager>().card = CardList[0];
-            CardList.RemoveAt(0);
-        }
-    }*/
+        DeckCardsText.enabled = true;   
+    }
+    public void OnPointerExit(PointerEventData pointerEventData) //菲公村夹簿
+    {
+        DeckCardsText.enabled = false;
+    }
 }

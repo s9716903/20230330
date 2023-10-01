@@ -17,21 +17,21 @@ public class NewEnemyAI : MonoBehaviour
     {
         if ((DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Move) && (EnemyUIManager.GetInstance().EnemyData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate))
         {
-            if (StateTimer.startTime == 50 || PlayerUIManager.GetInstance().PlayerData.isReady == true)
+            if (NewTimer.StartTime == 50 || PlayerUIManager.GetInstance().PlayerData.isReady == true)
             {
                 StartCoroutine(MoveState());
             }
         }
         else if ((DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack) && (EnemyUIManager.GetInstance().EnemyData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate))
         {
-            if (StateTimer.startTime == 50 || PlayerUIManager.GetInstance().PlayerData.isReady)
+            if (NewTimer.StartTime == 50 || PlayerUIManager.GetInstance().PlayerData.isReady)
             {
                 StartCoroutine(AttackState());
             }
         }
         else if ((DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Damage) && (EnemyUIManager.GetInstance().EnemyData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate))
         {
-            if (StateTimer.startTime == 20 || PlayerUIManager.GetInstance().PlayerData.isReady)
+            if (NewTimer.StartTime == 20 || PlayerUIManager.GetInstance().PlayerData.isReady)
             {
                 StartCoroutine(DamageState());
             }
@@ -41,7 +41,7 @@ public class NewEnemyAI : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).GetComponent<NewCardValueManager>().cardcanuse == false || transform.GetChild(i).GetComponent<NewCardValueManager>().MainType == 3)
+            if ((transform.GetChild(i).GetComponent<NewCardValueManager>().cardcanuse == false) || (transform.GetChild(i).GetComponent<NewCardValueManager>().MainType == 3))
             {
                 transform.GetChild(i).GetComponent<NewCardValueManager>().isCardUp = !transform.GetChild(i).GetComponent<NewCardValueManager>().isCardUp;
             }
@@ -75,7 +75,7 @@ public class NewEnemyAI : MonoBehaviour
         //handcard.PlayerCardValueReady();
         if (!PracticeLimtedSetting.LimitedOn)
         {
-            EnemyUIManager.GetInstance().EnemyData.MoveToLocation = Random.Range(EnemyUIManager.GetInstance().EnemyData.MoveToLocation - EnemyUIManager.GetInstance().EnemyData.MoveValue, EnemyUIManager.GetInstance().EnemyData.MoveToLocation + EnemyUIManager.GetInstance().EnemyData.MoveValue + 1);
+            //EnemyUIManager.GetInstance().EnemyData.MoveToLocation = Random.Range(EnemyUIManager.GetInstance().EnemyData.MoveToLocation - EnemyUIManager.GetInstance().EnemyData.MoveValue, EnemyUIManager.GetInstance().EnemyData.MoveToLocation + EnemyUIManager.GetInstance().EnemyData.MoveValue + 1);
         }
         else
         {

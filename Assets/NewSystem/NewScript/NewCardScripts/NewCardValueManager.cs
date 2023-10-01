@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
-public class NewCardValueManager : MonoBehaviour,IPointerDownHandler
+public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnterHandler,IPointerExitHandler
 { 
     [Header("CardPart")]
     public GameObject CardTop1;
@@ -85,7 +86,7 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler
         //卡片使用判定
         if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Move)
         {
-            if (MainType != 1 || MainType != 2)
+            if (MainType != 1 && MainType != 2)
             {
                 cardcanuse = true;
             }
@@ -151,7 +152,7 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler
         {
             StartCoroutine(ReadCardInformation());
         }
-        if (playerData.isPlayer1 && playerData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate)
+        if (isPlayer && playerData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate)
         {
             //滑鼠左鍵卡片時
             if (pointerEventData.button == PointerEventData.InputButton.Left && !NewCardTurnTopOrBottom.istheChangeUpOrDown)
@@ -163,9 +164,24 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler
                     ChooseDamageDropCard();
                 }
                 else
-                { 
+                {
                     ChooseUseCard();
-                }    
+                }
+                /*if (playerData.LimitedUse == (playerData.HP - 1))
+                {
+                    if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Damage)
+                    {
+                        ChooseDamageDropCard();
+                    }
+                    else
+                    {
+                        ChooseUseCard();
+                    }
+                }
+                else
+                {
+                    return;
+                }*/
             }
             if (pointerEventData.button == PointerEventData.InputButton.Right && changeCardUpOrDown) //滑鼠右鍵卡片時卡片翻轉+更換資料
             {
@@ -183,10 +199,18 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler
             }
         }
     }
+    public void OnPointerEnter(PointerEventData pointerEventData)
+    {
+        transform.DOScale(1.3f,0.2f);
+    }
+    public void OnPointerExit(PointerEventData pointerEventData)
+    {
+        transform.DOScale(1, 0.2f);
+    }
     public void ChooseUseCard()
     {
         usecard = !usecard;
-        if (playerData.isPlayer1)
+        if (isPlayer)
         {
             UseCard();
         }
@@ -258,7 +282,7 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler
    public void ChooseDamageDropCard()
     {
         usecard = !usecard;
-        if (playerData.isPlayer1)
+        if (isPlayer)
         {
             DamageDropCard();
         }

@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public abstract class DuelBattleIState : MonoBehaviour
+{
+    public abstract void EnterState();
+    public abstract void UpdateState();
+}
 public class NewGameState : MonoBehaviour
 {
     public enum NewDuelStateMode
@@ -27,7 +32,7 @@ public class NewDrawState : DuelBattleIState
     public override void EnterState()
     {
         //EnemyAIController.AIDoThing = false;
-        DuelBattleManager.showStateText = true;
+        DuelUIManager.showStateText = true;
         PlayerUIManager.GetInstance().PlayerData.isReady = false;
         EnemyUIManager.GetInstance().EnemyData.isReady = false;
         PlayerUIManager.GetInstance().NormalDrawCard();
@@ -42,7 +47,7 @@ public class NewDrawState : DuelBattleIState
     {
         var _player_data = PlayerUIManager.GetInstance().PlayerData;
         var _enemy_data = EnemyUIManager.GetInstance().EnemyData;
-        if (_player_data.isReady && _enemy_data.isReady && !StateTimer.pauseStateTime)
+        if (_player_data.isReady && _enemy_data.isReady && !NewTimer.PauseTime)
         {
             _player_data.isReady = false;
             _enemy_data.isReady = false;
@@ -61,10 +66,10 @@ public class NewMoveState : DuelBattleIState //移動階段(引用IState的運行模式)
         _enemy_data.isReady = false;
         _player_data.playerStateMode = NewGameState.NewPlayerStateMode.PlayerActivate;
         _enemy_data.playerStateMode = NewGameState.NewPlayerStateMode.PlayerActivate;
-        DuelBattleManager.showStateText = true;
-        StateTimer.startTime = 60;
-        StateTimer.isStartTime = true;
-        StateTimer.stopStateTime = false;
+        DuelUIManager.showStateText = true;
+        NewTimer.StopTime = false;
+        NewTimer.StartTime = 60;
+        NewTimer.TimeDelay = true;
        /*if (PracticeLimtedSetting.LimitedOn && PracticeLimtedSetting.PracticeTurn == 0)
         {
             PracticeDialodue.practiceduel = 2;
@@ -80,15 +85,12 @@ public class NewMoveState : DuelBattleIState //移動階段(引用IState的運行模式)
     {
         var _player_data = PlayerUIManager.GetInstance().PlayerData;
         var _enemy_data = EnemyUIManager.GetInstance().EnemyData;
-        if (_player_data.isReady && _enemy_data.isReady)
+        if ((_player_data.isReady && _enemy_data.isReady) || NewTimer.StopTime)
         {
-            PlayerUIManager.GetInstance().PlayerData.canMove = false;
-            EnemyUIManager.GetInstance().EnemyData.canMove = false;
-            StateTimer.startTime = 0;
-            StateTimer.pauseStateTime = false;
-        }
-        if (StateTimer.stopStateTime == true)
-        {
+            _player_data.canMove = false;
+            _enemy_data.canMove = false;
+            NewTimer.StopTime = true;
+            NewTimer.StartTime = 0;
             _player_data.isReady = false;
             _enemy_data.isReady = false;
             DuelBattleManager.duelStateMode = NewGameState.NewDuelStateMode.MoveResult;
@@ -105,7 +107,6 @@ public class NewMoveResultState : DuelBattleIState //移動階段(引用IState的運行模
         PlayerUIManager.GetInstance().PlayerData.isReady = false;
         EnemyUIManager.GetInstance().EnemyData.isReady = false;
         DuelUIManager.startMoveStateResult = true;
-        //EnemyAIController.AIDoThing = false;
     }
     public override void UpdateState()
     {
@@ -135,7 +136,7 @@ public class NewAttackState : DuelBattleIState //移動階段(引用IState的運行模式)
         EnemyUIManager.GetInstance().EnemyData.isReady = false;
         ReadyButton.LimitedUsing = 0;
         ReadyButton.PracticeLimited = 0;
-        DuelBattleManager.showStateText = true;
+        DuelUIManager.showStateText = true;
         StateTimer.startTime = 60;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
@@ -205,7 +206,7 @@ public class NewDamageState : DuelBattleIState //移動階段(引用IState的運行模式)
         EnemyUIManager.GetInstance().EnemyData.isReady = false;
         ReadyButton.LimitedUsing = 0;
         ReadyButton.PracticeLimited = 0;
-        DuelBattleManager.showStateText = true;
+        DuelUIManager.showStateText = true;
         StateTimer.startTime = 30;
         StateTimer.isStartTime = true;
         StateTimer.stopStateTime = false;
@@ -276,7 +277,7 @@ public class NewEndState : DuelBattleIState //移動階段(引用IState的運行模式)
         _enemy_data.Stars = 0;
         _player_data.isReady = false;
         _enemy_data.isReady = false;
-        DuelBattleManager.showStateText = true;
+        DuelUIManager.showStateText = true;
     }
     public override void UpdateState()
     {

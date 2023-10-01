@@ -13,18 +13,14 @@ public class DuelBattleManager : MonoBehaviour
     //決鬥場景相關
     private AudioSource BattleMusic;
     public static bool listenDuelMusic;
-    public static bool showStateText;
 
     //玩家相關資料
     public static TextAsset Player1Deck;
     public static TextAsset Player2Deck;
-    public PlayerDataManager Player1Data;
-    public PlayerDataManager Player2Data;
     //public Image Player1Job;
     //public Image Player2Job;
     private void Awake()
     {
-        showStateText = false;
         DuelIState.Clear();
         DuelIState.Add(NewGameState.NewDuelStateMode.Draw, new NewDrawState());
         DuelIState.Add(NewGameState.NewDuelStateMode.Move, new NewMoveState());
