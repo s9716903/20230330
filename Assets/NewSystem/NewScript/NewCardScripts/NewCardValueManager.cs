@@ -9,17 +9,10 @@ using DG.Tweening;
 public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnterHandler,IPointerExitHandler
 { 
     [Header("CardPart")]
-    public GameObject CardTop1;
-    public GameObject CardTop2;
+    public GameObject CardTop;
     public GameObject CardBottom;
-    public Image Type1;
-    public TextMeshProUGUI Value1Text;
-    public Image Type2;
-    public TextMeshProUGUI Value2Text;
-    public Image Type;
-    public TextMeshProUGUI ValueText;
-
-    public Card card;
+    public Image Type1Image;
+    public Image Type2Image;
 
     [Header("Card")]
     public Sprite[] Icon;
@@ -27,30 +20,21 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     public AudioClip[] audioClip;
 
     [Header("MainValue")]
-    public string ID;
-    public int MainType;
-    public int MainValue;
-    public int[] MainAttackZone;
+    private string ID;
+    private int MainType;
 
     [Header("CardValue")]
-    public int Type1Value;
-    public int Type2Value;
-    public int Value1Value;
-    public int Value2Value;
-    public int[] AttackZoneValue;
+    private int Type1;
+    private int Type2;
 
     [Header("CardState")]
-    public bool cardcanuse; //是否可以使用該卡
     public bool isCardUp; //卡片是否正位置
     public bool usecard; //選擇使用該卡片
     public bool changeCardUpOrDown;
-    public bool isPlayer;
-    public bool istwincard = true;
     public PlayerDataManager playerData;
     // Start is called before the first frame update
     void Start()
     {
-        cardcanuse = false;
         usecard = false;
         isCardUp = true;
         changeCardUpOrDown = true;
@@ -61,131 +45,37 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     // Update is called once per frame
     void Update()
     {
-        if (isPlayer)
-        {
-            playerData = PlayerUIManager.GetInstance().PlayerData;
-        }
-        else
-        {
-            playerData = EnemyUIManager.GetInstance().EnemyData;
-        }
-
+        playerData = PlayerUIManager.GetInstance().PlayerData;
         //卡片正逆位置資料
         if (isCardUp)
         {
-            MainType = Type1Value;
-            MainValue = Value1Value;
-            MainAttackZone = AttackZoneValue;
+            MainType = Type1;
         }
-        else if (!isCardUp)
+        else
         {
-            MainType = Type2Value;
-            MainValue = Value2Value;
-        }
-
-        //卡片使用判定
-        if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Move)
-        {
-            if (MainType != 1 && MainType != 2)
-            {
-                cardcanuse = true;
-            }
-            else
-            {
-                cardcanuse = false;
-            }
-        }
-        else if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack)
-        {
-            if (MainType != 0)
-            {
-                cardcanuse = true;
-            }
-            else
-            {
-                cardcanuse = false;
-            }
-        }
-        else if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.DamageResult)
-        {
-            cardcanuse = true;
+            MainType = Type2;
         }
     }
     private void CardValueSetting()
     {
-        if (card is TwinCard)
-        {
-            var twincard = card as TwinCard;
-            ID = twincard.ID.ToString();
-            Type1Value = twincard.Type1;
-            Type2Value = twincard.Type2;
-            Value1Value = twincard.Value1;
-            Value2Value = twincard.Value2;
-            AttackZoneValue = twincard.AttackZone1;
-            Type1.sprite = Icon[twincard.Type1];
-            Value1Text.text = twincard.Value1.ToString();
-            Type2.sprite = Icon[twincard.Type2];
-            Value2Text.text = twincard.Value2.ToString();
-            CardTop1.SetActive(true);
-            CardTop2.SetActive(false);
-            istwincard = true;
-        }
-        else if (card is HealthCard)
-        {
-            var healthcard = card as HealthCard;
-            ID = healthcard.ID.ToString();
-            Type1Value = healthcard.Type;
-            Type2Value = healthcard.Type;
-            Value1Value = healthcard.Value;
-            Value2Value = healthcard.Value;
-            ValueText.text = healthcard.Value.ToString();
-            CardTop1.SetActive(false);
-            CardTop2.SetActive(true);
-            istwincard = false;
-        }
-        transform.name = ID;
+        Type1 = Random.Range(0,3);
+        Type2 = Random.Range(0,3);
+        Type1Image.sprite = Icon[Type1];
+        Type2Image.sprite = Icon[Type2];
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        //跳出大卡圖及效果文UI
-        if (gameObject.GetComponent<NewCardTurnTopOrBottom>().cardTopOrBottomState == CardTopOrBottomState.Top && (pointerEventData.button == PointerEventData.InputButton.Left || pointerEventData.button == PointerEventData.InputButton.Right) && playerData.playerStateMode != NewGameState.NewPlayerStateMode.PlayerDeactivate)
-        {
-            StartCoroutine(ReadCardInformation());
-        }
-        if (isPlayer && playerData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate)
+        if ((playerData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate) && (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack))
         {
             //滑鼠左鍵卡片時
             if (pointerEventData.button == PointerEventData.InputButton.Left && !NewCardTurnTopOrBottom.istheChangeUpOrDown)
             {
                 //audioSource.clip = audioClip[0];
                 //audioSource.Play();
-                if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Damage)
-                {
-                    ChooseDamageDropCard();
-                }
-                else
-                {
-                    ChooseUseCard();
-                }
-                /*if (playerData.LimitedUse == (playerData.HP - 1))
-                {
-                    if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Damage)
-                    {
-                        ChooseDamageDropCard();
-                    }
-                    else
-                    {
-                        ChooseUseCard();
-                    }
-                }
-                else
-                {
-                    return;
-                }*/
+                ChooseUseCard();
             }
             if (pointerEventData.button == PointerEventData.InputButton.Right && changeCardUpOrDown) //滑鼠右鍵卡片時卡片翻轉+更換資料
             {
-                StartCoroutine(ReadCardInformation());
                 //audioSource.clip = audioClip[1];
                 //audioSource.Play();
                 if (isCardUp == true)
@@ -201,107 +91,32 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     }
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        transform.DOScale(1.3f,0.2f);
+        //跳出效果UI
+        if (playerData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate)
+        {
+            StartCoroutine(OpenCardInformation());
+            transform.DOScale(1.3f, 0.2f);
+        }
     }
     public void OnPointerExit(PointerEventData pointerEventData)
     {
+        //關閉效果UI
+        SmallInformationUI.readInformation = false;
         transform.DOScale(1, 0.2f);
     }
     public void ChooseUseCard()
     {
         usecard = !usecard;
-        if (isPlayer)
-        {
-            UseCard();
-        }
-        if (usecard)
-        {
-            if (!cardcanuse)
-            {
-                playerData.NormalDrawAmount++;
-            }
-            if (cardcanuse)
-            {
-                if (MainType == 0)
-                {
-                    playerData.MoveValue += MainValue;
-                    playerData.NormalDrawAmount++;
-                }
-                else if (MainType == 1)
-                {
-                    playerData.PhysicATK += MainValue;
-                    playerData.NormalDrawAmount++;
-                }
-                else if (MainType == 2)
-                {
-                    playerData.MagicATK += MainValue;
-                }
-                else if (MainType == 3)
-                {
-                    playerData.Stars += MainValue;
-                }
-                else if (MainType == 4)
-                {
-                    playerData.HealthValue += MainValue;
-                }
-            }
-        }
-        if (!usecard)
-        {
-            if (!cardcanuse)
-            {
-                playerData.NormalDrawAmount--;
-            }
-            if (cardcanuse)
-            {
-                if (MainType == 0)
-                {
-                    playerData.MoveValue -= MainValue;
-                    playerData.NormalDrawAmount--;
-                }
-                else if (MainType == 1)
-                {
-                    playerData.PhysicATK -= MainValue;
-                    playerData.NormalDrawAmount--;
-                }
-                else if (MainType == 2)
-                {
-                    playerData.MagicATK -= MainValue;
-                }
-                else if (MainType == 3)
-                {
-                    playerData.Stars -= MainValue;
-                }
-                else if (MainType == 4)
-                {
-                    playerData.HealthValue -= MainValue;
-                }
-            }
-        }
-    }
-   public void ChooseDamageDropCard()
-    {
-        usecard = !usecard;
-        if (isPlayer)
-        {
-            DamageDropCard();
-        }
-        if (usecard)
-        {
-            playerData.DamageDropAmount++;
-        }
-        if (!usecard)
-        {
-            playerData.DamageDropAmount--;
-        }
+        UseCard();
     }
     private void UseCard() //卡片被使用時
     {
         if (usecard)
         {
+            SmallInformationUI.UIPos = new Vector3(transform.position.x, 390, 0);
             transform.position += new Vector3(0, 50, 0);
             changeCardUpOrDown = false;
-            playerData.LimitedUse += 1;
+            //playerData.LimitedUse += 1;
             /*if (PracticeLimtedSetting.LimitedOn)
             {
                 ReadyButton.PracticeLimited += 1;
@@ -309,57 +124,30 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
         }
         else
         {
+            SmallInformationUI.UIPos = new Vector3(transform.position.x, 340, 0);
             transform.position -= new Vector3(0, 50, 0);
             changeCardUpOrDown = true;
-            playerData.LimitedUse -= 1;
+            //playerData.LimitedUse -= 1;
             /*if (PracticeLimtedSetting.LimitedOn)
             {
                 ReadyButton.PracticeLimited -= 1;
             }*/
         }
     }
-    private void DamageDropCard() //卡片因扣血被捨棄時
+    public IEnumerator OpenCardInformation()
     {
+        SmallInformationUI.CardType1 = Type1;
+        SmallInformationUI.CardType2 = Type2;
+        SmallInformationUI.CardUp = isCardUp;
         if (usecard)
         {
-            transform.position += new Vector3(0, 50, 0);
-            changeCardUpOrDown = false;
-            /*if (PracticeLimtedSetting.LimitedOn)
-            {
-                ReadyButton.PracticeLimited += 1;
-            }*/
+            SmallInformationUI.UIPos = new Vector3(transform.position.x, 390, 0);
         }
         else
         {
-            transform.position -= new Vector3(0, 50, 0);
-            changeCardUpOrDown = true;
-            /*if (PracticeLimtedSetting.LimitedOn)
-            {
-                ReadyButton.PracticeLimited -= 1;
-            }*/
+            SmallInformationUI.UIPos = new Vector3(transform.position.x, 340, 0);
         }
-    }
-    public IEnumerator ReadCardInformation()
-    {
-        InformationManager.isCardInformation = true;
-        if (istwincard)
-        {
-            InformationManager.Information1Type = Type1Value;
-            InformationManager.Information1Value = Value1Value;
-            InformationManager.Information2Type = Type2Value;
-            InformationManager.Information2Value = Value2Value;
-            InformationManager.AttackZone = AttackZoneValue;
-        }
-        else if (!istwincard)
-        {
-            InformationManager.Information1Type = Type1Value;
-            InformationManager.Information1Value = Value1Value;
-            InformationManager.Information2Type = Type2Value;
-            InformationManager.Information2Value = Value2Value;
-        }
-        InformationManager.readInformation = true;
-        InformationManager.isopenInformationUI = true;
+        SmallInformationUI.readInformation = true;
         yield return null;
-        InformationManager.isopenInformationUI = false;
     }
 }

@@ -55,6 +55,7 @@ public class NewCardTurnTopOrBottom : MonoBehaviour
         {
             CardStartBottom();
         }*/
+
         /*if (Input.GetKeyDown(KeyCode.G))
         {
             CardStartUp();
@@ -127,6 +128,7 @@ public class NewCardTurnTopOrBottom : MonoBehaviour
     IEnumerator ToUp()
     {
         istheChangeUpOrDown = true;
+        SmallInformationUI.CardUp = true;
         CardTop.transform.DORotate(new Vector3(0, 0, 360), ChangeTime);
         for (float i = ChangeTime; i > 0; i -= Time.deltaTime)
         {
@@ -138,6 +140,7 @@ public class NewCardTurnTopOrBottom : MonoBehaviour
     IEnumerator ToDown()
     {
         istheChangeUpOrDown = true;
+        SmallInformationUI.CardUp = false;
         CardTop.transform.DORotate(new Vector3(0, 0, 180), ChangeTime);
         for (float i = ChangeTime; i > 0; i -= Time.deltaTime)
         {

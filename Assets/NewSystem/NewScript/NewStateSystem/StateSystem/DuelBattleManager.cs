@@ -27,8 +27,6 @@ public class DuelBattleManager : MonoBehaviour
         DuelIState.Add(NewGameState.NewDuelStateMode.MoveResult, new NewMoveResultState());
         DuelIState.Add(NewGameState.NewDuelStateMode.Attack, new NewAttackState());
         DuelIState.Add(NewGameState.NewDuelStateMode.AttackResult, new NewAttackResultState());
-        DuelIState.Add(NewGameState.NewDuelStateMode.Damage, new NewDamageState());
-        DuelIState.Add(NewGameState.NewDuelStateMode.DamageResult, new DamageResultState());
         DuelIState.Add(NewGameState.NewDuelStateMode.End, new NewEndState());
     }
     private void Start()

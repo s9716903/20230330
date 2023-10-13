@@ -33,10 +33,10 @@ public class PracticeDialodue : MonoBehaviour
             {
                 case 0:
                     CardLimitedOnShow = false;
-                    StateTimer.pauseStateTime = false;
+                    //StateTimer.pauseStateTime = false;
                     break;
                 case 1:
-                    StateTimer.pauseStateTime = true;
+                    //StateTimer.pauseStateTime = true;
                     if (DialogueStart == true)
                     {
                         DialogueStart = false;
@@ -46,7 +46,7 @@ public class PracticeDialodue : MonoBehaviour
                     }
                     break;
                 case 2:
-                    StateTimer.pauseStateTime = true;
+                    //StateTimer.pauseStateTime = true;
                     if (DialogueStart == true)
                     {
                         flowerSystem.ReadTextFromResource("Practice2");
@@ -54,7 +54,7 @@ public class PracticeDialodue : MonoBehaviour
                     }
                     break;
                 case 3:
-                    StateTimer.pauseStateTime = true;
+                    //StateTimer.pauseStateTime = true;
                     if (DialogueStart == true)
                     {
                         flowerSystem.SetupDialog();
@@ -63,7 +63,7 @@ public class PracticeDialodue : MonoBehaviour
                     }
                     break;
                 case 4:
-                    StateTimer.pauseStateTime = true;
+                    //StateTimer.pauseStateTime = true;
                     if (DialogueStart == true)
                     {
                         flowerSystem.SetupDialog();
@@ -72,7 +72,7 @@ public class PracticeDialodue : MonoBehaviour
                     }
                     break;
                 case 5:
-                    StateTimer.pauseStateTime = true;
+                    //StateTimer.pauseStateTime = true;
                     if (DialogueStart == true)
                     {
                         flowerSystem.SetupDialog();
@@ -81,7 +81,7 @@ public class PracticeDialodue : MonoBehaviour
                     }
                     break;
                 case 6:
-                    StateTimer.pauseStateTime = true;
+                    //StateTimer.pauseStateTime = true;
                     if (DialogueStart == true)
                     {
                         flowerSystem.ReadTextFromResource("Practice6");
@@ -89,7 +89,7 @@ public class PracticeDialodue : MonoBehaviour
                     }
                     break;
                 case 7:
-                    StateTimer.pauseStateTime = true;
+                    //StateTimer.pauseStateTime = true;
                     if (DialogueStart == true)
                     {
                         CardLimitedOnShow = false;
@@ -119,10 +119,10 @@ public class PracticeDialodue : MonoBehaviour
                     {
                         DialogueStart = false;
                         flowerSystem.RemoveDialog();
-                        if (PracticeLimtedSetting.LimitedOn)
+                        /*if (PracticeLimtedSetting.LimitedOn)
                         {
                             CardLimitedOnShow = true;
-                        }
+                        }*/
                     }
                     break;
             }

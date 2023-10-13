@@ -10,10 +10,9 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<int, JobData> Jobs = new Dictionary<int, JobData>();
     public int PlayerStoryChapterUnlock;
-    public int[] PlayerJob;
-    public int[] EnemyJob;
-    public TextAsset PlayerDeckAsset;
-    public TextAsset EnemyDeckAsset;
+    public List<int> PlayerJob;
+    //public TextAsset PlayerInformationAsset;
+    //public TextAsset EnemyInformationAsset;
 
     private string datapath;
 
@@ -34,6 +33,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        ClearPlayerJob();
         datapath = Application.dataPath + "/Save" + "/playersave.json";
         if (File.Exists(datapath))
         {
@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         Jobs.Clear();
         Jobs.Add(0, new NoSkill());
         Jobs.Add(1, new SkillTest());
+        Jobs.Add(2, new SkillTest2());
         for (int i = 0; i < Jobs.Count; i++)
         {
             Jobs[i].Setting();
@@ -61,9 +62,9 @@ public class GameManager : MonoBehaviour
     }
     private void CreateNewSave()
     {
-        for (int i = 0; i < NewPlayerSkillManager.Jobs.Count; i++)
+        for (int i = 0; i < Jobs.Count; i++)
         {
-            int[] PlayerJobUnlock = new int[] { i, 0, 0 };
+            int[] PlayerJobUnlock = new int[] { i, 0 };
             JobDataUnlock.Add(PlayerJobUnlock);
         }
     }
@@ -76,9 +77,11 @@ public class GameManager : MonoBehaviour
         File.WriteAllText(datapath, savejson);
         Debug.Log("Create New Save");
     }
-    // Update is called once per frame
-    void Update()
+    public void ClearPlayerJob()
     {
-        
+        if (PlayerJob != null)
+        {
+            PlayerJob.Clear();
+        }
     }
 }

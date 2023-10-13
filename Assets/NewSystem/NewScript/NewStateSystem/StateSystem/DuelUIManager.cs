@@ -6,9 +6,9 @@ using TMPro;
 
 public class DuelUIManager : MonoBehaviour
 {
+    public GameObject CameraManager;
     public GameObject BattleStateManager;
     public GameObject StateText;
-    public GameObject DuelTimer;
     public GameObject ReadyButton;
     public GameObject MoveResultUI;
     //public GameObject ATKResultUI;
@@ -16,40 +16,45 @@ public class DuelUIManager : MonoBehaviour
     public GameObject InformationText;
 
     public static bool showStateText; //顯示階段文字
-    public static bool startMoveStateResult; //開始呈現結算
-    public static bool startAttackStateResult;
-    public static bool resultEnd; //結束結算
-    public static bool player1lose;
-    public static bool player2lose;
+    public static bool showInformationText; //顯示訊息文字
+    public static string Information; //訊息文字內容
+
+    public static bool stateEventStart; //階段執行
+    
+
+    
     public static bool PracticeEnd;
     // Start is called before the first frame update
     void Start()
     {
         showStateText = false;
-        PracticeLimtedSetting.LimitedOn = false;
-        startMoveStateResult = false;
-        startAttackStateResult = false;
-        resultEnd = false;
-        player1lose = false;
-        player2lose = false;
+        showInformationText = false;
+        stateEventStart = false;
+
         PracticeEnd = false;
 
         BattleStateManager.SetActive(false);
-        DuelTimer.SetActive(false);
         ReadyButton.SetActive(false);
         StateText.SetActive(false);
         MoveResultUI.SetActive(false);
         //ATKResultUI.SetActive(false);
         //DuelEndUI.SetActive(false);
-        InformationText.SetActive(false);
-        
+        InformationText.SetActive(false);     
     }
 
     // Update is called once per frame
     void Update()
     {
-        //StateText.GetComponent<TextMeshProUGUI>().text = DuelBattleManager.duelStateMode.ToString();
-        if (PlayerUIManager.GetInstance().readyToDuel && EnemyUIManager.GetInstance().readyToDuel)
+        InformationText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = Information;
+        if (showInformationText)
+        {
+            InformationText.SetActive(true);
+        }
+        else
+        {
+            InformationText.SetActive(false);
+        }
+        if (PlayerUIManager.GetInstance().readyToDuel && EnemyManager.GetInstance().readyToDuel)
         {
             StartCoroutine(StartDuel());
         }
@@ -57,33 +62,30 @@ public class DuelUIManager : MonoBehaviour
         {
             StartCoroutine(ShowStateText());
         }
-        if (startMoveStateResult)
+        if (stateEventStart)
         {
-            StartCoroutine(MoveStateResult());
-        }
-        if (startAttackStateResult)
-        {
-            //StartCoroutine(AttackStateResult());
-        }
-        /*if (startMoveStateResult)
-        {
-            StartCoroutine(MoveStateResult());
-        }
-        if (startAttackStateResult)
-        {
-            StartCoroutine(AttackStateResult());
-        }*/
-
-        if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.DamageResult)
-        {
-            InformationText.SetActive(true);
+            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Draw)
+            {
+                StartCoroutine(StartDrawStateResult());
+            }
+            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Move)
+            {
+                StartCoroutine(StartMoveStateResult());
+            }
+            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.MoveResult)
+            {
+                StartCoroutine(EndMoveStateResult());
+            }
+            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack)
+            {
+                //StartCoroutine(AttackStateResult());
+            }
         }
     }
     public IEnumerator StartDuel()
     {
         PlayerUIManager.GetInstance().readyToDuel = false;
-        EnemyUIManager.GetInstance().readyToDuel = false;
-        DuelTimer.SetActive(true);
+        EnemyManager.GetInstance().readyToDuel = false;
         ReadyButton.SetActive(true);
         yield return new WaitForSeconds(1f);
         BattleStateManager.SetActive(true);
@@ -94,25 +96,35 @@ public class DuelUIManager : MonoBehaviour
         showStateText = false;
         StateText.GetComponent<TextMeshProUGUI>().text = DuelBattleManager.duelStateMode.ToString();
         StateText.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.6f);
         StateText.SetActive(false);
     }
-
-    public IEnumerator MoveStateResult()
+    public IEnumerator StartDrawStateResult()
     {
-        startMoveStateResult = false;
-        var ThePlayer = PlayerUIManager.GetInstance().PlayerData;
-        var TheEnemy = EnemyUIManager.GetInstance().EnemyData;
+        stateEventStart = false;
+        showStateText = true;
+        yield return new WaitForSeconds(1f);
+        PlayerUIManager.GetInstance().NormalDrawCard();
+    }
+    public IEnumerator StartMoveStateResult()
+    {
+        stateEventStart = false;
         MoveResultUI.SetActive(true);
-        yield return StartCoroutine(MoveResultUI.GetComponent<NewMoveResult>().StartResult());
+        showStateText = true;
+        //PracticeDialodue.CardLimitedOnShow = false;
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(CameraManager.GetComponent<CameraManager>().MoveStateLook());
+    }
+    public IEnumerator EndMoveStateResult()
+    {
+        var _player_data = PlayerUIManager.GetInstance().PlayerData;
+        var enemys = EnemyManager.GetInstance();
+        stateEventStart = false;
+        yield return StartCoroutine(MoveResultUI.GetComponent<NewMoveResult>().MoveResult());
         MoveResultUI.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        //PlayerUIManager.GetInstance().ShowHandCard();
-        //enemy_handcards.ShowHandCard();
-        yield return new WaitForSeconds(1f);
-        PlayerUIManager.GetInstance().HealthDrawCard();
-        EnemyUIManager.GetInstance().HealthDrawCard();
-        yield return 0;
+        _player_data.canMove = false;
+        _player_data.isReady = true;
+        enemys.isReady = true;
     }
     /*public IEnumerator AttackStateResult()
     {

@@ -17,14 +17,14 @@ public class InformationManager : MonoBehaviour,IPointerEnterHandler, IPointerEx
     public Image CardIcon1;
     public Image CardIcon2;
     public Sprite[] Icons;
-    public static int[] AttackZone;
+    //public static int[] AttackZone;
 
     [Header("InformationExplain")]
-    public GameObject[] Explain1 = new GameObject[2];
+    //public GameObject[] Explain1 = new GameObject[2];
     public GameObject Explain1TargetLocation;
     public TextMeshProUGUI Explain1TypeText;
     public Image Explain1Icon;
-    public GameObject[] Explain1ATKZone;
+    //public GameObject[] Explain1ATKZone;
     public Image Explain2Icon;
     public TextMeshProUGUI Explain2TypeText;
 
@@ -119,12 +119,12 @@ public class InformationManager : MonoBehaviour,IPointerEnterHandler, IPointerEx
     }
     public void ATKZoneInformation()
     {
-        for (int a = 0; a < Explain1ATKZone.Length; a++)
+        /*for (int a = 0; a < Explain1ATKZone.Length; a++)
         {
             Explain1ATKZone[a].gameObject.GetComponent<Image>().color = new Color32(120, 120, 120, 100);
-        }
+        }*/
 
-        if (Information1Type == 1 || Information1Type == 2)
+        /*if (Information1Type == 1 || Information1Type == 2)
         {
             if (Information1Type == 1)
             {
@@ -153,7 +153,7 @@ public class InformationManager : MonoBehaviour,IPointerEnterHandler, IPointerEx
         {
             Explain1[0].SetActive(true);
             Explain1[1].SetActive(false);
-        }
+        }*/
     }
     public void ReadPlayerState()
     {
@@ -161,7 +161,7 @@ public class InformationManager : MonoBehaviour,IPointerEnterHandler, IPointerEx
     }
     public void ReadEnemyState()
     {
-        StartCoroutine(ReadEnemyStateInformation());
+        //StartCoroutine(ReadEnemyStateInformation());
     }
     public void Skill1Text()
     {
@@ -179,14 +179,13 @@ public class InformationManager : MonoBehaviour,IPointerEnterHandler, IPointerEx
     {
         PlayerStateUI.ReadSkill = 0;
         isCardInformation = false;
-        PlayerStateUI.PlayerMaxHpInformation = PlayerUIManager.GetInstance().PlayerData.MaxHP;
+        PlayerStateUI.PlayerMaxHpInformation = PlayerUIManager.GetInstance().PlayerData.HP;
         PlayerStateUI.PlayerDefenseInformation = PlayerUIManager.GetInstance().PlayerData.Defense;
-        PlayerStateUI.PlayerStarInformation = PlayerUIManager.GetInstance().PlayerData.Stars;
         readInformation = true;
         isopenInformationUI = true;
         yield return null;
     }
-    public IEnumerator ReadEnemyStateInformation()
+    /*public IEnumerator ReadEnemyStateInformation()
     {
         PlayerStateUI.ReadSkill = 0;
         isCardInformation = false;
@@ -196,5 +195,5 @@ public class InformationManager : MonoBehaviour,IPointerEnterHandler, IPointerEx
         readInformation = true;
         isopenInformationUI = true;
         yield return null;
-    }
+    }*/
 }

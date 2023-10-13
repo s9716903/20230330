@@ -13,7 +13,7 @@ public class DuelEndUI : MonoBehaviour
     private void OnEnable()
     {
         audioSource = GetComponent<AudioSource>();
-        if (DuelUIController.player1lose)
+        /*if (DuelUIController.player1lose)
         {
             DuelEndText.text = "You Lose";
             audioSource.clip = audioClips[1];
@@ -24,7 +24,7 @@ public class DuelEndUI : MonoBehaviour
             DuelEndText.text = "You Win";
             audioSource.clip = audioClips[0];
             audioSource.Play();
-        }
+        }*/
     }
     public void TryAgain()
     {

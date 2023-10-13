@@ -29,7 +29,7 @@ public class PlayerSave : MonoBehaviour
     }
     private void CreateNewSave()
     {
-        for (int i = 0; i < NewPlayerSkillManager.Jobs.Count; i++)
+        for (int i = 0; i < GameManager.gameManager_instance.Jobs.Count; i++)
         {
             PlayerJobUnlock = new int[] { i, 0, 0 };
             JobDataUnlock.Add(PlayerJobUnlock);
