@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 5363715695420648053}
   - component: {fileID: 4736664480713018965}
   m_Layer: 5
-  m_Name: Card(LimitOn)
+  m_Name: Card(Result)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 180}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5363715695420648053
 CanvasRenderer:
@@ -170,14 +170,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9411765, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4346244404228752641, guid: c82fe12b037252747bc13f33f04e9355, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -563,15 +563,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardTop: {fileID: 3207013329820110803}
   CardBottom: {fileID: 282435203797798602}
+  CardResult: {fileID: 3089880686054649985}
   Type1Image: {fileID: 5531307195045602394}
   Type2Image: {fileID: 7607238347856693209}
+  ResultImage: {fileID: 4736664480713018965}
   Icon:
   - {fileID: 3649006590352313069, guid: 7f28dc6568428f0429a42c00fdc3536e, type: 3}
   - {fileID: -1689654979014069289, guid: 8bb44d90861d8f946afe0b03d39e2bf3, type: 3}
   - {fileID: 954129550050909782, guid: 8bb44d90861d8f946afe0b03d39e2bf3, type: 3}
   audioClip: []
+  MainType: 0
   isCardUp: 0
   usecard: 0
+  resultCard: 0
   changeCardUpOrDown: 0
   playerData: {fileID: 0}
 --- !u!114 &7638282177937218435

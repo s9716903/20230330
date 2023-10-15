@@ -11,13 +11,13 @@ public class NewReadyButton : MonoBehaviour
         var Player = PlayerUIManager.GetInstance().PlayerData;
         if (Player.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate)
         {
-            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Move && Player.canMove)
+            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack)
             {
-                gameObject.GetComponent<Button>().enabled = false;
+                gameObject.GetComponent<Button>().enabled = true;
             }
             else
             {
-                gameObject.GetComponent<Button>().enabled = true;
+                gameObject.GetComponent<Button>().enabled = false;
             }
         }
         else

@@ -13,6 +13,9 @@ public class PlayerDataManager:MonoBehaviour
     public int MoveValue; //移動值
     public int PhysicATK; //物理攻擊數值
     public int MagicATK; //法術攻擊數值
+    public int PhyATKZone;
+    public int MagicATKZone;
+    public List<int> BasicValue;
 
     //變動數值
     public int DrawAmount;
@@ -20,7 +23,7 @@ public class PlayerDataManager:MonoBehaviour
     public int[] PlayerLocation; //玩家所在位置
     public int AllDamaged; //受傷害總數值
     public int[] MoveToLocation = new int[2]; //玩家將要移動到的位置
-    public int LimitedInt; //限制數
+    public int[] BuffValue = new int[3];
 
     public int[] SkillIndex;
 
@@ -39,6 +42,10 @@ public class PlayerDataManager:MonoBehaviour
         StartCard = GameManager.gameManager_instance.Jobs[JobIndex].TheStartCard;
         PhysicATK = GameManager.gameManager_instance.Jobs[JobIndex].PhysicATKValue;
         MagicATK = GameManager.gameManager_instance.Jobs[JobIndex].MagicATKValue;
+        PhyATKZone = GameManager.gameManager_instance.Jobs[JobIndex].PhysicATKZone;
+        MagicATKZone = GameManager.gameManager_instance.Jobs[JobIndex].MagicATKZone;
+        BasicValue = new List<int> { Defense, PhysicATK, MagicATK };
+        BuffValue = new int[] { 1, -1, 0 };
     }
     private void Update()
     {

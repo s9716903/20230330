@@ -11,8 +11,10 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     [Header("CardPart")]
     public GameObject CardTop;
     public GameObject CardBottom;
+    public GameObject CardResult;
     public Image Type1Image;
     public Image Type2Image;
+    public Image ResultImage;
 
     [Header("Card")]
     public Sprite[] Icon;
@@ -20,8 +22,7 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     public AudioClip[] audioClip;
 
     [Header("MainValue")]
-    private string ID;
-    private int MainType;
+    public int MainType;
 
     [Header("CardValue")]
     private int Type1;
@@ -30,13 +31,16 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     [Header("CardState")]
     public bool isCardUp; //卡片是否正位置
     public bool usecard; //選擇使用該卡片
+    public bool resultCard;
     public bool changeCardUpOrDown;
     public PlayerDataManager playerData;
     // Start is called before the first frame update
     void Start()
     {
+        CardResult.SetActive(false);
         usecard = false;
         isCardUp = true;
+        resultCard = false;
         changeCardUpOrDown = true;
         audioSource = GetComponent<AudioSource>();
         CardValueSetting();
@@ -46,14 +50,12 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     void Update()
     {
         playerData = PlayerUIManager.GetInstance().PlayerData;
-        //卡片正逆位置資料
-        if (isCardUp)
+        if (resultCard)
         {
-            MainType = Type1;
-        }
-        else
-        {
-            MainType = Type2;
+            ResultImage.sprite = Icon[MainType];
+            CardResult.SetActive(true);
+            CardTop.SetActive(false);
+            CardBottom.SetActive(false);
         }
     }
     private void CardValueSetting()
@@ -62,6 +64,7 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
         Type2 = Random.Range(0,3);
         Type1Image.sprite = Icon[Type1];
         Type2Image.sprite = Icon[Type2];
+        ChangeCardValue();
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
@@ -80,10 +83,17 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
                 //audioSource.Play();
                 if (isCardUp == true)
                 {
+                    isCardUp = false;
+                    ChangeCardValue();
+                    ShowATKZone();
                     gameObject.GetComponent<NewCardTurnTopOrBottom>().CardStartDown();
+
                 }
                 else
                 {
+                    isCardUp = true;
+                    ChangeCardValue();
+                    ShowATKZone();
                     gameObject.GetComponent<NewCardTurnTopOrBottom>().CardStartUp();
                 }
             }
@@ -92,8 +102,9 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         //跳出效果UI
-        if (playerData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate)
+        if ((playerData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate) && (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack))
         {
+            ShowATKZone();
             StartCoroutine(OpenCardInformation());
             transform.DOScale(1.3f, 0.2f);
         }
@@ -101,7 +112,8 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     public void OnPointerExit(PointerEventData pointerEventData)
     {
         //關閉效果UI
-        SmallInformationUI.readInformation = false;
+        SmallInformationUI.readCardInformation = false;
+        LocationManager.showPlayerATKZone = false;
         transform.DOScale(1, 0.2f);
     }
     public void ChooseUseCard()
@@ -134,8 +146,32 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
             }*/
         }
     }
+    public void ShowATKZone()
+    {
+        if (MainType == 1 || MainType == 2)
+        {
+            LocationManager.ATKType = gameObject.GetComponent<NewCardValueManager>().MainType;
+            LocationManager.showPlayerATKZone = true;
+        }
+        else
+        {
+            LocationManager.showPlayerATKZone = false;
+        }
+    }
+    public void ChangeCardValue()
+    {
+        if (isCardUp)
+        {
+            MainType = Type1;
+        }
+        else
+        {
+            MainType = Type2;
+        }
+    }
     public IEnumerator OpenCardInformation()
     {
+        SmallInformationUI.readCharacterInformation = false;
         SmallInformationUI.CardType1 = Type1;
         SmallInformationUI.CardType2 = Type2;
         SmallInformationUI.CardUp = isCardUp;
@@ -147,7 +183,7 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
         {
             SmallInformationUI.UIPos = new Vector3(transform.position.x, 340, 0);
         }
-        SmallInformationUI.readInformation = true;
+        SmallInformationUI.readCardInformation = true;
         yield return null;
     }
 }

@@ -9,7 +9,6 @@ public class DuelUIManager : MonoBehaviour
     public GameObject CameraManager;
     public GameObject BattleStateManager;
     public GameObject StateText;
-    public GameObject ReadyButton;
     public GameObject MoveResultUI;
     //public GameObject ATKResultUI;
     //public GameObject DuelEndUI;
@@ -34,7 +33,6 @@ public class DuelUIManager : MonoBehaviour
         PracticeEnd = false;
 
         BattleStateManager.SetActive(false);
-        ReadyButton.SetActive(false);
         StateText.SetActive(false);
         MoveResultUI.SetActive(false);
         //ATKResultUI.SetActive(false);
@@ -76,9 +74,13 @@ public class DuelUIManager : MonoBehaviour
             {
                 StartCoroutine(EndMoveStateResult());
             }
-            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack)
+            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.AttackResult)
             {
-                //StartCoroutine(AttackStateResult());
+               StartCoroutine(StartAttackStateResult());
+            }
+            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.End)
+            {
+                StartCoroutine(EndStateResult());
             }
         }
     }
@@ -86,8 +88,6 @@ public class DuelUIManager : MonoBehaviour
     {
         PlayerUIManager.GetInstance().readyToDuel = false;
         EnemyManager.GetInstance().readyToDuel = false;
-        ReadyButton.SetActive(true);
-        yield return new WaitForSeconds(1f);
         BattleStateManager.SetActive(true);
         yield return 0;
     }
@@ -126,7 +126,54 @@ public class DuelUIManager : MonoBehaviour
         _player_data.isReady = true;
         enemys.isReady = true;
     }
-    /*public IEnumerator AttackStateResult()
+    public IEnumerator StartAttackStateResult()
+    {
+        var _player_data = PlayerUIManager.GetInstance().PlayerData;
+        var enemys = EnemyManager.GetInstance();
+        showInformationText = true;
+        Information = "Card Result";
+        stateEventStart = false;
+        yield return StartCoroutine(PlayerUIManager.GetInstance().AttackReady());
+        if (PlayerUIManager.GetInstance().isFirstATK)
+        {
+            Information = "Player Attack";
+            yield return new WaitForSeconds(1f);
+            _player_data.isReady = true;
+            Information = "Enemy Attack";
+            yield return new WaitForSeconds(1f);
+            for (int i = 0; i < enemys.EnemyPiece.Count; i++)
+            {
+                
+            }
+            yield return 0;
+            enemys.isReady = true;
+        }
+        else
+        {
+            Information = "Enemy Attack";
+            yield return new WaitForSeconds(1f);
+            for (int i = 0; i < enemys.EnemyPiece.Count; i++)
+            {
+
+            }
+            yield return 0;
+            enemys.isReady = true;
+            Information = "Player Attack";
+            yield return new WaitForSeconds(1f);
+            _player_data.isReady = true;
+        }
+        showInformationText = false;
+        yield return null;
+    }
+    public IEnumerator EndStateResult()
+    {
+        stateEventStart = false;
+        yield return new WaitForSeconds(1f);
+        PlayerUIManager.GetInstance().PlayerData.isReady = true;
+        EnemyManager.GetInstance().isReady = true;
+        yield return null;
+    }
+    /*public IEnumerator StartAttackStateResult()
     {
         startAttackStateResult = false;
         var ThePlayer = GameObject.Find("Player").GetComponent<Player>();

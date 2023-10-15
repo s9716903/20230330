@@ -128,6 +128,7 @@ public class NewCardTurnTopOrBottom : MonoBehaviour
     IEnumerator ToUp()
     {
         istheChangeUpOrDown = true;
+        gameObject.GetComponent<NewCardValueManager>().changeCardUpOrDown = false;
         SmallInformationUI.CardUp = true;
         CardTop.transform.DORotate(new Vector3(0, 0, 360), ChangeTime);
         for (float i = ChangeTime; i > 0; i -= Time.deltaTime)
@@ -135,11 +136,12 @@ public class NewCardTurnTopOrBottom : MonoBehaviour
             yield return 0;
         }
         istheChangeUpOrDown = false;
-        gameObject.GetComponent<NewCardValueManager>().isCardUp = true;
+        gameObject.GetComponent<NewCardValueManager>().changeCardUpOrDown = true;
     }
     IEnumerator ToDown()
     {
         istheChangeUpOrDown = true;
+        gameObject.GetComponent<NewCardValueManager>().changeCardUpOrDown = false;
         SmallInformationUI.CardUp = false;
         CardTop.transform.DORotate(new Vector3(0, 0, 180), ChangeTime);
         for (float i = ChangeTime; i > 0; i -= Time.deltaTime)
@@ -147,6 +149,6 @@ public class NewCardTurnTopOrBottom : MonoBehaviour
             yield return 0;
         }
         istheChangeUpOrDown = false;
-        gameObject.GetComponent<NewCardValueManager>().isCardUp = false;
+        gameObject.GetComponent<NewCardValueManager>().changeCardUpOrDown = true;
     }
 }

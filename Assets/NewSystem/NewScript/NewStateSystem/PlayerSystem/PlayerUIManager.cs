@@ -8,11 +8,11 @@ public class PlayerUIManager : Singleton<PlayerUIManager>
 {
     public GameObject PlayerPiece;
     public GameObject PlayerPieceLocation;
+    public GameObject ReadyButton;
 
     public int HandCardAmount;
 
     public bool readyToDuel;
-    public bool isReady;
     public bool isFirstATK;
     
     public GameObject PlayerHandCardZone;
@@ -32,12 +32,13 @@ public class PlayerUIManager : Singleton<PlayerUIManager>
     void Start()
     {
         PlayerData = new PlayerDataManager();
-        PlayerData.MoveToLocation[0] = 0;
-        PlayerData.MoveToLocation[1] = 0;
+        PlayerData.MoveToLocation[0] = 1;
+        PlayerData.MoveToLocation[1] = 3;
         PlayerData.SettingValue();
         //PracticeLimited = false;
         PlayerHandCardZone.SetActive(false);
         PlayerDeck.SetActive(false);
+        ReadyButton.SetActive(false);
         //PlayerTrashCardZone.SetActive(false);
         PlayerState.SetActive(false);
         StartCoroutine(StartDuel());
@@ -59,47 +60,35 @@ public class PlayerUIManager : Singleton<PlayerUIManager>
         PlayerPiece.transform.DOMove(PlayerPieceLocation.transform.GetChild(PlayerData.MoveToLocation[0]).transform.GetChild(PlayerData.MoveToLocation[1]).transform.position, 1);
         PlayerData.PlayerLocation = PlayerData.MoveToLocation;
     }
-    public void PlayerReady()
-    {    
-        if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack)
-        {
-            for (int i = 0; i < PlayerHandCardZone.transform.childCount; i++)
-            {
-                var targetcard = PlayerHandCardZone.transform.GetChild(i);
-                if (targetcard.GetComponent<NewCardValueManager>().usecard == true)
-                {
-                    targetcard.transform.position -= new Vector3(0, 10, 0);
-                }
-            }
-            for (int j = 0; j < PlayerHandCardZone.transform.childCount; j++)
-            {
-                var targetcard = PlayerHandCardZone.transform.GetChild(j);
-                if (targetcard.GetComponent<NewCardValueManager>().usecard == false)
-                {
-                    targetcard.gameObject.SetActive(false);
-                }
-            }
-        }
-    }
-
-    /*public void ShowHandCard()
+    public void PlayerAttackReady()
     {
+        PlayerData.isReady = true;
+    }
+    public virtual IEnumerator AttackReady()
+    {
+        var targetlist = new List<Transform>();
         for (int i = 0; i < PlayerHandCardZone.transform.childCount; i++)
         {
-            if (PlayerHandCardZone.transform.GetChild(i).gameObject.activeInHierarchy)
+            var targetcard = PlayerHandCardZone.transform.GetChild(i);
+            if (targetcard.GetComponent<NewCardValueManager>().usecard == true)
             {
-                Destroy(PlayerHandCardZone.transform.GetChild(i).gameObject);
-                //ThisTrashCardZone.GetComponent<TrashCard>().TrashCardsObject.Add(HandAllCard[i]);//手牌加入棄牌List
-                //HandAllCard[i] = null; //牌組List中移除卡牌
-            }
-            else if (!PlayerHandCardZone.transform.GetChild(i).gameObject.activeInHierarchy)
-            {
-                PlayerHandCardZone.transform.GetChild(i).gameObject.SetActive(true);
+                targetcard.GetComponent<NewCardValueManager>().resultCard = true;
+                targetlist.Add(targetcard);
+                while (targetcard.transform.position.x != PlayerPiece.transform.position.x && targetcard.transform.position.y != PlayerPiece.transform.position.y)
+                {
+                    targetcard.transform.position = Vector2.MoveTowards(targetcard.transform.position, PlayerPiece.transform.position, 1500 * Time.deltaTime);
+                    yield return 0;
+                }
+                targetcard.gameObject.SetActive(false);
             }
         }
-        //HandAllCard.RemoveAll(HandAllCard => HandAllCard == null);
-    }*/
-
+        for (int j = 0; j < targetlist.Count; j++)
+        {
+            Destroy(targetlist[j].gameObject);
+        }
+        targetlist.Clear();
+        yield return null;
+    }
     public void NormalDrawCard()
     {
         StartCoroutine(NormalDraw());
@@ -111,7 +100,7 @@ public class PlayerUIManager : Singleton<PlayerUIManager>
             var newcard = Instantiate(CardPrefab, PlayerDeck.transform);
             while (newcard.transform.position != PlayerHandCardZone.transform.position)
             {
-                newcard.transform.position = Vector2.MoveTowards(newcard.transform.position, PlayerHandCardZone.transform.position, 3000 * Time.deltaTime);
+                newcard.transform.position = Vector2.MoveTowards(newcard.transform.position, PlayerHandCardZone.transform.position, 4000 * Time.deltaTime);
                 yield return 0;
             }
             newcard.transform.parent = PlayerHandCardZone.transform; //卡片變成手牌子物件
@@ -134,6 +123,7 @@ public class PlayerUIManager : Singleton<PlayerUIManager>
         PlayerState.SetActive(true);
         PlayerHandCardZone.SetActive(true);
         yield return new WaitForSeconds(1);
+        ReadyButton.SetActive(true);
         PlayerPiece = Instantiate(PlayerPrefab, PlayerPieceLocation.transform.GetChild(PlayerData.MoveToLocation[0]).transform.GetChild(PlayerData.MoveToLocation[1])); 
         PlayerData.PlayerLocation = PlayerData.MoveToLocation;
         PlayerData.DrawAmount = PlayerData.StartCard;

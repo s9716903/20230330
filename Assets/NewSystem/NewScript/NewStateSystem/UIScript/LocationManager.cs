@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class LocationManager : MonoBehaviour
 {
-    //public static int[] PlayerChooseMoveCoordinates;
-    //public static int[] EnemyChooseMoveCoordinates;
-
     private List<List<GameObject>> AllLocations;
     private List<List<GameObject>> PlayerLocations;
     private List<List<GameObject>> EnemyLocations;
@@ -16,9 +13,13 @@ public class LocationManager : MonoBehaviour
     public GameObject PlayerPieceLocation;
     public GameObject EnemyPieceLocation;
 
+    public static bool showPlayerATKZone;
+    public static int ATKType;
+
     // Start is called before the first frame update
     void Start()
     {
+        showPlayerATKZone = false;
         AllLocations = new List<List<GameObject>>();
         PlayerLocations = new List<List<GameObject>>();
         EnemyLocations = new List<List<GameObject>>();

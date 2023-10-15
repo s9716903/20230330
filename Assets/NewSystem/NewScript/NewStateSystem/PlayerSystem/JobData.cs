@@ -9,6 +9,8 @@ public abstract class JobData
     public int MoveValue; //移動值
     public int PhysicATKValue; //物理攻值
     public int MagicATKValue; //法術攻值
+    public int PhysicATKZone;
+    public int MagicATKZone;
 
     //public int UnLockedSkill2 = 0; //是否解鎖技能2
     //public int UnLockedPassiveSkill = 0; //是否解鎖被動技能
@@ -23,7 +25,9 @@ public class NoSkill : JobData
         TheStartCard = 5;
         MoveValue = 1;
         PhysicATKValue = 1;
-        MagicATKValue = 0;
+        MagicATKValue = 1;
+        PhysicATKZone = 1;
+        MagicATKZone = 1;
 
         //UnLockedSkill2 = 0;
         //UnLockedPassiveSkill = 0;
@@ -38,6 +42,8 @@ public class SkillTest : JobData
         MoveValue = 2;
         PhysicATKValue = 2;
         MagicATKValue = 1;
+        PhysicATKZone = 2;
+        MagicATKZone = 1;
 
         //UnLockedSkill2 = 0;
         //UnLockedPassiveSkill = 0;
@@ -51,8 +57,9 @@ public class SkillTest2 : JobData
         TheStartCard = 2;
         MoveValue = 3;
         PhysicATKValue = 3;
-        MagicATKValue = 0;
-
+        MagicATKValue = 2;
+        PhysicATKZone = 3;
+        MagicATKZone = 2;
         //UnLockedSkill2 = 0;
         //UnLockedPassiveSkill = 0;
     }

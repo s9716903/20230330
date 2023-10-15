@@ -94,10 +94,6 @@ public class NewMoveState : DuelBattleIState //移動階段(引用IState的運行模式)
             DuelBattleManager.TranslateDuelState(DuelBattleManager.duelStateMode);
         }
     }
-    public virtual IEnumerator MoveStateStart()
-    {
-        yield return new WaitForSeconds(1f);
-    }
 }
 public class NewMoveResultState : DuelBattleIState //移動階段(引用IState的運行模式)
 {
@@ -157,10 +153,10 @@ public class NewAttackResultState : DuelBattleIState //移動階段(引用IState的運行
 {
     public override void EnterState()
     {
+        PlayerUIManager.GetInstance().PlayerData.playerStateMode = NewGameState.NewPlayerStateMode.PlayerDeactivate;
         PlayerUIManager.GetInstance().PlayerData.isReady = false;
         EnemyManager.GetInstance().isReady = false;
-        //DuelUIController.startAttackStateResult = true;
-        //EnemyAIController.AIDoThing = false;
+        DuelUIManager.stateEventStart = true;
     }
     public override void UpdateState()
     {
@@ -171,6 +167,8 @@ public class NewAttackResultState : DuelBattleIState //移動階段(引用IState的運行
             _player_data.isReady = false;
             _enemyManager.isReady = false;
             //DuelUIController.resultEnd = true;
+            DuelBattleManager.duelStateMode = NewGameState.NewDuelStateMode.End;
+            DuelBattleManager.TranslateDuelState(DuelBattleManager.duelStateMode);
         }
         /*if (DuelUIController.resultEnd)
         {
@@ -190,6 +188,7 @@ public class NewEndState : DuelBattleIState //移動階段(引用IState的運行模式)
         _player_data.isReady = false;
         _enemyManager.isReady = false;
         DuelUIManager.showStateText = true;
+        DuelUIManager.stateEventStart = true;
     }
     public override void UpdateState()
     {

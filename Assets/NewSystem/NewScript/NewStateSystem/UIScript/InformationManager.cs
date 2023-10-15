@@ -155,45 +155,4 @@ public class InformationManager : MonoBehaviour,IPointerEnterHandler, IPointerEx
             Explain1[1].SetActive(false);
         }*/
     }
-    public void ReadPlayerState()
-    {
-        StartCoroutine(ReadPlayerStateInformation());
-    }
-    public void ReadEnemyState()
-    {
-        //StartCoroutine(ReadEnemyStateInformation());
-    }
-    public void Skill1Text()
-    {
-        PlayerStateUI.ReadSkill = 0;
-    }
-    public void Skill2Text()
-    {
-        PlayerStateUI.ReadSkill = 1;
-    }
-    public void Skill3Text()
-    {
-        PlayerStateUI.ReadSkill = 2;
-    }
-    public IEnumerator ReadPlayerStateInformation()
-    {
-        PlayerStateUI.ReadSkill = 0;
-        isCardInformation = false;
-        PlayerStateUI.PlayerMaxHpInformation = PlayerUIManager.GetInstance().PlayerData.HP;
-        PlayerStateUI.PlayerDefenseInformation = PlayerUIManager.GetInstance().PlayerData.Defense;
-        readInformation = true;
-        isopenInformationUI = true;
-        yield return null;
-    }
-    /*public IEnumerator ReadEnemyStateInformation()
-    {
-        PlayerStateUI.ReadSkill = 0;
-        isCardInformation = false;
-        PlayerStateUI.PlayerMaxHpInformation = EnemyUIManager.GetInstance().EnemyData.MaxHP;
-        PlayerStateUI.PlayerDefenseInformation = EnemyUIManager.GetInstance().EnemyData.Defense;
-        PlayerStateUI.PlayerStarInformation = EnemyUIManager.GetInstance().EnemyData.Stars;
-        readInformation = true;
-        isopenInformationUI = true;
-        yield return null;
-    }*/
 }

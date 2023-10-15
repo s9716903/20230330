@@ -11,7 +11,6 @@ public class EnemyManager : Singleton<EnemyManager>
 
     public bool readyToDuel;
     public bool isReady;
-    public bool isFirstATK;
 
     public int HowManyEnemys; //場景中生成敵人數
 
@@ -73,7 +72,6 @@ public class EnemyManager : Singleton<EnemyManager>
             //_enemyPrefab.GetComponent<EnemyData>().PlayerLocation = _enemyPrefab.GetComponent<EnemyData>().MoveToLocation;
             yield return null;
         }
-        yield return new WaitForSeconds(1.5f);
         readyToDuel = true;
     }
 }

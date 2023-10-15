@@ -9,14 +9,13 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManager_instance = null;
 
     public Dictionary<int, JobData> Jobs = new Dictionary<int, JobData>();
-    public int PlayerStoryChapterUnlock;
     public List<int> PlayerJob;
     //public TextAsset PlayerInformationAsset;
     //public TextAsset EnemyInformationAsset;
 
     private string datapath;
-
-    public List<int[]> JobDataUnlock = new List<int[]>();
+    private int JobUsingAchievement;
+    public List<int> AchievementList = new List<int>();
 
     // Start is called before the first frame update
     private void Awake()
@@ -39,8 +38,7 @@ public class GameManager : MonoBehaviour
         {
             string playersave = File.ReadAllText(datapath);
             SaveData savedata = JsonConvert.DeserializeObject<SaveData>(playersave);
-            PlayerStoryChapterUnlock = savedata.StoryChapterUnlock;
-            JobDataUnlock = savedata.JobData;
+            AchievementList = savedata.JobData;
             Debug.Log("Lording Save");
         }
         else
@@ -64,15 +62,14 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < Jobs.Count; i++)
         {
-            int[] PlayerJobUnlock = new int[] { i, 0 };
-            JobDataUnlock.Add(PlayerJobUnlock);
+            JobUsingAchievement = 0;
+            AchievementList.Add(JobUsingAchievement);
         }
     }
     private void NewSaveData()
     {
         SaveData savedata = new SaveData();
-        savedata.StoryChapterUnlock = 0;
-        savedata.JobData = JobDataUnlock;
+        savedata.JobData = AchievementList;
         string savejson = JsonConvert.SerializeObject(savedata);
         File.WriteAllText(datapath, savejson);
         Debug.Log("Create New Save");
@@ -84,4 +81,8 @@ public class GameManager : MonoBehaviour
             PlayerJob.Clear();
         }
     }
+}
+public class SaveData
+{
+    public List<int> JobData;
 }

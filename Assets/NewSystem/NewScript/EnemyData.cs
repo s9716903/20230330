@@ -8,13 +8,16 @@ public class EnemyData : MonoBehaviour
     private Dictionary<int, System.Action> Actions = new Dictionary<int, System.Action>();
 
     //基礎數值
-    public int IDIndex;
+    public string EnemyName;
     public int HP;
     public int Defense;
     public int PhysicATKValue;
     public int MagicATKValue;
     public int ATKType;
     //public int MoveValue;
+    public List<int> BasicValue;
+    public int[] BuffValue;
+
     public int[] ThisLocation; //該所在位置
     public int[] PlayerLocation; //玩家所在位置
     public int AllDamaged; //受傷害總數值
@@ -49,7 +52,8 @@ public class EnemyData : MonoBehaviour
     public void SettingValue()
     {
         playerStateMode = NewGameState.NewPlayerStateMode.PlayerDeactivate;
-        gameObject.name = "Enemy" + IDIndex.ToString();
+        gameObject.name = EnemyName;
+        BasicValue = new List<int> { Defense, PhysicATKValue, MagicATKValue };
         //HP = GameManager.gameManager_instance.Jobs[JobIndex].TheMaxHP;
         //Defense = GameManager.gameManager_instance.Jobs[JobIndex].TheDefense;
     }

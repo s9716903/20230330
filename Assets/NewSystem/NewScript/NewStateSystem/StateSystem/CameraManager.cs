@@ -40,7 +40,7 @@ public class CameraManager : MonoBehaviour
         {
             FollowEnemy = enemys.EnemyPiece[i];
             FollowAtEnemy();
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
             LookScene();
             yield return new WaitForSeconds(1.5f);
         }
@@ -48,8 +48,6 @@ public class CameraManager : MonoBehaviour
         _player_data.canMove = true;
         enemys.isReady = true;
         _player_data.playerStateMode = NewGameState.NewPlayerStateMode.PlayerActivate;
-        DuelUIManager.showInformationText = true;
-        DuelUIManager.Information = "Moving";
         yield return 0;
     }
 }

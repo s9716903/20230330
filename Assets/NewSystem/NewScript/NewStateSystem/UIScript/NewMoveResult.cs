@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class NewMoveResult : MonoBehaviour
 {
@@ -24,6 +23,7 @@ public class NewMoveResult : MonoBehaviour
     // Update is called once per frame
     public IEnumerator MoveResult()
     {
+        DuelUIManager.showInformationText = true;
         DuelUIManager.Information = "Move Result";
         //PracticeDialodue.CardLimitedOnShow = false;
         PlayerUIManager.GetInstance().MovePiece();
@@ -45,13 +45,11 @@ public class NewMoveResult : MonoBehaviour
         if (CoinValue == 0)
         {
             PlayerUIManager.GetInstance().isFirstATK = true;
-            EnemyManager.GetInstance().isFirstATK = false;
             DuelUIManager.Information = "You Are First";
         }
         else
         {
             PlayerUIManager.GetInstance().isFirstATK = false;
-            EnemyManager.GetInstance().isFirstATK = true;
             DuelUIManager.Information = "You Are Second";
         }
         yield return new WaitForSeconds(1f);
