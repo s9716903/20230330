@@ -8,6 +8,7 @@ public class EnemyManager : Singleton<EnemyManager>
     public GameObject EnemyPrefab; 
     public List<GameObject> EnemyPiece; //場景中敵人
     public GameObject EnemyPieceLocation; //敵人區域
+    public List<int[]> EnemyATKZone;
 
     public bool readyToDuel;
     public bool isReady;
@@ -26,7 +27,6 @@ public class EnemyManager : Singleton<EnemyManager>
         HowManyEnemys = 3;
         RandomList = new List<int[]>();
         ResetRandomList();
-        //EnemyPiece.SetActive(false);
         StartCoroutine(StartDuel());
     }
 
@@ -38,7 +38,7 @@ public class EnemyManager : Singleton<EnemyManager>
     public void ResetRandomList()
     {
         RandomList.Clear();
-        for (int i = 3; i < 6; i++)
+        for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 4; j++)
             {
@@ -62,10 +62,9 @@ public class EnemyManager : Singleton<EnemyManager>
             var enemylocation = Random.Range(0,RandomList.Count);
             var _enemyPrefab = Instantiate(EnemyPrefab, EnemyPieceLocation.transform);
             _enemyPrefab.GetComponent<EnemyData>().PlayerLocation = RandomList[enemylocation];
-            //_enemyPrefab.GetComponent<EnemyData>().MoveToLocation = RandomList[enemylocation];
             RandomList.Remove(RandomList[enemylocation]);
-            _enemyPrefab.transform.parent = EnemyPieceLocation.transform.GetChild(_enemyPrefab.GetComponent<EnemyData>().PlayerLocation[0] - 3).transform.GetChild(_enemyPrefab.GetComponent<EnemyData>().PlayerLocation[1]);
-            _enemyPrefab.transform.position = EnemyPieceLocation.transform.GetChild(_enemyPrefab.GetComponent<EnemyData>().PlayerLocation[0] - 3).transform.GetChild(_enemyPrefab.GetComponent<EnemyData>().PlayerLocation[1]).transform.position;
+            _enemyPrefab.transform.parent = EnemyPieceLocation.transform.GetChild(_enemyPrefab.GetComponent<EnemyData>().PlayerLocation[0]).transform.GetChild(_enemyPrefab.GetComponent<EnemyData>().PlayerLocation[1]);
+            _enemyPrefab.transform.position = EnemyPieceLocation.transform.GetChild(_enemyPrefab.GetComponent<EnemyData>().PlayerLocation[0]).transform.GetChild(_enemyPrefab.GetComponent<EnemyData>().PlayerLocation[1]).transform.position;
             _enemyPrefab.GetComponent<EnemyData>().PlayerLocation = _enemyPrefab.GetComponent<EnemyData>().PlayerLocation;
             EnemyPiece.Add(_enemyPrefab);
             //_enemyPrefab.transform.position = EnemyPieceLocation.transform.GetChild(_enemyPrefab.GetComponent<EnemyData>().MoveToLocation[0] - 2).transform.GetChild(_enemyPrefab.GetComponent<EnemyData>().MoveToLocation[1]).transform.position;

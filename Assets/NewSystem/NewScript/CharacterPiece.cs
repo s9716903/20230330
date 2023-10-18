@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CharacterPiece : MonoBehaviour,IPointerUpHandler,IPointerDownHandler
+public class CharacterPiece : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class CharacterPiece : MonoBehaviour,IPointerUpHandler,IPointerDownHandle
     {
         
     }
-    public void OnPointerDown(PointerEventData pointerEventData)
+    public void OnPointerEnter(PointerEventData pointerEventData)
     {
         //跳出效果UI
         if ((PlayerUIManager.GetInstance().PlayerData.playerStateMode == NewGameState.NewPlayerStateMode.PlayerActivate))
@@ -24,7 +24,7 @@ public class CharacterPiece : MonoBehaviour,IPointerUpHandler,IPointerDownHandle
             StartCoroutine(OpenCharacterInformation());
         }
     }
-    public void OnPointerUp(PointerEventData pointerEventData)
+    public void OnPointerExit(PointerEventData pointerEventData)
     {
         //關閉效果UI
         SmallInformationUI.readCharacterInformation = false;
@@ -35,19 +35,15 @@ public class CharacterPiece : MonoBehaviour,IPointerUpHandler,IPointerDownHandle
         SmallInformationUI.UIPos = transform.position;
         if (TryGetComponent<EnemyData>(out var enemydata))
         {
-            SmallInformationUI.TextPATK = enemydata.PhysicATKValue.ToString();
-            SmallInformationUI.TextMATK = enemydata.MagicATKValue.ToString();
+            SmallInformationUI.TextPATK = enemydata.ATKValue.ToString();
             SmallInformationUI.TextHP = enemydata.HP.ToString();
             SmallInformationUI.TextDefense = enemydata.Defense.ToString();
-            SmallInformationUI.TextMove = 0.ToString();
         }
         else
         {
-            SmallInformationUI.TextPATK = playerdata.PhysicATK.ToString();
-            SmallInformationUI.TextMATK = playerdata.MagicATK.ToString();
+            SmallInformationUI.TextPATK = playerdata.ATKValue.ToString();
             SmallInformationUI.TextHP = playerdata.HP.ToString();
             SmallInformationUI.TextDefense = playerdata.Defense.ToString();
-            SmallInformationUI.TextMove = playerdata.MoveValue.ToString();
         }
         SmallInformationUI.readCharacterInformation = true;
         yield return null;

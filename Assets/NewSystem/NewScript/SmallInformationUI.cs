@@ -24,16 +24,12 @@ public class SmallInformationUI : MonoBehaviour
     public GameObject SkillImage;
     public GameObject SkillLists;
     public TextMeshProUGUI PhyATKText;
-    public TextMeshProUGUI MagicATKText;
     public TextMeshProUGUI Skill;
     public TextMeshProUGUI HPText;
     public TextMeshProUGUI DefenseText;
-    public TextMeshProUGUI MoveText;
     public static string TextPATK;
-    public static string TextMATK;
     public static string TextHP;
     public static string TextDefense;
-    public static string TextMove;
 
     public static Vector3 UIPos;
     public static bool readCardInformation;
@@ -84,15 +80,14 @@ public class SmallInformationUI : MonoBehaviour
     public void CardInformations()
     {
         var playerdata = PlayerUIManager.GetInstance().PlayerData;
-        var typevalue = new int[] {playerdata.Defense,playerdata.PhysicATK, playerdata.MagicATK};
+        var typevalue = new int[] {playerdata.Defense,playerdata.ATKValue,playerdata.SkillUse};
         var typebuff = playerdata.BuffValue;
-        
-        CardIcon1.sprite = Icons[CardType1];
-        CardIcon2.sprite = Icons[CardType2];
-        CardUpText.text = (typevalue[CardType1] + typebuff[CardType1]).ToString();
-        CardDownText.text = (typevalue[CardType2] + typebuff[CardType2]).ToString();
         if (CardUp)
         {
+            CardIcon1.sprite = Icons[CardType1];
+            CardIcon2.sprite = Icons[CardType2];
+            CardUpText.text = (typevalue[CardType1] + typebuff[CardType1]).ToString();
+            CardDownText.text = (typevalue[CardType2] + typebuff[CardType2]).ToString();
             if ((typevalue[CardType1] + typebuff[CardType1]) > typevalue[CardType1])
             {
                 CardUpText.color = new Color32(0, 255, 0, 255);
@@ -105,31 +100,31 @@ public class SmallInformationUI : MonoBehaviour
             {
                 CardUpText.color = new Color32(255, 255, 255, 255);
             }
-            CardDownText.color = new Color32(100, 100, 100, 255);
         }
         else
         {
-            CardUpText.color = new Color32(100, 100, 100, 255);
+            CardIcon1.sprite = Icons[CardType2];
+            CardIcon2.sprite = Icons[CardType1];
+            CardUpText.text = (typevalue[CardType2] + typebuff[CardType2]).ToString();
+            CardDownText.text = (typevalue[CardType1] + typebuff[CardType1]).ToString();
             if ((typevalue[CardType2] + typebuff[CardType2]) > typevalue[CardType2])
             {
-                CardDownText.color = new Color32(0, 255, 0, 255);
+                CardUpText.color = new Color32(0, 255, 0, 255);
             }
             else if ((typevalue[CardType2] + typebuff[CardType2]) < typevalue[CardType2])
             {
-                CardDownText.color = new Color32(255, 0, 0, 255);
+                CardUpText.color = new Color32(255, 0, 0, 255);
             }
             else
             {
-                CardDownText.color = new Color32(255, 255, 255, 255);
+                CardUpText.color = new Color32(255, 255, 255, 255);
             }
         }
     }
     public void CharacterInformations()
     {
         PhyATKText.text = TextPATK;
-        MagicATKText.text = TextMATK;
         HPText.text = TextHP;
         DefenseText.text = TextDefense;
-        MoveText.text = TextMove;
     }
 }

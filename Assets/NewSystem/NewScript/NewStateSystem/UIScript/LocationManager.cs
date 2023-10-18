@@ -14,12 +14,16 @@ public class LocationManager : MonoBehaviour
     public GameObject EnemyPieceLocation;
 
     public static bool showPlayerATKZone;
-    public static int ATKType;
+    public static bool showEnemyATKZone;
+    public static bool actionResult;
+    public static int  ActionType;
 
     // Start is called before the first frame update
     void Start()
     {
         showPlayerATKZone = false;
+        showEnemyATKZone = false;
+        actionResult = false;
         AllLocations = new List<List<GameObject>>();
         PlayerLocations = new List<List<GameObject>>();
         EnemyLocations = new List<List<GameObject>>();
@@ -47,9 +51,17 @@ public class LocationManager : MonoBehaviour
         {
             for (int b = 0; b < AllLocations[a].Count; b++)
             {
-                AllLocations[a][b].GetComponent<CoordinatesLocation>().Coordinates[0] = a;
-                AllLocations[a][b].GetComponent<CoordinatesLocation>().Coordinates[1] = b;
-                if (a < 3)
+                if (a > 2)
+                {
+                    AllLocations[a][b].GetComponent<CoordinatesLocation>().Coordinates[0] = a - 3;
+                    AllLocations[a][b].GetComponent<CoordinatesLocation>().Coordinates[1] = b + 4;
+                }
+                else
+                {
+                    AllLocations[a][b].GetComponent<CoordinatesLocation>().Coordinates[0] = a;
+                    AllLocations[a][b].GetComponent<CoordinatesLocation>().Coordinates[1] = b;
+                }
+                if (b < 4)
                 {
                     AllLocations[a][b].GetComponent<CoordinatesLocation>().isPlayerLocation = true;
                 }

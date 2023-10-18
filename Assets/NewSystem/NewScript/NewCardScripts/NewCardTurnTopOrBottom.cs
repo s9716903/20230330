@@ -47,23 +47,23 @@ public class NewCardTurnTopOrBottom : MonoBehaviour
     }
     private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             CardStartTop();
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             CardStartBottom();
-        }*/
+        }
 
-        /*if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             CardStartUp();
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
             CardStartDown();
-        }*/
+        }
     }
     public void CardStartTop()
     {

@@ -3,64 +3,75 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class JobData
-{ 
-    public int TheMaxHP; //最大HP
-    public int TheStartCard; //初始手牌數
+{
+    //基礎數值
+    public int HP; //血量
     public int MoveValue; //移動值
-    public int PhysicATKValue; //物理攻值
-    public int MagicATKValue; //法術攻值
-    public int PhysicATKZone;
-    public int MagicATKZone;
+    public int ATKValue; //物理攻擊數值
+    public int ATKZone;
 
-    //public int UnLockedSkill2 = 0; //是否解鎖技能2
-    //public int UnLockedPassiveSkill = 0; //是否解鎖被動技能
-    //public bool isPlayer = false;
+    public int[] Upgrades;
+    public int[] BuffValue; 
     public abstract void Setting();
+    public abstract void Upgrade();
+    public abstract void Skill();
 }
-public class NoSkill : JobData
+public class Warrior : JobData
 {
     public override void Setting()
     {
-        TheMaxHP = 6;
-        TheStartCard = 5;
+        HP = 20;
         MoveValue = 1;
-        PhysicATKValue = 1;
-        MagicATKValue = 1;
-        PhysicATKZone = 1;
-        MagicATKZone = 1;
-
-        //UnLockedSkill2 = 0;
-        //UnLockedPassiveSkill = 0;
+        ATKValue = 2;
+        ATKZone = 4;
+        Upgrades = new int[3] { 0, 0, 0}; //(Defense,ATKCard,Skill)
+        BuffValue = new int[3] { 1, 0, 1}; //(Defense,ATKValue,SkillUse)
     }
+    public override void Upgrade()
+    {
+        if (Upgrades[0] == 1)
+        {
+            BuffValue[0] = 1;
+        }
+        if (Upgrades[1] == 1)
+        {
+            ATKValue = 4;
+            ATKZone = 2;
+        }
+    }
+    public override void Skill()
+    {
+        if (Upgrades[2] == 1)
+        {
+            BuffValue[1] = 1;
+        }
+    }
+
 }
-public class SkillTest : JobData
+public class Magician : JobData
 {
+    public List<int[]> MagicATKZone;
     public override void Setting()
     {
-        TheMaxHP = 9;
-        TheStartCard = 8;
-        MoveValue = 2;
-        PhysicATKValue = 2;
-        MagicATKValue = 1;
-        PhysicATKZone = 2;
-        MagicATKZone = 1;
-
-        //UnLockedSkill2 = 0;
-        //UnLockedPassiveSkill = 0;
+        HP = 20;
+        MoveValue = 1;
+        ATKValue = 2;
+        ATKZone = 4;
+        BuffValue = new int[3] { 1, 0, 1 }; //(Defense,ATKValue,SkillUse)
     }
-}
-public class SkillTest2 : JobData
-{
-    public override void Setting()
+    public override void Upgrade()
     {
-        TheMaxHP = 12;
-        TheStartCard = 2;
-        MoveValue = 3;
-        PhysicATKValue = 3;
-        MagicATKValue = 2;
-        PhysicATKZone = 3;
-        MagicATKZone = 2;
-        //UnLockedSkill2 = 0;
-        //UnLockedPassiveSkill = 0;
+
+    }
+    public override void Skill()
+    {
+        MagicATKZone.Clear();
+        for (int i = 0; i < 2; i++)
+        {
+            var Random1 = Random.Range(0, 3);
+            var Random2 = Random.Range(0, 8);
+            var RandomInt = new int[2] { Random1, Random2 };
+            MagicATKZone.Add(RandomInt);
+        }    
     }
 }

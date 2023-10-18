@@ -27,6 +27,7 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     [Header("CardValue")]
     private int Type1;
     private int Type2;
+    private int[] weight = new int[3] { 40, 40, 20 }; //權重各機率
 
     [Header("CardState")]
     public bool isCardUp; //卡片是否正位置
@@ -58,10 +59,25 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
             CardBottom.SetActive(false);
         }
     }
+    private int GetTypeWeight(int[] array, int Totalweight)
+    {
+        int rand = Random.Range(1, Totalweight + 1);
+        int tmp = 0;
+        for (int w = 0; w < array.Length; w++)
+        {
+            tmp += array[w];
+            if (rand < tmp)
+            {
+                return w;
+            }
+        }
+        return 0;
+    }
+
     private void CardValueSetting()
     {
-        Type1 = Random.Range(0,3);
-        Type2 = Random.Range(0,3);
+        Type1 = GetTypeWeight(weight, 100);
+        Type2 = GetTypeWeight(weight, 100);
         Type1Image.sprite = Icon[Type1];
         Type2Image.sprite = Icon[Type2];
         ChangeCardValue();
@@ -125,7 +141,7 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     {
         if (usecard)
         {
-            SmallInformationUI.UIPos = new Vector3(transform.position.x, 390, 0);
+            SmallInformationUI.UIPos = new Vector3(transform.position.x, 420, 0);
             transform.position += new Vector3(0, 50, 0);
             changeCardUpOrDown = false;
             //playerData.LimitedUse += 1;
@@ -136,7 +152,7 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
         }
         else
         {
-            SmallInformationUI.UIPos = new Vector3(transform.position.x, 340, 0);
+            SmallInformationUI.UIPos = new Vector3(transform.position.x, 370, 0);
             transform.position -= new Vector3(0, 50, 0);
             changeCardUpOrDown = true;
             //playerData.LimitedUse -= 1;
@@ -148,9 +164,9 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
     }
     public void ShowATKZone()
     {
-        if (MainType == 1 || MainType == 2)
+        LocationManager.ActionType = gameObject.GetComponent<NewCardValueManager>().MainType;
+        if (MainType == 1)
         {
-            LocationManager.ATKType = gameObject.GetComponent<NewCardValueManager>().MainType;
             LocationManager.showPlayerATKZone = true;
         }
         else
@@ -177,11 +193,11 @@ public class NewCardValueManager : MonoBehaviour,IPointerDownHandler,IPointerEnt
         SmallInformationUI.CardUp = isCardUp;
         if (usecard)
         {
-            SmallInformationUI.UIPos = new Vector3(transform.position.x, 390, 0);
+            SmallInformationUI.UIPos = new Vector3(transform.position.x, 420, 0);
         }
         else
         {
-            SmallInformationUI.UIPos = new Vector3(transform.position.x, 340, 0);
+            SmallInformationUI.UIPos = new Vector3(transform.position.x, 370, 0);
         }
         SmallInformationUI.readCardInformation = true;
         yield return null;

@@ -122,9 +122,9 @@ public class NewAttackState : DuelBattleIState //移動階段(引用IState的運行模式)
     public override void EnterState()
     {
         DuelUIManager.showStateText = true;
-        PlayerUIManager.GetInstance().PlayerData.playerStateMode = NewGameState.NewPlayerStateMode.PlayerActivate;
         PlayerUIManager.GetInstance().PlayerData.isReady = false;
         EnemyManager.GetInstance().isReady = true;
+        DuelUIManager.stateEventStart = true;
         /*if (PracticeLimtedSetting.LimitedOn && PracticeLimtedSetting.PracticeTurn == 0)
         {
             PracticeDialodue.practiceduel = 3;
