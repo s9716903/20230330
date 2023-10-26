@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewReadyButton : MonoBehaviour
+public class AttackResultButton : MonoBehaviour
 {
+    private void Start()
+    {
+        gameObject.GetComponent<Button>().interactable = false;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -13,16 +17,16 @@ public class NewReadyButton : MonoBehaviour
         {
             if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack)
             {
-                gameObject.GetComponent<Button>().enabled = true;
+                gameObject.GetComponent<Button>().interactable = true;
             }
             else
             {
-                gameObject.GetComponent<Button>().enabled = false;
+                gameObject.GetComponent<Button>().interactable = false;
             }
         }
         else
         {
-            gameObject.GetComponent<Button>().enabled = false;
+            gameObject.GetComponent<Button>().interactable = false;
         }
     }
 }

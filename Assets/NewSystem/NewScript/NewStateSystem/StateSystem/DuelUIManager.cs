@@ -37,7 +37,7 @@ public class DuelUIManager : MonoBehaviour
         MoveResultUI.SetActive(false);
         //ATKResultUI.SetActive(false);
         //DuelEndUI.SetActive(false);
-        InformationText.SetActive(false);     
+        InformationText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -74,9 +74,13 @@ public class DuelUIManager : MonoBehaviour
             {
                 StartCoroutine(EndMoveStateResult());
             }
+            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Attack)
+            {
+                StartCoroutine(StartAttackState());
+            }
             if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.AttackResult)
             {
-               StartCoroutine(StartAttackStateResult());
+                StartCoroutine(StartAttackStateResult());
             }
             if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.End)
             {
@@ -125,6 +129,13 @@ public class DuelUIManager : MonoBehaviour
         _player_data.canMove = false;
         _player_data.isReady = true;
         enemys.isReady = true;
+    }
+    public IEnumerator StartAttackState()
+    {
+        stateEventStart = false;
+        yield return new WaitForSeconds(1f);
+        PlayerUIManager.GetInstance().PlayerData.playerStateMode = NewGameState.NewPlayerStateMode.PlayerActivate;
+        yield return null;
     }
     public IEnumerator StartAttackStateResult()
     {

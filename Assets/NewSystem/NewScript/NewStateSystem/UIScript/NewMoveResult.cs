@@ -23,7 +23,6 @@ public class NewMoveResult : MonoBehaviour
     // Update is called once per frame
     public IEnumerator MoveResult()
     {
-        DuelUIManager.showInformationText = true;
         DuelUIManager.Information = "Move Result";
         //PracticeDialodue.CardLimitedOnShow = false;
         PlayerUIManager.GetInstance().MovePiece();

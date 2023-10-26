@@ -8,7 +8,7 @@ public class PlayerUIManager : Singleton<PlayerUIManager>
 {
     public GameObject PlayerPiece;
     public GameObject PlayerPieceLocation;
-    public GameObject ReadyButton;
+    public GameObject ResultButton;
 
     public int HandCardAmount;
 
@@ -33,12 +33,12 @@ public class PlayerUIManager : Singleton<PlayerUIManager>
     {
         PlayerData = new PlayerDataManager();
         PlayerData.MoveToLocation[0] = 1;
-        PlayerData.MoveToLocation[1] = 3;
+        PlayerData.MoveToLocation[1] = 1;
         PlayerData.SettingValue();
         //PracticeLimited = false;
         PlayerHandCardZone.SetActive(false);
         PlayerDeck.SetActive(false);
-        ReadyButton.SetActive(false);
+        ResultButton.SetActive(false);
         //PlayerTrashCardZone.SetActive(false);
         PlayerState.SetActive(false);
         StartCoroutine(StartDuel());
@@ -95,22 +95,33 @@ public class PlayerUIManager : Singleton<PlayerUIManager>
     }
     public virtual IEnumerator NormalDraw()
     {
-        for (int i = 0; i < PlayerData.DrawAmount; i++)
+        if (PlayerHandCardZone.transform.childCount >= 7)
         {
-            var newcard = Instantiate(CardPrefab, PlayerDeck.transform);
-            while (newcard.transform.position != PlayerHandCardZone.transform.position)
+            DuelUIManager.showInformationText = true;
+            DuelUIManager.Information = "Upper Limited";
+            yield return new WaitForSeconds(1f);
+            DuelUIManager.showInformationText = false;
+            PlayerData.isReady = true;
+        }
+        else
+        {
+            for (int i = 0; i < PlayerData.DrawAmount; i++)
             {
-                newcard.transform.position = Vector2.MoveTowards(newcard.transform.position, PlayerHandCardZone.transform.position, 4000 * Time.deltaTime);
+                var newcard = Instantiate(CardPrefab, PlayerDeck.transform);
+                while (newcard.transform.position != PlayerHandCardZone.transform.position)
+                {
+                    newcard.transform.position = Vector2.MoveTowards(newcard.transform.position, PlayerHandCardZone.transform.position, 3500 * Time.deltaTime);
+                    yield return 0;
+                }
+                newcard.transform.parent = PlayerHandCardZone.transform; //卡片變成手牌子物件
+                PlayerHandCardZone.transform.GetChild(index: PlayerHandCardZone.transform.childCount - 1).GetComponent<NewCardTurnTopOrBottom>().CardStartTop();
                 yield return 0;
             }
-            newcard.transform.parent = PlayerHandCardZone.transform; //卡片變成手牌子物件
-            PlayerHandCardZone.transform.GetChild(index: PlayerHandCardZone.transform.childCount - 1).GetComponent<NewCardTurnTopOrBottom>().CardStartTop();
-            yield return 0;
-        }
-        if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Draw)
-        {
-            yield return new WaitForSeconds(1f);
-            PlayerData.isReady = true;
+            if (DuelBattleManager.duelStateMode == NewGameState.NewDuelStateMode.Draw)
+            {
+                yield return new WaitForSeconds(1f);
+                PlayerData.isReady = true;
+            }
         }
         PlayerData.DrawAmount = 0;
         yield return 0;
@@ -123,10 +134,10 @@ public class PlayerUIManager : Singleton<PlayerUIManager>
         PlayerState.SetActive(true);
         PlayerHandCardZone.SetActive(true);
         yield return new WaitForSeconds(1);
-        ReadyButton.SetActive(true);
+        ResultButton.SetActive(true);
         PlayerPiece = Instantiate(PlayerPrefab, PlayerPieceLocation.transform.GetChild(PlayerData.MoveToLocation[0]).transform.GetChild(PlayerData.MoveToLocation[1])); 
         PlayerData.PlayerLocation = PlayerData.MoveToLocation;
-        PlayerData.DrawAmount = PlayerData.StartCard;
+        PlayerData.DrawAmount = 5;
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(NormalDraw());
         readyToDuel = true;

@@ -9,13 +9,10 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManager_instance = null;
 
     public Dictionary<int, JobData> Jobs = new Dictionary<int, JobData>();
-    public List<int> PlayerJob;
-    //public TextAsset PlayerInformationAsset;
-    //public TextAsset EnemyInformationAsset;
+    public Dictionary<int, EnemyType> Enemys = new Dictionary<int, EnemyType>();
 
     private string datapath;
-    private int JobUsingAchievement;
-    public List<int> AchievementList = new List<int>();
+    public int LevelNumber;
 
     // Start is called before the first frame update
     private void Awake()
@@ -27,62 +24,78 @@ public class GameManager : MonoBehaviour
         }
         gameManager_instance = this;
         DontDestroyOnLoad(gameObject);
-        InitializeJob();
+        InitializePlayerJob();
+        InitializeEnemy();
     }
     // Start is called before the first frame update
     private void Start()
     {
-        ClearPlayerJob();
         datapath = Application.dataPath + "/Save" + "/playersave.json";
         if (File.Exists(datapath))
         {
             string playersave = File.ReadAllText(datapath);
             SaveData savedata = JsonConvert.DeserializeObject<SaveData>(playersave);
-            AchievementList = savedata.JobData;
+            LevelNumber = savedata.Level;
             Debug.Log("Lording Save");
         }
         else
         {
             CreateNewSave();
-            NewSaveData();
         }
     }
-    private void InitializeJob()
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            LevelNumber = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Save();
+        }
+    }
+    private void InitializePlayerJob()
     {
         Jobs.Clear();
-        Jobs.Add(0, new NoSkill());
-        Jobs.Add(1, new SkillTest());
-        Jobs.Add(2, new SkillTest2());
-        for (int i = 0; i < Jobs.Count; i++)
-        {
-            Jobs[i].Setting();
-        }
+        Jobs.Add(0, new Warrior());
+        Jobs.Add(1, new Magician());
+    }
+    private void InitializeEnemy()
+    {
+        Enemys.Clear();
+        Enemys.Add(0, new Tomato());
     }
     private void CreateNewSave()
     {
-        for (int i = 0; i < Jobs.Count; i++)
-        {
-            JobUsingAchievement = 0;
-            AchievementList.Add(JobUsingAchievement);
-        }
-    }
-    private void NewSaveData()
-    {
         SaveData savedata = new SaveData();
-        savedata.JobData = AchievementList;
         string savejson = JsonConvert.SerializeObject(savedata);
         File.WriteAllText(datapath, savejson);
         Debug.Log("Create New Save");
     }
-    public void ClearPlayerJob()
+    private void Save()
     {
-        if (PlayerJob != null)
+        string playersave = File.ReadAllText(datapath);
+        SaveData savedata = JsonConvert.DeserializeObject<SaveData>(playersave);
+        savedata.Level = LevelNumber;
+        savedata.PlayerJobID = PlayerUIManager.GetInstance().PlayerData.JobIndex;
+        string savejson = JsonConvert.SerializeObject(savedata);
+        File.WriteAllText(datapath, savejson);
+        Debug.Log("Save");
+    }
+    public void StartNewGame()
+    { 
+        for (int i = 0; i < Jobs.Count; i++)
         {
-            PlayerJob.Clear();
+            Jobs[i].Setting();
+        }
+        for (int j = 0; j < Enemys.Count; j++)
+        {
+            Jobs[j].Setting();
         }
     }
 }
 public class SaveData
 {
-    public List<int> JobData;
+    public int Level;
+    public int PlayerJobID;
 }
